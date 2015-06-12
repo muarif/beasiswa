@@ -16,7 +16,9 @@
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/beasiswa';
+$root = 'http://'.$_SERVER['HTTP_HOST'];
+$root .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+$config['base_url']	= $root;
 
 /*
 |--------------------------------------------------------------------------
@@ -226,7 +228,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'pondok_ybmbri';
 
 /*
 |--------------------------------------------------------------------------
@@ -359,6 +361,7 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+$config['assets'] = $config['base_url'].'assets/';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
