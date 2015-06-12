@@ -55,28 +55,43 @@ textarea {
 	text-transform: uppercase;
 }
 
-
-
-
+.form-control{
+	height: 40px;
+}
+.btn{
+	background: #00529c !important;
+	color: #fff;
+}
+.btn.focus, .btn:focus, .btn:hover {
+	color: #fff;
+  text-decoration: none;
+  box-shadow: 2px #00315F inset;
+  -webkit-box-shadow: 0 8px 6px -6px black inset;
+  -moz-box-shadow: 0 8px 6px -6px black inset;
+  box-shadow: 0 -6px 6px -6px black inset;
+}
 
 
 
 /*------------------------------------------------------------------
 [2. Navbar / .navbar]
 */
-
+.navbar{
+	background: #00529c !important;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  	margin-bottom: 0;
+}
 .navbar .container {
 	position: relative;
 }
 
 .navbar-inner {
 	padding: 7px 0;
-	
-	background: #00ba8b !important;
-	
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
-	border-radius: 0;
 }
 
 .navbar-fixed-top {
@@ -92,7 +107,13 @@ textarea {
 	position: relative;
 	top: 2px;
 }
-
+.navbar-brand{
+	padding: 5px 15px;
+	height: 70px;
+}
+.navbar-brand img{
+	height: 100%;
+}
 .navbar .search-query {
 	background-color: #444;
 	width: 150px;
@@ -252,8 +273,6 @@ textarea {
 
 .main {
 	padding-bottom: 2em;
-	
-	border-bottom: 1px solid #000;
 }
 
 
@@ -307,9 +326,11 @@ textarea {
 */
 
 .footer {
-	margin-top: 0;
-	
-	border-top: 1px solid #292929;
+	  margin-top: 0;
+  border-top: 1px solid #292929;
+  bottom: 0px;
+  width: 100%;
+  position: absolute;
 }
 
 .footer-inner {
@@ -347,12 +368,8 @@ textarea {
 }
 	
 .widget-header {
-	
 	position: relative;
-	
-	height: 40px;
 	line-height: 40px;
-	
 	background: #f9f6f1;
 	background:-moz-linear-gradient(top, #f9f6f1 0%, #f2efea 100%); /* FF3.6+ */
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#f9f6f1), color-stop(100%,#f2efea)); /* Chrome,Safari4+ */
@@ -371,14 +388,11 @@ textarea {
 }	
 	
 	.widget-header h3 {
-		
 		position: relative;
-		top: 2px;
 		left: 10px;
-		
 		display: inline-block;
-		margin-right: 3em;
-		
+		/*margin-right: 3em;*/
+		margin:15px 0;
 		font-size: 14px;
 		font-weight: 800;
 		color: #525252;
@@ -1333,15 +1347,15 @@ body{ background: url(../img/body-bg.png); color:#838383; font: 13px/1.7em 'Open
 	color: #8e8d8d;
 	padding: 11px 15px 10px 50px;
 	background-color: #fdfdfd;
-	width: 255px;
+	width: 100%;
 	display: block;
 	margin: 0;
 	box-shadow: inset 2px 2px 4px #f1f1f1;
 }
 
-.username-field { background: url(../../img/signin/user.png) no-repeat; }
+.username-field { background: url(../img/signin/user.png) no-repeat; }
 
-.password-field { background: url(../../img/signin/password.png) no-repeat; }
+.password-field { background: url(../img/signin/password.png) no-repeat; }
 
 
 

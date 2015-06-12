@@ -12,6 +12,7 @@ class Dashboard extends CI_Controller {
         {
            redirect('auth');
         }
+        no_cache();
     }
 	
 	function index()

@@ -9,6 +9,7 @@ class Auth extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 		$this->load->helper('cookie');
+		no_cache();
     }   
 
 	function index()
@@ -57,6 +58,8 @@ class Auth extends CI_Controller {
 	
     function logout()
     {
+    	$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
+		$this->output->set_header("Pragma: no-cache");
         $this->session->unset_userdata('logged_in');
 		$this->session->sess_destroy();
         $this->session->set_flashdata('alert', 'Thanks, You have successfuly logged out!');
