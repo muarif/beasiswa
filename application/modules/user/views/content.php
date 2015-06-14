@@ -47,7 +47,7 @@
                                     <td>
                                         <div class="btn-group btn-group-xs" role="group" aria-label="Button Group">
                                             <a class="btn btn-default" href="<?php echo site_url('user/edit/'.$row['id_user']) ?>" role="button"><span class="glyphicon glyphicon-cog"></span>Edit</a>
-                                            <a class="btn btn-danger deleteButton" data-target='#my_modal' data-toggle="modal"  href="<?php echo site_url('user/hapus/'.$row['id_user'])?>" role="button"><span class="glyphicon glyphicon-trash"></span>Hapus</a>
+                                            <a class="btn btn-danger deleteButton" data-target='#my_modal' data-id="<?php echo $row['id_user'];?>" data-toggle="modal" role="button"><span class="glyphicon glyphicon-trash"></span>Hapus</a>
                                         </div>
                                     </td>
                                 </tr>
