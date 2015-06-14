@@ -5,13 +5,14 @@
 <title>Dashboard - Bootstrap Admin Template</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<link href="<?php echo config_item('assets'); ?>css/normalize.css" rel="stylesheet">
+<link href="<?php echo config_item('assets'); ?>css/font.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
-        rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/font-awesome.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/style.css" rel="stylesheet">
-<link href="<?php echo config_item('assets'); ?>css/normalize.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/pages/dashboard.css" rel="stylesheet">
+<link href="<?php echo config_item('assets'); ?>js/ladda/dist/ladda-themeless.css" rel="stylesheet">
+<link href="<?php echo config_item('assets'); ?>js/ladda/css/prism.css" rel="stylesheet">
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -99,27 +100,7 @@
 
 <!-- /FOR CONTENT ONLY -->
 
-<?php
-	if($this->session->userdata('logged_in'))
-    {
-?>
-<div class="footer">
-  <div class="footer-inner">
-    <div class="container">
-      <div class="row">
-        <div class="span12"> &copy; <?php echo date('Y');?> YBMBRI </div>
-        <!-- /span12 --> 
-      </div>
-      <!-- /row --> 
-    </div>
-    <!-- /container --> 
-  </div>
-  <!-- /footer-inner --> 
-</div>
-<!-- /footer --> 
-<?php 
-	} 
-?>
+
 <!-- Le javascript
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
@@ -127,6 +108,10 @@
 <script src="<?php echo config_item('assets'); ?>js/excanvas.min.js"></script> 
 <script src="<?php echo config_item('assets'); ?>js/chart.min.js" type="text/javascript"></script> 
 <script src="<?php echo config_item('assets'); ?>js/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo config_item('assets'); ?>js/ladda/dist/spin.js"></script>
+<script src="<?php echo config_item('assets'); ?>js/ladda/dist/ladda.min.js"></script>
+
+<script src="<?php echo config_item('assets'); ?>js/ladda/js/prism.js"></script>
 <script language="javascript" type="text/javascript" src="<?php echo config_item('assets'); ?>js/full-calendar/fullcalendar.min.js"></script>
 <?php 
     if(isset($script))

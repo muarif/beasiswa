@@ -7,7 +7,7 @@ class Auth_model extends CI_Model {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
         
-        $this->db->select('id_user, username, password, level')
+        $this->db->select('id_user, username, password, id_level')
             ->from('user')
             ->where(array('username'=>$username, 'password'=>$password));
         $result = $this->db->get();

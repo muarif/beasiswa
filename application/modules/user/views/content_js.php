@@ -1,16 +1,11 @@
-<script src="<?php echo config_item('assets'); ?>js/datatable/media/js/jquery.dataTables.js"></script>
-<script src="<?php echo config_item('assets'); ?>js/dataTables.bootstrap.js"></script>
-<script>
-	//datatables
-	$(document).ready(function () {
-		$('#userTable').dataTable({
-            'processing': true,
-            'serverSide': true,
-           	'ajax': '<?php echo site_url('user/listUser')?>'
-        });
-        //Search input style
-        $('.dataTables_filter input').attr('placeholder','Search');
-	});
-	
-	
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.deleteButton').on('click',function(e){
+			e.preventDefault();
+		});
+		$('#my_modal').on('show.bs.modal', function(e) {
+		    var bookId = $(e.relatedTarget).attr('href');
+		    $(e.currentTarget).find('.delB').attr('href',bookId);
+		});
+	})
 </script>

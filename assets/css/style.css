@@ -24,6 +24,9 @@ textarea {
   font-family: 'Open Sans';
 }
 
+fieldset{
+	border: none;
+}
 .dropdown .dropdown-menu {
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
@@ -55,23 +58,26 @@ textarea {
 	text-transform: uppercase;
 }
 
-.form-control{
-	height: 40px;
-}
-.btn{
-	background: #00529c !important;
+
+.btn-default,.btn-default:hover{
+	background: #00529c;
 	color: #fff;
+	border-color:#0C5BD5;
 }
-.btn.focus, .btn:focus, .btn:hover {
+.btn-default.focus, .btn-default:focus, .btn-default:hover {
+	background: #00529c;
 	color: #fff;
   text-decoration: none;
   box-shadow: 2px #00315F inset;
   -webkit-box-shadow: 0 8px 6px -6px black inset;
   -moz-box-shadow: 0 8px 6px -6px black inset;
   box-shadow: 0 -6px 6px -6px black inset;
+  border-color:#0C5BD5;
 }
 
-
+.btn .glyphicon{
+	margin-right: 5px;
+}
 
 /*------------------------------------------------------------------
 [2. Navbar / .navbar]
@@ -330,7 +336,7 @@ textarea {
   border-top: 1px solid #292929;
   bottom: 0px;
   width: 100%;
-  position: absolute;
+  position: fixed;
 }
 
 .footer-inner {
@@ -366,10 +372,15 @@ textarea {
 		
 	overflow: hidden;
 }
-	
+.widget-button{
+	display: inline-block;
+	float: right;
+	color: #fff;
+	line-height: 30px;
+}
 .widget-header {
+	padding: 15px 0;
 	position: relative;
-	line-height: 40px;
 	background: #f9f6f1;
 	background:-moz-linear-gradient(top, #f9f6f1 0%, #f2efea 100%); /* FF3.6+ */
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#f9f6f1), color-stop(100%,#f2efea)); /* Chrome,Safari4+ */
@@ -380,23 +391,41 @@ textarea {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f6f1', endColorstr='#f2efea');
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f6f1', endColorstr='#f2efea')";
 	
-	
+	overflow: hidden;
 	border: 1px solid #d6d6d6;
 	
 	
 	-webkit-background-clip: padding-box;
+}
+.widget-header .widget-button{
+	margin-right: 12px;
+}
+.widget-header .widget-button >*{
+	display: inline-block;
+	float:left;
+}
+.widget-header .searchArea{
+	width: 200px;
+	margin-right: 5px;
+}
+.widget-header .widget-button button{
+	font-size:12px;
 }	
-	
+.widget-header .widget-button [class*=" icon-"]{
+	color:#fff;
+	margin: 0;
+  	margin-right: 10px;
+}
 	.widget-header h3 {
 		position: relative;
 		left: 10px;
 		display: inline-block;
 		/*margin-right: 3em;*/
-		margin:15px 0;
+		margin:0;
 		font-size: 14px;
 		font-weight: 800;
 		color: #525252;
-		line-height: 18px;
+		line-height:30px;
 		
 		text-shadow: 1px 1px 2px rgba(255,255,255,.5);
 	}
@@ -1170,14 +1199,12 @@ color: #333;
     	
 	#main {
 		padding: 0 10px;
-		margin-right: -20px;
-		margin-left: -20px;	
+		
 	}
 	
 	
 	.subnavbar {
-		margin-left: -20px;
-		margin-right: -20px;	
+		
 	}
 	
 	
@@ -1275,6 +1302,7 @@ color: #333;
 	}
 	
 	.subnavbar {
+		width:100%;
 	}
 	
 	.subnavbar .container {		
