@@ -7,11 +7,11 @@
                         <h3>User List</h3>
                         <div class="widget-button">
                             <div class="searchArea">
-                            <form>
+                            <form style="margin:0" action="user?<?php echo getLink('q');?>">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Cari">
+                                    <input type="text" class="form-control" placeholder="Cari" name="q" value="<?php echo $this->input->get('q')?>">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                                        <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                                     </span>
                                 </div><!-- /input-group -->
                             </form>
@@ -26,9 +26,9 @@
                         <table class="table" id="userTable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
-                                    <th>Level</th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['id_user'] == 'asc') ? 'desc' : 'asc'; ?>&by=id_user">ID</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['id_user'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['username'] == 'asc') ? 'desc' : 'asc'; ?>&by=username">Username</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['username'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['level'] == 'asc') ? 'desc' : 'asc'; ?>&by=level">Level</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['level'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -57,25 +57,8 @@
                        
                     </div>
                     <!-- /widget-content --> 
-                    <nav>
-                        <ul class="pagination">
-                            <li>
-                                <a href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                    
+                   <?php echo $page;?>
                 </div>
             </div>
             <!-- /row --> 

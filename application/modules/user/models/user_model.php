@@ -2,10 +2,23 @@
 
 class User_model extends CI_Model {
 
-	function get_data() 
+	function get_data($search, $sort, $page, $per_page,$is_page=FALSE) 
     {
-		$query = $this->db->query('SELECT id_user, username, level, status FROM user u JOIN level l ON u.id_level = l.id_level');
-			
+
+		$this->db->select('id_user, username, level, status');
+		$this->db->join('level l', 'l.id_level = user.id_level');
+		$this->db->like('username', $search,'both');
+		
+		if($this->input->get('sort')&&$this->input->get('by')){
+			$this->db->order_by($this->input->get('by'), $this->input->get('sort')); 
+		}
+		if($is_page){
+			$cur_page = ($this->input->get('per_page')) ? $this->input->get('per_page') : 1;
+			$this->db->limit($per_page, $per_page*($cur_page - 1));
+		}
+
+		$query = $this->db->get('user');
+		// echo $this->db->last_query();	
 		return $query->result_array();
 		
     }

@@ -494,7 +494,7 @@ fieldset{
 /* Widget Table */
 
 .widget-table .widget-content {
-	padding: 0;
+	padding: 10px;
 }
 
 .widget-table .table {
