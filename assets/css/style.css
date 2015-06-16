@@ -78,7 +78,17 @@ fieldset{
 .btn .glyphicon{
 	margin-right: 5px;
 }
-
+.form-horizontal .control-label{
+	text-align: left;
+}
+.gradeLabel{
+	float: left;
+}
+.input-group[class*=col-]{
+	padding-right: 15px;
+  	padding-left: 15px;
+}
+.form-group .col-lg-6{}
 /*------------------------------------------------------------------
 [2. Navbar / .navbar]
 */
@@ -1573,3 +1583,44 @@ span.login-checkbox > input[type='checkbox']:checked + label {
 	}
 	
 }
+
+.sd .radio-info input[type="radio"]:checked + label::after,
+.sd .radio-info input[type="radio"] + label::after,
+.sd .radio label::after{
+	background-color: #a94442;
+}
+.sd .radio-info input[type="radio"]:checked + label::before{
+	border-color: #a94442;
+}
+
+
+.smp .radio-info input[type="radio"]:checked + label::after,
+.smp .radio-info input[type="radio"] + label::after,
+.smp .radio label::after{
+	background-color: #337ab7;
+}
+.smp .radio-info input[type="radio"]:checked + label::before{
+	border-color: #337ab7;
+}
+
+.sma .radio-info input[type="radio"]:checked + label::after,
+.sma .radio-info input[type="radio"] + label::after,
+.sma .radio label::after{
+	background-color: #777;
+}
+.sma .radio-info input[type="radio"]:checked + label::before{
+	border-color: #777;
+}
+
+.pt .radio-info input[type="radio"]:checked + label::after,
+.pt .radio-info input[type="radio"] + label::after,
+.pt .radio label::after{
+	background-color: #3c763d;
+}
+.pt .radio-info input[type="radio"]:checked + label::before{
+	border-color: #3c763d;
+}
+
+.list-group-item{
+	overflow: hidden;
+};

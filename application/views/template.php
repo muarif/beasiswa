@@ -8,11 +8,11 @@
 <link href="<?php echo config_item('assets'); ?>css/normalize.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/font.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo config_item('assets'); ?>js/datepicker/css/datepicker.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/font-awesome.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/style.css" rel="stylesheet">
+<link href="<?php echo config_item('assets'); ?>css/awesome-bootstrap-checkbox.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/pages/dashboard.css" rel="stylesheet">
-<link href="<?php echo config_item('assets'); ?>js/ladda/dist/ladda-themeless.css" rel="stylesheet">
-<link href="<?php echo config_item('assets'); ?>js/ladda/css/prism.css" rel="stylesheet">
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -67,6 +67,7 @@
       <ul class="mainnav">
         <li <?php echo ($this->uri->segment(1) == 'dashboard') ? 'class="active"' : '';?>><a href="<?php echo site_url();?>"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
         <li <?php echo ($this->uri->segment(1) == 'user') ? 'class="active"' : '';?>><a href="<?php echo site_url('user');?>"><i class="icon-user"></i><span>Users</span> </a> </li>
+        <li <?php echo ($this->uri->segment(1) == 'kandidat') ? 'class="active"' : '';?>><a href="<?php echo site_url('kandidat');?>"><i class="icon-group"></i><span>Kandidat</span> </a> </li>
         <li><a href="guidely.html"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
         <li><a href="charts.html"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
         <li><a href="shortcodes.html"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
@@ -108,6 +109,7 @@
 <script src="<?php echo config_item('assets'); ?>js/excanvas.min.js"></script> 
 <script src="<?php echo config_item('assets'); ?>js/chart.min.js" type="text/javascript"></script> 
 <script src="<?php echo config_item('assets'); ?>js/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo config_item('assets'); ?>js/datepicker/js/bootstrap-datepicker.js"></script>
 <script src="<?php echo config_item('assets'); ?>js/ladda/dist/spin.js"></script>
 <script src="<?php echo config_item('assets'); ?>js/ladda/dist/ladda.min.js"></script>
 
