@@ -30,30 +30,31 @@ class Auth extends CI_Controller {
     
     function login()
     {
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required|md5');
+        echo 'a';
+        // $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+        // $this->form_validation->set_rules('password', 'Password', 'trim|required|md5');
         
-        if($this->form_validation->run() == FALSE)
-        {
-            $this->session->set_flashdata('alert', validation_errors());
-            redirect('auth');
-        }
-        else
-        {
-            $user_log = $this->auth_model->check_user();
+        // if($this->form_validation->run() == FALSE)
+        // {
+        //     $this->session->set_flashdata('alert', validation_errors());
+        //     redirect('auth');
+        // }
+        // else
+        // {
+            // $user_log = $this->auth_model->check_user();
             
-            if(!$user_log)
-            {
-                $this->session->set_flashdata('alert', 'Oops! Incorect NIP or password');
-                redirect('auth');
-            }
-            else
-            {
-                $this->session->set_userdata($user_log);
-                $this->session->set_flashdata('alert', 'Welcome '.$this->session->userdata('name').'!');
+            // if(!$user_log)
+            // {
+            //     $this->session->set_flashdata('alert', 'Oops! Incorect NIP or password');
+            //     redirect('auth');
+            // }
+            // else
+            // {
+            //     $this->session->set_userdata($user_log);
+            //     $this->session->set_flashdata('alert', 'Welcome '.$this->session->userdata('name').'!');
                 redirect('dashboard');
-            }
-        }
+            // }
+        // }
     }
 	
     function logout()

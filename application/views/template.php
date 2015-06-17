@@ -13,6 +13,7 @@
 <link href="<?php echo config_item('assets'); ?>css/style.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/awesome-bootstrap-checkbox.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/pages/dashboard.css" rel="stylesheet">
+<link href="<?php echo config_item('assets'); ?>js/switch/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

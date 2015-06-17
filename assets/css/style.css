@@ -89,6 +89,10 @@ fieldset{
   	padding-left: 15px;
 }
 .form-group .col-lg-6{}
+
+.nav-pills{
+	margin-bottom: 20px;
+}
 /*------------------------------------------------------------------
 [2. Navbar / .navbar]
 */

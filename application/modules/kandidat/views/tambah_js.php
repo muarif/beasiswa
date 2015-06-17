@@ -1,14 +1,20 @@
+<script src="<?php echo config_item('assets'); ?>js/wizard/jquery.bootstrap.wizard.js"></script>
 <script>
 	$(document).ready(function(){
 		$('.dp').datepicker();
-		// $('#insertUser').on('submit',function(e){
-			
-		// 	e.preventDefault();
-		// 	$.ajax({
-		// 		url: '<?php echo site_url('user/add')?>',
-		// 		method: 'POST'
+		$('#rootwizard').bootstrapWizard({
+			'tabClass': 'nav nav-pills',
+			onInit:function(){
 
-		// 	});
-		// })
+			},
+			onTabShow: function(tab, navigation, index) {
+				var $total = navigation.find('li').length;
+				var $current = index+1;
+				var $percent = ($current/$total) * 100;
+				$('#rootwizard .progress-bar').css({width:$percent+'%'});
+			}
+		});
+		
+		
 	})
 </script>
