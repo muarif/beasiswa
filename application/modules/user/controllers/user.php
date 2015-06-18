@@ -44,7 +44,7 @@ class User extends CI_Controller {
 		$search = $this->input->get('q');
 		$page = '';
 		
-		$per_page=1;
+		$per_page=10;
 
 		$sort = array(
 			'id_user' => ($this->input->get('by')=='id_user') ? $this->input->get('sort') : 'asc',

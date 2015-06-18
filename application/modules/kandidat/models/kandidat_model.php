@@ -5,9 +5,12 @@ class Kandidat_model extends CI_Model {
 	function get_data($search, $sort, $page, $per_page,$is_page=FALSE) 
     {
 
-		$this->db->select('id_user, username, level, status');
-		$this->db->join('level l', 'l.id_level = user.id_level');
-		$this->db->like('username', $search,'both');
+		$this->db->select('id_siswa, id_beasiswa, nama_lengkap, jenis_rek, nama_preferensi, nama_kanwil');
+		$this->db->join('kanwil kw', 'kw.id_kanwil = kandidat.id_kanwil');
+		$this->db->join('provinsi pv', 'pv.id_provinsi = kandidat.id_provinsi');
+		$this->db->join('preferensi pf', 'pf.id_preferensi = kandidat.id_preferensi');
+		$this->db->like('nama_lengkap', $search,'both');
+		$this->db->or_like('nama_preferensi', $search,'both');
 		
 		if($this->input->get('sort')&&$this->input->get('by')){
 			$this->db->order_by($this->input->get('by'), $this->input->get('sort')); 
@@ -17,24 +20,40 @@ class Kandidat_model extends CI_Model {
 			$this->db->limit($per_page, $per_page*($cur_page - 1));
 		}
 
-		$query = $this->db->get('user');
-		// echo $this->db->last_query();	
+		$query = $this->db->get('kandidat');
+		echo $this->db->last_query();	
 		return $query->result_array();
 		
     }
 	
 	function add($post){
-		$data = array(
-				'username'	=>	$post['username'],
-				'password'	=>	md5($post['password']),
-				'id_level'		=>	$post['level'],
-				'status'	=>	1
-			);
+		if($post['id_preferensi']== ''){
+			$pref = array(
+					'nama_preferensi'	=>	$post['nama_preferensi'],
+					'nama_lembaga'	=>	$post['nama_lembaga'],
+					'alamat_preferensi'	=>	$post['alamat_preferensi'],
+					'jabatan'	=>	$post['jabatan'],
+					'telepon_preferensi'	=>	$post['telepon_preferensi'],
+					'email_preferensi'	=>	$post['email_preferensi'],
+				);
+			$post['id_preferensi'] = $this->insert_preferensi($pref);
+		}
 
-		$result = $this->db->insert('user',$data);
+		unset($post['nama_preferensi']);
+		unset($post['nama_lembaga']);
+		unset($post['alamat_preferensi']);
+		unset($post['jabatan']);
+		unset($post['telepon_preferensi']);
+		unset($post['email_preferensi']);
+
+		$result = $this->db->insert('kandidat', $post); 
 		return $result;
 	}
-	
+	function insert_preferensi($pref){
+		$this->db->insert('preferensi', $pref); 
+		return $this->db->insert_id();
+	}
+
 	function get_provinsi(){
 		$query = $this->db->query('SELECT * FROM provinsi');
 			
@@ -45,6 +64,18 @@ class Kandidat_model extends CI_Model {
 		}
 		return $result;
 	}
+
+	function get_kanwil(){
+		$query = $this->db->query('SELECT * FROM kanwil');
+			
+		$rq = $query->result_array();
+		$result =array();
+		foreach($rq as $value){
+			$result[$value['id_kanwil']] = $value['nama_kanwil'];
+		}
+		return $result;
+	}
+
 	function get_user_data($id){
 		$query = $this->db->query('SELECT id_user, username, id_level level, status FROM user WHERE id_user = '.$id);
 			

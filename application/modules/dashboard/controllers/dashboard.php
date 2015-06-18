@@ -10,7 +10,7 @@ class Dashboard extends CI_Controller {
         $this->load->model('dashboard_model');
         if(!$this->session->userdata('logged_in'))
         {
-           redirect('auth');
+           header('Location: '.site_url('auth'));
         }
         no_cache();
     }

@@ -8,7 +8,6 @@ class Auth extends CI_Controller {
         $this->load->model('auth_model');
         $this->load->helper('form');
         $this->load->library('form_validation');
-		$this->load->helper('cookie');
 		no_cache();
     }   
 
@@ -24,37 +23,36 @@ class Auth extends CI_Controller {
         }
         else
         {
-            redirect('dashboard');
+            header('Location: '.site_url('dashboard'));
         }
 	}
     
     function login()
     {
-        echo 'a';
-        // $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-        // $this->form_validation->set_rules('password', 'Password', 'trim|required|md5');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|md5');
         
-        // if($this->form_validation->run() == FALSE)
-        // {
-        //     $this->session->set_flashdata('alert', validation_errors());
-        //     redirect('auth');
-        // }
-        // else
-        // {
-            // $user_log = $this->auth_model->check_user();
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->session->set_flashdata('alert', validation_errors());
+            header('Location: '.site_url('auth'));
+        }
+        else
+        {
+            $user_log = $this->auth_model->check_user();
             
-            // if(!$user_log)
-            // {
-            //     $this->session->set_flashdata('alert', 'Oops! Incorect NIP or password');
-            //     redirect('auth');
-            // }
-            // else
-            // {
-            //     $this->session->set_userdata($user_log);
-            //     $this->session->set_flashdata('alert', 'Welcome '.$this->session->userdata('name').'!');
-                redirect('dashboard');
-            // }
-        // }
+            if(!$user_log)
+            {
+                $this->session->set_flashdata('alert', 'Oops! Incorect NIP or password');
+                header('Location: '.site_url('auth'));
+            }
+            else
+            {
+                $this->session->set_userdata($user_log);
+                $this->session->set_flashdata('alert', 'Welcome '.$this->session->userdata('name').'!');
+                header('Location: '.site_url('dashboard'));
+            }
+        }
     }
 	
     function logout()

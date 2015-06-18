@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="widget widget-table action-table">
                     <div class="widget-header"> <i class="icon-th-list"></i>
-                        <h3>User List</h3>
+                        <h3>Kandidat List</h3>
                         <div class="widget-button">
                             <div class="searchArea">
                             <form style="margin:0" action="user?<?php echo getLink('q');?>">
@@ -26,9 +26,11 @@
                         <table class="table" id="userTable">
                             <thead>
                                 <tr>
-                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['id_user'] == 'asc') ? 'desc' : 'asc'; ?>&by=id_user">ID</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['id_user'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
-                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['username'] == 'asc') ? 'desc' : 'asc'; ?>&by=username">Username</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['username'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
-                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['level'] == 'asc') ? 'desc' : 'asc'; ?>&by=level">Level</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['level'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['id_beasiswa'] == 'asc') ? 'desc' : 'asc'; ?>&by=id_beasiswa">ID Beasiswa</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['id_beasiswa'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['nama_lengkap'] == 'asc') ? 'desc' : 'asc'; ?>&by=nama_lengkap">Username</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['nama_lengkap'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['jenis_rek'] == 'asc') ? 'desc' : 'asc'; ?>&by=jenis_rek">Jenis Rekening</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['jenis_rek'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['nama_preferensi'] == 'asc') ? 'desc' : 'asc'; ?>&by=nama_preferensi">Perekomendasi</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['nama_preferensi'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['nama_kanwil'] == 'asc') ? 'desc' : 'asc'; ?>&by=nama_kanwil">Kanwil</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['nama_kanwil'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -36,18 +38,22 @@
                             <tbody>
                                 <?php foreach($user as $row){?>
                                 <tr>
-                                    <td><?php echo $row['id_user']?>
+                                    <td><?php echo $row['id_beasiswa']?>
                                     </td>
-                                    <td><?php echo $row['username']?>
+                                    <td><?php echo $row['nama_lengkap']?>
                                     </td>
-                                    <td><?php echo $row['level']?>
+                                    <td><?php echo $row['jenis_rek']?>
+                                    </td>
+                                    <td><?php echo $row['nama_preferensi']?>
+                                    </td>
+                                    <td><?php echo $row['nama_kanwil']?>
                                     </td>
                                     <td><?php echo ($row['status']=='1') ? '<span class="label label-success">Active</span>' : '<span class="label label-danger">Inactive</span>' ?>
                                     </td>
                                     <td>
                                         <div class="btn-group btn-group-xs" role="group" aria-label="Button Group">
-                                            <a class="btn btn-default" href="<?php echo site_url('user/edit/'.$row['id_user']) ?>" role="button"><span class="glyphicon glyphicon-cog"></span>Edit</a>
-                                            <a class="btn btn-danger deleteButton" data-target='#my_modal' data-id="<?php echo $row['id_user'];?>" data-toggle="modal" role="button"><span class="glyphicon glyphicon-trash"></span>Hapus</a>
+                                            <a class="btn btn-default" href="<?php echo site_url('user/edit/'.$row['id_kandidat']) ?>" role="button"><span class="glyphicon glyphicon-cog"></span>Edit</a>
+                                            <a class="btn btn-danger deleteButton" data-target='#my_modal' data-id="<?php echo $row['id_kandidat'];?>" data-toggle="modal" role="button"><span class="glyphicon glyphicon-trash"></span>Hapus</a>
                                         </div>
                                     </td>
                                 </tr>
