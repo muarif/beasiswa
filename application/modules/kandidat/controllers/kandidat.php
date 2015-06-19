@@ -32,7 +32,7 @@ class Kandidat extends CI_Controller {
 		);
 		/*Config Pagination*/
 		$this->load->library('pagination');
-		$config['base_url'] = site_url('user?'.getLink('per_page'));
+		$config['base_url'] = site_url('kandidat?'.getLink('per_page'));
 		$config['total_rows'] = count($this->kandidat_model->get_data($search, $sort, '','',FALSE));
 		$config['per_page'] = $per_page;
 		$config['num_links'] = 2;

@@ -5,7 +5,7 @@ class Kandidat_model extends CI_Model {
 	function get_data($search, $sort, $page, $per_page,$is_page=FALSE) 
     {
 
-		$this->db->select('id_siswa, id_beasiswa, nama_lengkap, jenis_rek, nama_preferensi, nama_kanwil');
+		$this->db->select('id_siswa, id_beasiswa, nama_lengkap, jenis_rek, nama_preferensi, nama_kanwil, status');
 		$this->db->join('kanwil kw', 'kw.id_kanwil = kandidat.id_kanwil');
 		$this->db->join('provinsi pv', 'pv.id_provinsi = kandidat.id_provinsi');
 		$this->db->join('preferensi pf', 'pf.id_preferensi = kandidat.id_preferensi');
@@ -21,7 +21,7 @@ class Kandidat_model extends CI_Model {
 		}
 
 		$query = $this->db->get('kandidat');
-		echo $this->db->last_query();	
+		// echo $this->db->last_query();	
 		return $query->result_array();
 		
     }

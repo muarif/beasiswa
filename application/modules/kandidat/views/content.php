@@ -36,7 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($user as $row){?>
+                                <?php foreach($kandidat as $row){?>
                                 <tr>
                                     <td><?php echo $row['id_beasiswa']?>
                                     </td>
@@ -52,8 +52,8 @@
                                     </td>
                                     <td>
                                         <div class="btn-group btn-group-xs" role="group" aria-label="Button Group">
-                                            <a class="btn btn-default" href="<?php echo site_url('user/edit/'.$row['id_kandidat']) ?>" role="button"><span class="glyphicon glyphicon-cog"></span>Edit</a>
-                                            <a class="btn btn-danger deleteButton" data-target='#my_modal' data-id="<?php echo $row['id_kandidat'];?>" data-toggle="modal" role="button"><span class="glyphicon glyphicon-trash"></span>Hapus</a>
+                                            <a class="btn btn-default" href="<?php echo site_url('user/edit/'.$row['id_siswa']) ?>" role="button"><span class="glyphicon glyphicon-cog"></span>Edit</a>
+                                            <a class="btn btn-danger deleteButton" data-target='#my_modal' data-id="<?php echo $row['id_siswa'];?>" data-toggle="modal" role="button"><span class="glyphicon glyphicon-trash"></span>Hapus</a>
                                         </div>
                                     </td>
                                 </tr>
