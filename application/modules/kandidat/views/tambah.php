@@ -37,12 +37,12 @@
                                                         <label class="control-label col-md-2 " for="jenis_kelamin">Jenis Kelamin</label>
                                                         <div class="col-md-10">
                                                             <div class="radio  radio-inline">
-                                                                <input type="radio" id="inlineRadio1" value="L" name="jenis_kelamin" <?php echo set_radio('jenis_kelamin', 'L'); ?>>
-                                                                <label for="inlineRadio1"> Laki-laki </label>
+                                                                <input type="radio" id="kel1" value="L" name="jenis_kelamin" <?php echo set_radio('jenis_kelamin', 'L'); ?>>
+                                                                <label for="kel1"> Laki-laki </label>
                                                             </div>
                                                             <div class="radio radio-inline">
-                                                                <input type="radio" id="inlineRadio2" value="P" name="jenis_kelamin" <?php echo set_radio('jenis_kelamin', 'P'); ?>>
-                                                                <label for="inlineRadio2"> Wanita </label>
+                                                                <input type="radio" id="kel2" value="P" name="jenis_kelamin" <?php echo set_radio('jenis_kelamin', 'P'); ?>>
+                                                                <label for="kel2"> Wanita </label>
                                                             </div>
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('jenis_kelamin'); ?>               
@@ -97,13 +97,13 @@
                                                         <div class="form-group ">
                                                             <div class="<?php echo (form_error('kota')) ? 'has-error' : ''?> col-md-6">                                         
                                                                 <div>
-                                                                    <input type="text" placeholder="Kota / Kabupaten" class="form-control" id="kota" name="kota" value="<?php echo set_value('kecamatan'); ?>">
+                                                                    <input type="text" placeholder="Kota / Kabupaten" class="form-control" id="kota" name="kota" value="<?php echo set_value('kota'); ?>">
                                                                 </div> <!-- /controls -->
                                                                <?php echo form_error('kota', '<div class="help-block ">', '</div>'); ?>             
                                                             </div> <!-- /control-group -->
                                                             <div class="<?php echo (form_error('kode_pos')) ? 'has-error' : ''?> col-md-6">                                         
                                                                 <div>
-                                                                    <input type="text" placeholder="Kode Pos" class="form-control" id="kode_pos" name="kode_pos" value="<?php echo set_value('kecamatan'); ?>">
+                                                                    <input type="text" placeholder="Kode Pos" class="form-control" id="kode_pos" name="kode_pos" value="<?php echo set_value('kode_pos'); ?>">
                                                                 </div> <!-- /controls -->
                                                                 <?php echo form_error('kode_pos', '<div class="help-block ">', '</div>'); ?>              
                                                             </div> <!-- /control-group -->
@@ -191,109 +191,20 @@
                                                         <label class="control-label col-md-2 " for="id_kelas">Tingkat</label>
                                                         <div class="col-md-10">
                                                                 <ul class="list-group">
-                                                                    <li class="list-group-item sd">
-                                                                        <label class="control-label gradeLabel col-md-2">SD :</label>
-                                                                        <div class="col-md-10">
-                                                                            <div class="radio radio-inline sd">
-                                                                                <input type="radio" id="inlineRadio3" value="1" name="id_kelas" <?php echo set_radio('id_kelas', '1'); ?>>
-                                                                                <label for="inlineRadio3" > Kelas 1 </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline sd">
-                                                                                <input type="radio" id="inlineRadio4" value="2" name="id_kelas" <?php echo set_radio('id_kelas', '2'); ?>>
-                                                                                <label for="inlineRadio4" > Kelas 2  </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline sd">
-                                                                                <input type="radio" id="inlineRadio5" value="3" name="id_kelas" <?php echo set_radio('id_kelas', '3'); ?>>
-                                                                                <label for="inlineRadio5" > Kelas 3  </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline sd">
-                                                                                <input type="radio" id="inlineRadio6" value="4" name="id_kelas" <?php echo set_radio('id_kelas', '4'); ?>>
-                                                                                <label for="inlineRadio6" > Kelas 4  </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline sd">
-                                                                                <input type="radio" id="inlineRadio7" value="5" name="id_kelas" <?php echo set_radio('id_kelas', '5'); ?>>
-                                                                                <label for="inlineRadio7" > Kelas 5  </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline sd">
-                                                                                <input type="radio" id="inlineRadio8" value="6" name="id_kelas" <?php echo set_radio('id_kelas', '6'); ?>>
-                                                                                <label for="inlineRadio8" > Kelas 6  </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="list-group-item smp">
-                                                                        <label class="control-label gradeLabel col-md-2">SMP :</label>
-                                                                        <div class="col-md-10">
-                                                                            <div class="radio radio-inline smp">
-                                                                                <input type="radio" id="inlineRadio9" value="7" name="id_kelas" <?php echo set_radio('id_kelas', '7'); ?>>
-                                                                                <label for="inlineRadio9" > Kelas 1 </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline smp">
-                                                                                <input type="radio" id="inlineRadio10" value="8" name="id_kelas" <?php echo set_radio('id_kelas', '8'); ?>>
-                                                                                <label for="inlineRadio10" > Kelas 2  </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline smp">
-                                                                                <input type="radio" id="inlineRadio11" value="9" name="id_kelas" <?php echo set_radio('id_kelas', '9'); ?>>
-                                                                                <label for="inlineRadio11" > Kelas 3  </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="list-group-item sma">
-                                                                        <label class="control-label gradeLabel col-md-2">SMA :</label>
-                                                                        <div class="col-md-10">
-                                                                            <div class="radio radio-inline">
-                                                                                <input type="radio" id="inlineRadio12" value="10" name="id_kelas" <?php echo set_radio('id_kelas', '10'); ?>>
-                                                                                <label for="inlineRadio12" > Kelas 1 </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline">
-                                                                                <input type="radio" id="inlineRadio13" value="11" name="id_kelas" <?php echo set_radio('id_kelas', '11'); ?>>
-                                                                                <label for="inlineRadio13" > Kelas 2  </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline">
-                                                                                <input type="radio" id="inlineRadio14" value="12" name="id_kelas" <?php echo set_radio('id_kelas', '12'); ?>>
-                                                                                <label for="inlineRadio14" > Kelas 3  </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="list-group-item pt">
-                                                                        <label class="control-label gradeLabel col-md-2">PT :</label>
-                                                                        <div class="col-md-10">
-                                                                            <div class="radio radio-inline">
-                                                                                <input type="radio" id="inlineRadio15" value="13" name="id_kelas" <?php echo set_radio('id_kelas', '13'); ?>>
-                                                                                <label for="inlineRadio15" > Semester 1 </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline">
-                                                                                <input type="radio" id="inlineRadio16" value="14" name="id_kelas" <?php echo set_radio('id_kelas', '14'); ?>>
-                                                                                <label for="inlineRadio16" > Semester 2  </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline">
-                                                                                <input type="radio" id="inlineRadio17" value="15" name="id_kelas" <?php echo set_radio('id_kelas', '15'); ?>>
-                                                                                <label for="inlineRadio17" > Semester 3  </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline">
-                                                                                <input type="radio" id="inlineRadio18" value="16" name="id_kelas" <?php echo set_radio('id_kelas', '16'); ?>>
-                                                                                <label for="inlineRadio18" > Semester 4 </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline">
-                                                                                <input type="radio" id="inlineRadio19" value="17" name="id_kelas" <?php echo set_radio('id_kelas', '17'); ?>>
-                                                                                <label for="inlineRadio19" > Semester 5  </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline">
-                                                                                <input type="radio" id="inlineRadio20" value="18" name="id_kelas" <?php echo set_radio('id_kelas', '18'); ?>>
-                                                                                <label for="inlineRadio20" > Semester 6  </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline">
-                                                                                <input type="radio" id="inlineRadio21" value="19" name="id_kelas" <?php echo set_radio('id_kelas', '19'); ?>>
-                                                                                <label for="inlineRadio21" > Semester 7  </label>
-                                                                            </div>
-                                                                            <div class="radio radio-inline">
-                                                                                <input type="radio" id="inlineRadio22" value="20" name="id_kelas" <?php echo set_radio('id_kelas', '20'); ?>>
-                                                                                <label for="inlineRadio22" > Semester 8  </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                </li>
-                                                                
-                                                            
+                                                                    <?php 
+                                                                        $st = '';
+                                                                        foreach($kelas as $key=>$value){
+                                                                            $st.='<li class="list-group-item '.$key.'"> <label class="control-label gradeLabel col-md-2">'.strtoupper($key).' :</label><div class="col-md-10">';
+
+                                                                            foreach ($value as $keys => $values) {
+                                                                                $st.= '<div class="radio radio-inline '.$key.'"><input type="radio" id="inlineRadio'.$values['id_kelas'].'" value="'.$values['id_kelas'].'" name="id_kelas" '.set_radio('id_kelas', $values['id_kelas']) .'><label for="inlineRadio'.$values['id_kelas'].'" > '.$values['label'].' </label></div>';
+                                                                            }
+                                                                            $st.='</div></li>';
+                                                                        }
+                                                                        echo $st;
+                                                                    ?>
+                                                                    
+                                                                </ul>
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('id_kelas'); ?>               
                                                     </div> <!-- /control-group -->

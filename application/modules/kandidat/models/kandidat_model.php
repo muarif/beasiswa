@@ -49,10 +49,7 @@ class Kandidat_model extends CI_Model {
 		$result = $this->db->insert('kandidat', $post); 
 		return $result;
 	}
-	function insert_preferensi($pref){
-		$this->db->insert('preferensi', $pref); 
-		return $this->db->insert_id();
-	}
+	
 
 	function get_provinsi(){
 		$query = $this->db->query('SELECT * FROM provinsi');
@@ -76,23 +73,79 @@ class Kandidat_model extends CI_Model {
 		return $result;
 	}
 
-	function get_user_data($id){
-		$query = $this->db->query('SELECT id_user, username, id_level level, status FROM user WHERE id_user = '.$id);
+	function get_kelas(){
+		$kelas = $this->db->query('SELECT *, kelas.label as labels FROM kelas JOIN tingkatan ON kelas.id_tingkat = tingkatan.id_tingkatan');
+		$kelasr = $kelas->result_array();
+
+		$result =array();
+		$i = 0;
+		foreach($kelasr as $value){
+
+			$result[$value['tingkatan']][$i]['id_kelas'] = $value['id_kelas'];
+			$result[$value['tingkatan']][$i]['label'] = $value['labels'];
+			$i++;
+		}
+		
+		return $result;
+	}
+
+	function get_kandidat_data($id){
+		$query = $this->db->query('SELECT * FROM kandidat JOIN preferensi ON kandidat.id_preferensi = preferensi.id_preferensi WHERE id_siswa = '.$id);
 			
 		return $query->result_array();
 	}
 	function update($post,$id){
-		$data = array(
-               'username' => $post['username'],
-               'id_level' => $post['level']
-            );
-		if($post['password']!='') $data['password'] = md5($post['password']);
-		$this->db->where('id_user', $id);
-		$result = $this->db->update('user', $data); 
+		if($post['id_preferensi']== ''){
+			$pref = array(
+					'nama_preferensi'	=>	$post['nama_preferensi'],
+					'nama_lembaga'	=>	$post['nama_lembaga'],
+					'alamat_preferensi'	=>	$post['alamat_preferensi'],
+					'jabatan'	=>	$post['jabatan'],
+					'telepon_preferensi'	=>	$post['telepon_preferensi'],
+					'email_preferensi'	=>	$post['email_preferensi'],
+				);
+			$post['id_preferensi'] = $this->insert_preferensi($pref);
+		}else{
+			$pref = array(
+					'nama_preferensi'	=>	$post['nama_preferensi'],
+					'nama_lembaga'	=>	$post['nama_lembaga'],
+					'alamat_preferensi'	=>	$post['alamat_preferensi'],
+					'jabatan'	=>	$post['jabatan'],
+					'telepon_preferensi'	=>	$post['telepon_preferensi'],
+					'email_preferensi'	=>	$post['email_preferensi'],
+				);
+			$re = $this->update_preferensi($pref,$post['id_preferensi']);
+			if(!$re){
+				$this->session->set_flashdata('warning', '<div class="alert alert-warning" role="alert">Gagal Update Pereferensi</div>');
+			}
+		}
+
+		unset($post['nama_preferensi']);
+		unset($post['nama_lembaga']);
+		unset($post['alamat_preferensi']);
+		unset($post['jabatan']);
+		unset($post['telepon_preferensi']);
+		unset($post['email_preferensi']);
+
+
+		$this->db->where('id_siswa', $id);
+		$result = $this->db->update('kandidat', $post); 
 		return $result;
 	}
+
+	function insert_preferensi($pref){
+		$this->db->insert('preferensi', $pref); 
+		return $this->db->insert_id();
+	}
+
+	function update_preferensi($pref,$id){
+		$this->db->where('id_preferensi', $id);
+		$a = $this->db->update('preferensi', $pref); 
+		return $a;
+	}
+
 	function delete($id){
-		$result = $this->db->delete('user', array('id_user' => $id)); 
+		$result = $this->db->delete('kandidat', array('id_siswa' => $id)); 
 		return $result;
 	}
 }

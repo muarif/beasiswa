@@ -14,6 +14,7 @@
 <link href="<?php echo config_item('assets'); ?>css/awesome-bootstrap-checkbox.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/pages/dashboard.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>js/switch/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+<link href="<?php echo config_item('assets'); ?>js/rwd/dist/css/rwd-table.css" rel="stylesheet">
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -113,6 +114,7 @@
 <script src="<?php echo config_item('assets'); ?>js/datepicker/js/bootstrap-datepicker.js"></script>
 <script src="<?php echo config_item('assets'); ?>js/ladda/dist/spin.js"></script>
 <script src="<?php echo config_item('assets'); ?>js/ladda/dist/ladda.min.js"></script>
+<script src="<?php echo config_item('assets'); ?>js/rwd/dist/js/rwd-table.min.js"></script>
 
 <script src="<?php echo config_item('assets'); ?>js/ladda/js/prism.js"></script>
 <script language="javascript" type="text/javascript" src="<?php echo config_item('assets'); ?>js/full-calendar/fullcalendar.min.js"></script>

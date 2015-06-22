@@ -1,7 +1,7 @@
 <script src="<?php echo config_item('assets'); ?>js/wizard/jquery.bootstrap.wizard.js"></script>
 <script>
 	$(document).ready(function(){
-		$('.dp').datepicker();
+		$('.dp').datepicker({format:'yyyy-mm-dd'});
 		$('#rootwizard').bootstrapWizard({
 			'tabClass': 'nav nav-pills',
 			onInit:function(tab, navigation, index){
@@ -23,7 +23,9 @@
 				$('#rootwizard .progress-bar').css({width:$percent+'%'});
 			}
 		});
-		
+
+	   
+
 		
 	})
 </script>

@@ -392,15 +392,10 @@ margin-left: 10px;
 */
 
 .widget {
-	
 	position: relative;
 	clear: both;
-	
 	width: auto;
-	
 	margin-bottom: 2em;
-		
-	overflow: hidden;
 }
 .widget-button{
 	display: inline-block;
