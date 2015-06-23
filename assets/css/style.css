@@ -97,6 +97,10 @@ fieldset{
 dd .icon{
 	margin-right: 5px;
 }
+
+.panel-footer{
+	overflow:hidden;
+}
 /*
 	Error Classes
 */

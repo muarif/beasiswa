@@ -181,7 +181,26 @@
                                     </dl>
                                 </div>
                             </div>
-                          
+                            <form action="<?php echo site_url('kandidat/setKelulusan/'.$id)?>" method="POST">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Form Kelulusan</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <label class="control-label col-md-2 " for="nama_lengkap">Alasan jika tidak lulus</label>
+                                    <div class="col-md-10">
+                                        <textarea class="form-control" name="alasan"><?php echo (set_value('alasan'))?set_value('alasan'):$data[0]['nama_preferensi']; ?></textarea> 
+                                    </div> <!-- /controls -->
+                                    
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="btn-group pull-right" role="group" aria-label="form">
+                                        <input type="submit" name="btnlulus" class="btn btn-success" value="Lulus" />
+                                        <input type="submit" name="btnlulus" class="btn btn-danger" value="Tidak Lulus" />
+                                    </div>
+                                </div>
+                            </div>
+                            </form> 
                         </div>
                     </div>
                 </div>

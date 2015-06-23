@@ -231,4 +231,14 @@ class Kandidat extends CI_Controller {
 		);
 		$this->load->view('template', $data);
 	}
+	function setKelulusan($id){
+		$setKelulusan = $this->kandidat_model->setKelulusan($id);
+		if($setKelulusan){
+			$this->session->set_flashdata('success', $setKelulusan);
+			redirect(site_url('kandidat/view/'.$id));
+		}else{
+			$this->session->set_flashdata('fail', '<div class="alert alert-danger" role="alert">Gagal Proses Data</div>');
+			redirect(site_url('kandidat/view/'.$id));
+		}
+	}
 }

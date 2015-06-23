@@ -148,4 +148,21 @@ class Kandidat_model extends CI_Model {
 		$result = $this->db->delete('kandidat', array('id_siswa' => $id)); 
 		return $result;
 	}
+	function setKelulusan($id){
+		$post = $this->input->post();
+		if($post['btnlulus']=='Lulus'){
+			$status = 1;
+		}else{
+			$status = 2;
+		}
+		$this->db->where('id_siswa',$id);
+		$a = $this->db->update('kandidat',array('id_lulus'=>$status,'alasan_lulus'=>$post['alasan']));
+		if($a){
+			if($status == 1) return '<div class="alert alert-success" role="alert">Berhasil meluluskan siswa</div>';
+			elseif($status == 2) return '<div class="alert alert-warning" role="alert">Tidak meluluskan siswa</div>';
+		}else{
+			return false;
+		}
+	}
+
 }
