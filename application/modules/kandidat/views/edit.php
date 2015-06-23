@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="widget">
                     <div class="widget-header"> 
-                        <h3>Edit User</h3>
+                        <h3>Edit Kandidat</h3>
                     </div>
                     <div class="widget-content">
                     <div class="col-sm-12">

@@ -90,7 +90,7 @@ class Kandidat_model extends CI_Model {
 	}
 
 	function get_kandidat_data($id){
-		$query = $this->db->query('SELECT * FROM kandidat JOIN preferensi ON kandidat.id_preferensi = preferensi.id_preferensi WHERE id_siswa = '.$id);
+		$query = $this->db->query('SELECT *,kelas.label as labelk,tingkatan.label as labelt FROM kandidat JOIN preferensi ON kandidat.id_preferensi = preferensi.id_preferensi JOIN provinsi ON kandidat.id_provinsi = provinsi.id_provinsi JOIN kanwil ON kandidat.id_kanwil = kanwil.id_kanwil JOIN kelas ON kelas.id_kelas = kandidat.id_kelas JOIN tingkatan ON tingkatan.id_tingkatan = kelas.id_tingkat WHERE id_siswa = '.$id);
 			
 		return $query->result_array();
 	}

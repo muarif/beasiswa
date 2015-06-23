@@ -93,6 +93,10 @@ fieldset{
 .nav-pills{
 	margin-bottom: 20px;
 }
+
+dd .icon{
+	margin-right: 5px;
+}
 /*
 	Error Classes
 */

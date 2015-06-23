@@ -219,7 +219,7 @@ class Kandidat extends CI_Controller {
 			redirect(site_url('kandidat'));
 		}
 	}
-	function view(){
+	function view($id){
 		$item['provinsi'] = $this->kandidat_model->get_provinsi();
 		$item['kelas'] = $this->kandidat_model->get_kelas();
 		$item['kanwil'] = $this->kandidat_model->get_kanwil();
