@@ -11,6 +11,7 @@
 <link href="<?php echo config_item('assets'); ?>js/datepicker/css/datepicker.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/font-awesome.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/style.css" rel="stylesheet">
+<link href="<?php echo config_item('assets'); ?>css/print.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/awesome-bootstrap-checkbox.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>css/pages/dashboard.css" rel="stylesheet">
 <link href="<?php echo config_item('assets'); ?>js/switch/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">

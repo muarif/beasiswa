@@ -1,0 +1,17 @@
+@media print {
+    .navbar, .subnavbar{
+		display: none;
+	}
+	.dl-horizontal dt{
+		float: left;
+		clear: left;
+		text-align: right;
+		display: inline-block;
+		margin-right: 10px;
+		min-width: 200px;
+	}
+	.dl-horizontal dd{
+		float: left;
+		display: inline-block;
+	}
+}
