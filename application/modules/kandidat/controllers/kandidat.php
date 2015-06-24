@@ -227,7 +227,7 @@ class Kandidat extends CI_Controller {
 		$item['id'] = $id;
 		$data = array(
 			'content'=>$this->load->view('view', $item, TRUE),
-			// 'script'=>$this->load->view('tambah_js', '', TRUE)
+			'script'=>$this->load->view('view_js', '', TRUE)
 		);
 		$this->load->view('template', $data);
 	}

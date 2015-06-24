@@ -7,7 +7,11 @@
                         <h3>Data Siswa</h3>
                     </div>
                     <div class="widget-content">
+
                         <div class="col-sm-12">
+                            <?php echo $this->session->flashdata('success') ?>                         
+                            <?php echo $this->session->flashdata('fail') ?> 
+                            <?php echo $this->session->flashdata('warning') ?> 
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Data Pribadi</h3>
@@ -181,26 +185,43 @@
                                     </dl>
                                 </div>
                             </div>
-                            <form action="<?php echo site_url('kandidat/setKelulusan/'.$id)?>" method="POST">
+                            <?php if($data[0]['id_lulus']!='1'){ ?>
+                            <form action="<?php echo site_url('kandidat/setKelulusan/'.$id)?>" method="POST" class="form-horizontal">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Form Kelulusan</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <label class="control-label col-md-2 " for="nama_lengkap">Alasan jika tidak lulus</label>
-                                    <div class="col-md-10">
-                                        <textarea class="form-control" name="alasan"><?php echo (set_value('alasan'))?set_value('alasan'):$data[0]['nama_preferensi']; ?></textarea> 
-                                    </div> <!-- /controls -->
-                                    
+                                    <div class="form-group <?php echo (form_error('id_lulus')) ? 'has-error' : ''?>">                                         
+                                        <label class="control-label col-md-2 " for="id_lulus">Status Kelulusan</label>
+                                        <div class="col-md-10">
+                                            <div class="radio  radio-inline">
+                                                <input type="radio" id="kel1" value="1" name="id_lulus" <?php echo (set_radio('id_lulus', '1')?set_radio('id_lulus', '1'):(($data[0]['id_lulus']=='1') ? 'checked': '')); ?>>
+                                                <label for="kel1"> Lulus </label>
+                                            </div>
+                                            <div class="radio radio-inline">
+                                                <input type="radio" id="kel2" value="0" name="id_lulus" <?php echo (set_radio('id_lulus', '0')?set_radio('id_lulus', '0'):(($data[0]['id_lulus']=='0') ? 'checked': '')); ?>>
+                                                <label for="kel2"> Belum Lulus </label>
+                                            </div>
+                                        </div> <!-- /controls -->
+                                        <?php echo form_error('id_lulus'); ?>               
+                                    </div> <!-- /control-group -->
+                                    <div class="form-group ">                                         
+                                        <label class="control-label col-md-2 " for="alasan_lulus">Alasan jika tidak lulus</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" name="alasan_lulus"><?php echo (set_value('alasan_lulus'))?set_value('alasan_lulus'):$data[0]['alasan_lulus']; ?></textarea> 
+                                        </div> <!-- /controls -->           
+                                    </div> <!-- /control-group -->
+                                   
                                 </div>
                                 <div class="panel-footer">
                                     <div class="btn-group pull-right" role="group" aria-label="form">
-                                        <input type="submit" name="btnlulus" class="btn btn-success" value="Lulus" />
-                                        <input type="submit" name="btnlulus" class="btn btn-danger" value="Tidak Lulus" />
+                                        <button type="submit" class="btn btn-success" >Confirm</button>
                                     </div>
                                 </div>
                             </div>
-                            </form> 
+                            </form>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

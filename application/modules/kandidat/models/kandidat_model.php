@@ -5,10 +5,11 @@ class Kandidat_model extends CI_Model {
 	function get_data($search, $sort, $page, $per_page,$is_page=FALSE) 
     {
 
-		$this->db->select('id_siswa, id_beasiswa, nama_lengkap, jenis_rek, nama_preferensi, nama_kanwil, status');
+		$this->db->select('id_siswa, id_beasiswa, nama_lengkap, jenis_rek, nama_preferensi, nama_kanwil, id_lulus, status, desc');
 		$this->db->join('kanwil kw', 'kw.id_kanwil = kandidat.id_kanwil');
 		$this->db->join('provinsi pv', 'pv.id_provinsi = kandidat.id_provinsi');
 		$this->db->join('preferensi pf', 'pf.id_preferensi = kandidat.id_preferensi');
+		$this->db->join('status st', 'st.id_status = kandidat.status','left');
 		$this->db->like('nama_lengkap', $search,'both');
 		$this->db->or_like('nama_preferensi', $search,'both');
 		
@@ -150,16 +151,12 @@ class Kandidat_model extends CI_Model {
 	}
 	function setKelulusan($id){
 		$post = $this->input->post();
-		if($post['btnlulus']=='Lulus'){
-			$status = 1;
-		}else{
-			$status = 2;
-		}
+		if($post['id_lulus'] == 1) $post['status'] = 1;
 		$this->db->where('id_siswa',$id);
-		$a = $this->db->update('kandidat',array('id_lulus'=>$status,'alasan_lulus'=>$post['alasan']));
+		$a = $this->db->update('kandidat',$post);
 		if($a){
-			if($status == 1) return '<div class="alert alert-success" role="alert">Berhasil meluluskan siswa</div>';
-			elseif($status == 2) return '<div class="alert alert-warning" role="alert">Tidak meluluskan siswa</div>';
+			if($post['id_lulus'] == 1) return '<div class="alert alert-success" role="alert">Berhasil meluluskan siswa</div>';
+			elseif($post['id_lulus'] == 0) return '<div class="alert alert-warning" role="alert">Tidak meluluskan siswa</div>';
 		}else{
 			return false;
 		}

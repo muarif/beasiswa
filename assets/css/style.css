@@ -117,6 +117,21 @@ dd .icon{
 margin-left: 10px;
 }
 
+.table>tbody>tr.tlulus>td, 
+.table>tbody>tr.tlulus>th, 
+.table>tbody>tr>td.tlulus, 
+.table>tbody>tr>th.tlulus, 
+.table>tfoot>tr.tlulus>td, 
+.table>tfoot>tr.tlulus>th, 
+.table>tfoot>tr>td.tlulus, 
+.table>tfoot>tr>th.tlulus, 
+.table>thead>tr.tlulus>td, 
+.table>thead>tr.tlulus>th, 
+.table>thead>tr>td.tlulus, 
+.table>thead>tr>th.tlulus {
+  background-color: #d6d5d5;
+}
+
 /*------------------------------------------------------------------
 [2. Navbar / .navbar]
 */
