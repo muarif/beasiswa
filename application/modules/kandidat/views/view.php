@@ -12,6 +12,46 @@
                             <?php echo $this->session->flashdata('success') ?>                         
                             <?php echo $this->session->flashdata('fail') ?> 
                             <?php echo $this->session->flashdata('warning') ?> 
+
+                            <?php if($data[0]['id_lulus']=='1'){ ?>
+                            <form action="<?php echo site_url('kandidat/setStatus/'.$id)?>" method="POST" class="form-horizontal">
+                            <div class="panel panel-default">
+                                
+                                <div class="panel-body">
+                                    <div class="form-group <?php echo (form_error('status')) ? 'has-error' : ''?>">                                         
+                                        <label class="control-label col-md-2 " for="status">Status </label>
+                                        <div class="col-md-10">
+                                            <div class="radio  radio-inline">
+                                                <input type="radio" id="kel1" value="1" name="status" <?php echo (set_radio('status', '1')?set_radio('status', '1'):(($data[0]['status']=='1') ? 'checked': '')); ?>>
+                                                <label for="kel1"> Aktif </label>
+                                            </div>
+                                            <div class="radio radio-inline">
+                                                <input type="radio" id="kel2" value="0" name="status" <?php echo (set_radio('status', '0')?set_radio('status', '0'):(($data[0]['status']=='0') ? 'checked': '')); ?>>
+                                                <label for="kel2"> Non-aktif
+                                            </div>
+                                        </div> <!-- /controls -->
+                                        <?php echo form_error('status'); ?>               
+                                    </div> <!-- /control-group -->
+                                    <div class="form-group ">                                         
+                                        <label class="control-label col-md-2 " for="id_provinsi">Provinsi</label>
+                                        <div class="col-md-10">
+                                            <div class="form-group <?php echo (form_error('id_provinsi')) ? 'has-error' : ''?>">                                        
+                                                    <?php echo form_dropdown('id_provinsi', $provinsi, ((set_value('id_provinsi'))?set_value('id_provinsi'):$data[0]['id_provinsi']), 'class="form-control" id="id_provinsi"');?>
+                                                <?php echo form_error('id_provinsi'); ?>               
+                                            </div>
+                                        </div> <!-- /controls -->           
+                                    </div> <!-- /control-group -->
+                                   
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="btn-group pull-right" role="group" aria-label="form">
+                                        <button type="submit" class="btn btn-success" >Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                            <?php } ?>
+
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Data Pribadi</h3>
@@ -222,6 +262,7 @@
                             </div>
                             </form>
                             <?php } ?>
+
                         </div>
                     </div>
                 </div>
