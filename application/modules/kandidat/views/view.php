@@ -33,11 +33,11 @@
                                         <?php echo form_error('status'); ?>               
                                     </div> <!-- /control-group -->
                                     <div class="form-group ">                                         
-                                        <label class="control-label col-md-2 " for="status">Status</label>
+                                        <label class="control-label col-md-2 " for="desc_status">Alasan Non-aktif</label>
                                         <div class="col-md-10">
-                                            <div class="form-group <?php echo (form_error('status')) ? 'has-error' : ''?>">                                        
-                                                    <?php echo form_dropdown('status', $status, ((set_value('status'))?set_value('status'):$data[0]['status']), 'class="form-control" id="status"');?>
-                                                <?php echo form_error('status'); ?>               
+                                            <div class="form-group <?php echo (form_error('desc_status')) ? 'has-error' : ''?>">                                        
+                                                    <?php echo form_dropdown('desc_status', $status, ((set_value('desc_status'))?set_value('desc_status'):$data[0]['status']), 'class="form-control" id="desc_status"');?>
+                                                <?php echo form_error('desc_status'); ?>               
                                             </div>
                                         </div> <!-- /controls -->           
                                     </div> <!-- /control-group -->
