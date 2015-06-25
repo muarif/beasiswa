@@ -18,7 +18,7 @@
                             <div class="panel panel-default">
                                 
                                 <div class="panel-body">
-                                    <div class="form-group <?php echo (form_error('status')) ? 'has-error' : ''?>">                                         
+                                    <div class="form-group <?php echo (form_error('dec_status')) ? 'has-error' : ''?>">                                         
                                         <label class="control-label col-md-2 " for="status">Status </label>
                                         <div class="col-md-10">
                                             <div class="radio  radio-inline">
@@ -33,11 +33,11 @@
                                         <?php echo form_error('status'); ?>               
                                     </div> <!-- /control-group -->
                                     <div class="form-group ">                                         
-                                        <label class="control-label col-md-2 " for="id_provinsi">Provinsi</label>
+                                        <label class="control-label col-md-2 " for="status">Status</label>
                                         <div class="col-md-10">
-                                            <div class="form-group <?php echo (form_error('id_provinsi')) ? 'has-error' : ''?>">                                        
-                                                    <?php echo form_dropdown('id_provinsi', $provinsi, ((set_value('id_provinsi'))?set_value('id_provinsi'):$data[0]['id_provinsi']), 'class="form-control" id="id_provinsi"');?>
-                                                <?php echo form_error('id_provinsi'); ?>               
+                                            <div class="form-group <?php echo (form_error('status')) ? 'has-error' : ''?>">                                        
+                                                    <?php echo form_dropdown('status', $status, ((set_value('status'))?set_value('status'):$data[0]['status']), 'class="form-control" id="status"');?>
+                                                <?php echo form_error('status'); ?>               
                                             </div>
                                         </div> <!-- /controls -->           
                                     </div> <!-- /control-group -->

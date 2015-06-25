@@ -220,9 +220,7 @@ class Kandidat extends CI_Controller {
 		}
 	}
 	function view($id){
-		$item['provinsi'] = $this->kandidat_model->get_provinsi();
-		$item['kelas'] = $this->kandidat_model->get_kelas();
-		$item['kanwil'] = $this->kandidat_model->get_kanwil();
+		$item['status'] = $this->kandidat_model->get_status();
 		$item['data'] = $this->kandidat_model->get_kandidat_data($id);
 		$item['id'] = $id;
 		$data = array(
@@ -235,6 +233,16 @@ class Kandidat extends CI_Controller {
 		$setKelulusan = $this->kandidat_model->setKelulusan($id);
 		if($setKelulusan){
 			$this->session->set_flashdata('success', $setKelulusan);
+			redirect(site_url('kandidat/view/'.$id));
+		}else{
+			$this->session->set_flashdata('fail', '<div class="alert alert-danger" role="alert">Gagal Proses Data</div>');
+			redirect(site_url('kandidat/view/'.$id));
+		}
+	}
+	function setStatus($id){
+		$setStatus = $this->kandidat_model->setStatus($id);
+		if($setStatus){
+			$this->session->set_flashdata('success', $setStatus);
 			redirect(site_url('kandidat/view/'.$id));
 		}else{
 			$this->session->set_flashdata('fail', '<div class="alert alert-danger" role="alert">Gagal Proses Data</div>');

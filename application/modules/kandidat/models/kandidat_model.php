@@ -161,5 +161,26 @@ class Kandidat_model extends CI_Model {
 			return false;
 		}
 	}
+	function setStatus($id){
+		$post = $this->input->post();
+		$this->db->where('id_siswa',$id);
+		$a = $this->db->update('kandidat',$post);
+		if($a){
+			if($post['id_lulus'] == 1) return '<div class="alert alert-success" role="alert">Berhasil ubah status siswa</div>';
+			elseif($post['id_lulus'] == 0) return '<div class="alert alert-warning" role="alert">Tidak ubah status siswa</div>';
+		}else{
+			return false;
+		}
+	}
+	function get_status(){
+		$query = $this->db->query('SELECT * FROM status');
+			
+		$rq = $query->result_array();
+		$result =array();
+		foreach($rq as $value){
+			$result[$value['id_status']] = $value['desc'];
+		}
+		return $result;
+	}
 
 }
