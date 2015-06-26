@@ -75,15 +75,11 @@
                                         </td>
                                         <td ><?php
                                             switch ($row['status']) {
-                                                case '1':
-                                                    echo '<span class="label label-success">'.$row['desc'].'</span>';
-                                                    break;
-                                                case '2':
-                                                case '3':
-                                                case '4':
-                                                case '5':
-                                                case '6':
+                                                case '0':
                                                     echo '<span class="label label-danger">'.$row['desc'].'</span>';
+                                                    break;
+                                                case '1':
+                                                    echo '<span class="label label-success">Tidak Aktif</span>';
                                                     break;
                                                 default:
                                                     echo '<span class="label label-default">Verifikasi</span>';

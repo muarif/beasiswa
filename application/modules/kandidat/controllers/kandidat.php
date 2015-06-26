@@ -249,4 +249,34 @@ class Kandidat extends CI_Controller {
 			redirect(site_url('kandidat/view/'.$id));
 		}
 	}
+	function export($id){
+		global $objPHPExcel;
+		$this->load->library('excel');
+		$objPHPExcel = $this->excel;
+		$objPHPExcel->setActiveSheetIndex(0);
+		
+		$objPHPExcel->getActiveSheet()->setPrintGridlines(FALSE);
+
+		$data = $this->kandidat_model->get_kandidat_data($id);
+
+		/* Set Header */
+		$objPHPExcel->getActiveSheet()->setTitle($data[0]['']);
+
+		$unit = ($this->session->userdata('division')) ? $this->session->userdata('division') : 'All';
+		$objPHPExcel->getActiveSheet()->setCellValue('B1', $unit.' Unit');
+		$objPHPExcel->getActiveSheet()->getStyle('B1')->getFont()->setSize(16);
+		$objPHPExcel->getActiveSheet()->getStyle('B1')->getFont()->setBold(true);
+		$objPHPExcel->getActiveSheet()->mergeCells('B1:C1');
+
+		$objPHPExcel->getActiveSheet()->setCellValue('F1', $this->get_week());
+		$objPHPExcel->getActiveSheet()->getStyle('F1')->getFont()->setSize(16);
+		$objPHPExcel->getActiveSheet()->getStyle('F1')->getFont()->setBold(true);
+		$objPHPExcel->getActiveSheet()->getStyle('F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+		$objPHPExcel->getActiveSheet()->mergeCells('F1:H1');
+		/* End Header */
+		$objPHPExcel->getActiveSheet()->getStyle('B2');
+		/* Set Data */
+		
+		
+	}
 }

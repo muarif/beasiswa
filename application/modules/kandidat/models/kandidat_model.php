@@ -9,7 +9,7 @@ class Kandidat_model extends CI_Model {
 		$this->db->join('kanwil kw', 'kw.id_kanwil = kandidat.id_kanwil');
 		$this->db->join('provinsi pv', 'pv.id_provinsi = kandidat.id_provinsi');
 		$this->db->join('preferensi pf', 'pf.id_preferensi = kandidat.id_preferensi');
-		$this->db->join('status st', 'st.id_status = kandidat.status','left');
+		$this->db->join('status st', 'st.id_status = kandidat.desc_status','left');
 		$this->db->like('nama_lengkap', $search,'both');
 		$this->db->or_like('nama_preferensi', $search,'both');
 		
@@ -166,8 +166,8 @@ class Kandidat_model extends CI_Model {
 		$this->db->where('id_siswa',$id);
 		$a = $this->db->update('kandidat',$post);
 		if($a){
-			if($post['id_lulus'] == 1) return '<div class="alert alert-success" role="alert">Berhasil ubah status siswa</div>';
-			elseif($post['id_lulus'] == 0) return '<div class="alert alert-warning" role="alert">Tidak ubah status siswa</div>';
+			if($post['status'] == 1) return '<div class="alert alert-success" role="alert">Siswa Aktif</div>';
+			elseif($post['status'] == 0) return '<div class="alert alert-warning" role="alert">Siswa tidak aktif</div>';
 		}else{
 			return false;
 		}

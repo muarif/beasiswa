@@ -5,6 +5,19 @@
                 <div class="widget">
                     <div class="widget-header"> 
                         <h3>Data Siswa</h3>
+                        <div class="widget-button">
+                            
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="btn-icon glyphicon glyphicon-export"></i> Export <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="<?php echo site_url('kandidat/export/'.$id);?>">Export to excel</a></li>
+                                    <li><a href="#">Export to PDF</a></li>
+                                </ul>
+                            </div>
+                            <a href="#" onClick="window.print()"><button class="btn btn-primary"><i class="btn-icon icon-print"></i>Direct Print</button></a>
+                        </div>
                     </div>
                     <div class="widget-content">
 
@@ -36,7 +49,7 @@
                                         <label class="control-label col-md-2 " for="desc_status">Alasan Non-aktif</label>
                                         <div class="col-md-10">
                                             <div class="form-group <?php echo (form_error('desc_status')) ? 'has-error' : ''?>">                                        
-                                                    <?php echo form_dropdown('desc_status', $status, ((set_value('desc_status'))?set_value('desc_status'):$data[0]['status']), 'class="form-control" id="desc_status"');?>
+                                                    <?php echo form_dropdown('desc_status', $status, ((set_value('desc_status'))?set_value('desc_status'):$data[0]['desc_status']), 'class="form-control" id="desc_status"');?>
                                                 <?php echo form_error('desc_status'); ?>               
                                             </div>
                                         </div> <!-- /controls -->           
