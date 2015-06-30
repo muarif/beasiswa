@@ -148,11 +148,17 @@
                                 <div class="panel-body">
                                     <dl class="dl-horizontal">
 
-                                        <dt>Nama Lengkap :</dt>
-                                        <dd><?php echo $data[0]['nama_ortu'] ?></dd>
+                                        <dt>Nama Ayah :</dt>
+                                        <dd><?php echo $data[0]['nama_ayah'] ?></dd>
 
-                                        <dt>Pekerjaan Orang Tua :</dt>
-                                        <dd><?php echo $data[0]['pekerjaan_ortu'] ?></dd>
+                                        <dt>Pekerjaan Ayah :</dt>
+                                        <dd><?php echo $data[0]['pekerjaan_ayah'] ?></dd>
+
+                                        <dt>Nama Ibu :</dt>
+                                        <dd><?php echo $data[0]['nama_ibu'] ?></dd>
+
+                                        <dt>Pekerjaan Ibu :</dt>
+                                        <dd><?php echo $data[0]['pekerjaan_ibu'] ?></dd>
 
                                         <dt>Status Pekerjaan :</dt>
                                         <dd><?php 

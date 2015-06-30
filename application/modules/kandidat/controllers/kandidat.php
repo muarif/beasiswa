@@ -105,8 +105,10 @@ class Kandidat extends CI_Controller {
 		$this->form_validation->set_rules('alamat_sekolah', 'Alamat Sekolah', 'required');
 		$this->form_validation->set_rules('telepon_sekolah', 'Telepon Sekolah', 'required');
 		$this->form_validation->set_rules('nama_kepsek', 'Nama Kepala Sekolah', 'required');
-		$this->form_validation->set_rules('nama_ortu', 'Nama Orang Tua', 'required');
-		$this->form_validation->set_rules('pekerjaan_ortu', 'Pekerjaan Orang Tua', 'required');
+		$this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'required');
+		$this->form_validation->set_rules('pekerjaan_ayah', 'Pekerjaan Ayah', 'required');
+		$this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'required');
+		$this->form_validation->set_rules('pekerjaan_ibu', 'Pekerjaan Ibu', 'required');
 		$this->form_validation->set_rules('status_pekerjaan', 'Status Pekerjaan', 'required');
 		$this->form_validation->set_rules('lama_pekerjaan', 'Lama Pekerjaan', 'required');
 		$this->form_validation->set_rules('alamat_ortu', 'Alamat Orang Tua', 'required');
@@ -176,8 +178,10 @@ class Kandidat extends CI_Controller {
 		$this->form_validation->set_rules('alamat_sekolah', 'Alamat Sekolah', 'required');
 		$this->form_validation->set_rules('telepon_sekolah', 'Telepon Sekolah', 'required');
 		$this->form_validation->set_rules('nama_kepsek', 'Nama Kepala Sekolah', 'required');
-		$this->form_validation->set_rules('nama_ortu', 'Nama Orang Tua', 'required');
-		$this->form_validation->set_rules('pekerjaan_ortu', 'Pekerjaan Orang Tua', 'required');
+		$this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'required');
+		$this->form_validation->set_rules('pekerjaan_ayah', 'Pekerjaan Ayah', 'required');
+		$this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'required');
+		$this->form_validation->set_rules('pekerjaan_ibu', 'Pekerjaan Ibu', 'required');
 		$this->form_validation->set_rules('status_pekerjaan', 'Status Pekerjaan', 'required');
 		$this->form_validation->set_rules('lama_pekerjaan', 'Lama Pekerjaan', 'required');
 		$this->form_validation->set_rules('alamat_ortu', 'Alamat Orang Tua', 'required');
@@ -249,7 +253,7 @@ class Kandidat extends CI_Controller {
 			redirect(site_url('kandidat/view/'.$id));
 		}
 	}
-	function export($id){
+	function export($id=NULL){
 		global $objPHPExcel;
 		$this->load->library('excel');
 		$objPHPExcel = $this->excel;
@@ -257,26 +261,95 @@ class Kandidat extends CI_Controller {
 		
 		$objPHPExcel->getActiveSheet()->setPrintGridlines(FALSE);
 
-		$data = $this->kandidat_model->get_kandidat_data($id);
+		if($id==NULL){
+			$sheet = $objPHPExcel->getActiveSheet();
+			
+			$headerPos = 3;
 
-		/* Set Header */
-		$objPHPExcel->getActiveSheet()->setTitle($data[0]['']);
+			$field = array(
+				'No.',
+				'No. ID Beasiswa',
+				'Nama Lengkap',
+				'Tempat/Tanggal Lahir',
+				array('label'=>'Orang Tua','data'=>array(
+					'Ayah','Pekerjaan','Ibu','Pekerjaan'
+				)),
+				'Alamat',
+				'No. Telp/HP',
+				'Nama Sekolah',
+				array('label'=>'Jenjang Pendidikan','data'=>array()),
+				'Jenis Rekening BRI/BRIS',
+				'Nomor Rekening',
+				'Atas Nama',
+				array('label'=>'Data Perekomendasi','data'=>array(
+					'Nama','Alamat','No Tel/HP','Email','Unit Kerja'
+				)),
+				'Kanwil'
+			);
 
-		$unit = ($this->session->userdata('division')) ? $this->session->userdata('division') : 'All';
-		$objPHPExcel->getActiveSheet()->setCellValue('B1', $unit.' Unit');
-		$objPHPExcel->getActiveSheet()->getStyle('B1')->getFont()->setSize(16);
-		$objPHPExcel->getActiveSheet()->getStyle('B1')->getFont()->setBold(true);
-		$objPHPExcel->getActiveSheet()->mergeCells('B1:C1');
+			$kelas = $this->kandidat_model->get_short_kelas();
+			foreach($kelas as $key => $val){
+				$field[8]['data'][] = $val['short_label'];
+			}
+			$col = 'B';
+			foreach ($field as $value) {
+				if(!is_array($value)){
+					$sheet->mergeCells($col.$headerPos.':'.$col.($headerPos+1));
+					$sheet->setCellValue($col.$headerPos, $value);
+				}
+				else{
+					$sheet->setCellValue($col.$headerPos, $value['label']);
+					foreach($value['data'] as $k => $v){
+						$sheet->setCellValue($col.($headerPos+1), $value);
+						$col++;
+					}
+				}
+				$col++;
+			}
 
-		$objPHPExcel->getActiveSheet()->setCellValue('F1', $this->get_week());
-		$objPHPExcel->getActiveSheet()->getStyle('F1')->getFont()->setSize(16);
-		$objPHPExcel->getActiveSheet()->getStyle('F1')->getFont()->setBold(true);
-		$objPHPExcel->getActiveSheet()->getStyle('F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
-		$objPHPExcel->getActiveSheet()->mergeCells('F1:H1');
-		/* End Header */
-		$objPHPExcel->getActiveSheet()->getStyle('B2');
-		/* Set Data */
+
+			$style = array(
+	       	 	'alignment' => array(
+	            	'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+	            	'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+	        	)
+    		);
+
+    		$sheet->getStyle("B3:AO3")->applyFromArray($style);
+		}
+		else{
+
+			$data = $this->kandidat_model->get_data($search, $sort, $page, $per_page,TRUE);
+
+			/* Set Header */
+			
+			$objPHPExcel->getActiveSheet()->setCellValue('B1', $unit.' Unit');
+
+			$objPHPExcel->getActiveSheet()->setCellValue('B3', 'No.');
+			// $objPHPExcel->getActiveSheet()->getStyle('B1')->getFont()->setSize(16);
+			// $objPHPExcel->getActiveSheet()->getStyle('B1')->getFont()->setBold(true);
+			// $objPHPExcel->getActiveSheet()->mergeCells('B1:C1');
+
+			// $objPHPExcel->getActiveSheet()->setCellValue('F1', $this->get_week());
+			// $objPHPExcel->getActiveSheet()->getStyle('F1')->getFont()->setSize(16);
+			// $objPHPExcel->getActiveSheet()->getStyle('F1')->getFont()->setBold(true);
+			// $objPHPExcel->getActiveSheet()->getStyle('F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+			// $objPHPExcel->getActiveSheet()->mergeCells('F1:H1');
+			// /* End Header */
+			// $objPHPExcel->getActiveSheet()->getStyle('B2');
+			/* Set Data */
+		}
+
 		
-		
+		// $filename='Export_kandidat.xls'; //save our workbook as this file name
+		// header('Content-Type: application/vnd.ms-excel'); //mime type
+		// header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+		// header('Cache-Control: max-age=0'); //no cache
+            
+
+		// $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
+
+		// $objWriter->save('php://output');
+	
 	}
 }

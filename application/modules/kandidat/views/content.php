@@ -6,17 +6,26 @@
                     <div class="widget-header"> <i class="icon-th-list"></i>
                         <h3>Kandidat List</h3>
                         <div class="widget-button">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="btn-icon glyphicon glyphicon-export"></i> Export <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="<?php echo site_url('kandidat/export');?>">Export to excel</a></li>
+                                </ul>
+                            </div>
                             <div class="searchArea">
-                            <form style="margin:0" action="kandidat?<?php echo getLink('q');?>">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Cari" name="q" value="<?php echo $this->input->get('q')?>">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                                    </span>
-                                </div><!-- /input-group -->
-                            </form>
+                                <form style="margin:0" action="kandidat?<?php echo getLink('q');?>">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Cari" name="q" value="<?php echo $this->input->get('q')?>">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                        </span>
+                                    </div><!-- /input-group -->
+                                </form>
                             </div>
                             <a href="<?php echo site_url('kandidat/insert')?>"><button class="btn btn-primary"><i class="btn-icon icon-plus"></i>Tambah</button></a>
+
                         </div>
                     </div>
                     
@@ -49,7 +58,7 @@
                                         echo 'tlulus';
                                     }
                                     ?>">
-                                        <td><?php echo $row['id_beasiswa']?>
+                                        <td><?php echo ($row['id_beasiswa']) ? $row['id_beasiswa'] : '-'?>
                                         </td>
                                         <td><?php echo $row['nama_lengkap']?>
                                         </td>
@@ -79,7 +88,7 @@
                                                     echo '<span class="label label-danger">'.$row['desc'].'</span>';
                                                     break;
                                                 case '1':
-                                                    echo '<span class="label label-success">Tidak Aktif</span>';
+                                                    echo '<span class="label label-success">Aktif</span>';
                                                     break;
                                                 default:
                                                     echo '<span class="label label-default">Verifikasi</span>';

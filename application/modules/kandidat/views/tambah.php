@@ -239,19 +239,33 @@
                                         <div class="tab-pane" id="tab2">
                                             <div class="panel panel-default">
                                                 <div class="panel-body">
-                                                    <div class="form-group <?php echo (form_error('nama_ortu')) ? 'has-error' : ''?>">                                         
-                                                        <label class="control-label col-md-2 " for="nama_ortu">Nama Lengkap</label>
+                                                    <div class="form-group <?php echo (form_error('nama_ayah')) ? 'has-error' : ''?>">                                         
+                                                        <label class="control-label col-md-2 " for="nama_ayah">Nama Ayah</label>
                                                         <div class="col-md-10">
-                                                            <input type="text" class="form-control" id="nama_ortu" name="nama_ortu" value="<?php echo set_value('nama_ortu'); ?>">
+                                                            <input type="text" class="form-control" id="nama_ayah" name="nama_ayah" value="<?php echo set_value('nama_ayah'); ?>">
                                                         </div> <!-- /controls -->
-                                                        <?php echo form_error('nama_ortu'); ?>               
+                                                        <?php echo form_error('nama_ayah'); ?>               
                                                     </div> <!-- /control-group -->
-                                                    <div class="form-group <?php echo (form_error('pekerjaan_ortu')) ? 'has-error' : ''?>">                                         
-                                                        <label class="control-label col-md-2 " for="pekerjaan_ortu">Pekerjaan Orangtua</label>
+                                                    <div class="form-group <?php echo (form_error('pekerjaan_ayah')) ? 'has-error' : ''?>">                                         
+                                                        <label class="control-label col-md-2 " for="pekerjaan_ayah">Pekerjaan Ayah</label>
                                                         <div class="col-md-10">
-                                                            <input type="text" class="form-control" id="pekerjaan_ortu" name="pekerjaan_ortu" value="<?php echo set_value('pekerjaan_ortu'); ?>">
+                                                            <input type="text" class="form-control" id="pekerjaan_ayah" name="pekerjaan_ayah" value="<?php echo set_value('pekerjaan_ayah'); ?>">
                                                         </div> <!-- /controls -->
-                                                        <?php echo form_error('pekerjaan_ortu'); ?>               
+                                                        <?php echo form_error('pekerjaan_ayah'); ?>               
+                                                    </div> <!-- /control-group -->
+                                                    <div class="form-group <?php echo (form_error('nama_ibu')) ? 'has-error' : ''?>">                                         
+                                                        <label class="control-label col-md-2 " for="nama_ibu">Nama Ibu</label>
+                                                        <div class="col-md-10">
+                                                            <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" value="<?php echo set_value('nama_ibu'); ?>">
+                                                        </div> <!-- /controls -->
+                                                        <?php echo form_error('nama_ibu'); ?>               
+                                                    </div> <!-- /control-group -->
+                                                    <div class="form-group <?php echo (form_error('pekerjaan_ibu')) ? 'has-error' : ''?>">                                         
+                                                        <label class="control-label col-md-2 " for="pekerjaan_ibu">Pekerjaan Ibu</label>
+                                                        <div class="col-md-10">
+                                                            <input type="text" class="form-control" id="pekerjaan_ibu" name="pekerjaan_ibu" value="<?php echo set_value('pekerjaan_ibu'); ?>">
+                                                        </div> <!-- /controls -->
+                                                        <?php echo form_error('pekerjaan_ibu'); ?>               
                                                     </div> <!-- /control-group -->
                                                     <div class="form-group <?php echo (form_error('status_pekerjaan')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="status_pekerjaan">Status Pekerjaan</label>

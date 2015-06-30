@@ -90,6 +90,11 @@ class Kandidat_model extends CI_Model {
 		return $result;
 	}
 
+	function get_short_kelas(){
+		$kelas = $this->db->query('SELECT short_label FROM kelas');
+		return $kelas->result_array();
+	}
+
 	function get_kandidat_data($id){
 		$query = $this->db->query('SELECT *,kelas.label as labelk,tingkatan.label as labelt FROM kandidat JOIN preferensi ON kandidat.id_preferensi = preferensi.id_preferensi JOIN provinsi ON kandidat.id_provinsi = provinsi.id_provinsi JOIN kanwil ON kandidat.id_kanwil = kanwil.id_kanwil JOIN kelas ON kelas.id_kelas = kandidat.id_kelas JOIN tingkatan ON tingkatan.id_tingkatan = kelas.id_tingkat WHERE id_siswa = '.$id);
 			
@@ -130,7 +135,9 @@ class Kandidat_model extends CI_Model {
 
 
 		$this->db->where('id_siswa', $id);
+
 		$result = $this->db->update('kandidat', $post); 
+		// echo $this->db->last_query();
 		return $result;
 	}
 
