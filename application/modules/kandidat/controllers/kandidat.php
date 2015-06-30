@@ -258,11 +258,11 @@ class Kandidat extends CI_Controller {
 		$this->load->library('excel');
 		$objPHPExcel = $this->excel;
 		$objPHPExcel->setActiveSheetIndex(0);
-		
-		$objPHPExcel->getActiveSheet()->setPrintGridlines(FALSE);
+		$sheet = $objPHPExcel->getActiveSheet();
+		$sheet->setPrintGridlines(FALSE);
 
 		if($id==NULL){
-			$sheet = $objPHPExcel->getActiveSheet();
+			
 			
 			$headerPos = 3;
 
@@ -272,7 +272,7 @@ class Kandidat extends CI_Controller {
 				'Nama Lengkap',
 				'Tempat/Tanggal Lahir',
 				array('label'=>'Orang Tua','data'=>array(
-					'Ayah','Pekerjaan','Ibu','Pekerjaan'
+					'Ayah','Pekerjaan Ayah','Ibu','Pekerjaan Ibu'
 				)),
 				'Alamat',
 				'No. Telp/HP',
@@ -287,26 +287,41 @@ class Kandidat extends CI_Controller {
 				'Kanwil'
 			);
 
+
 			$kelas = $this->kandidat_model->get_short_kelas();
 			foreach($kelas as $key => $val){
 				$field[8]['data'][] = $val['short_label'];
 			}
 			$col = 'B';
+			$colFirst = $col;
 			foreach ($field as $value) {
 				if(!is_array($value)){
 					$sheet->mergeCells($col.$headerPos.':'.$col.($headerPos+1));
 					$sheet->setCellValue($col.$headerPos, $value);
+					$col++;
 				}
 				else{
 					$sheet->setCellValue($col.$headerPos, $value['label']);
-					foreach($value['data'] as $k => $v){
-						$sheet->setCellValue($col.($headerPos+1), $value);
-						$col++;
-					}
-				}
-				$col++;
-			}
 
+					$subHead = $headerPos+1;
+					$colA = $col;
+					$numItems = count($value['data']);
+					$i = 0;
+					foreach($value['data'] as $k => $v){
+						$sheet->setCellValue($col.($subHead), $v);
+						if(++$i === $numItems) {
+						}else{
+							$col++;
+						}
+						
+					}
+					$colB = $col;
+					$sheet->mergeCells($colA.$headerPos.':'.$colB.$headerPos);
+					$col++;
+				}
+				
+			}
+			$colEnd = $col;
 
 			$style = array(
 	       	 	'alignment' => array(
@@ -315,7 +330,7 @@ class Kandidat extends CI_Controller {
 	        	)
     		);
 
-    		$sheet->getStyle("B3:AO3")->applyFromArray($style);
+    		$sheet->getStyle($colFirst.'3:'.$colEnd.'4')->applyFromArray($style);
 		}
 		else{
 
@@ -323,9 +338,9 @@ class Kandidat extends CI_Controller {
 
 			/* Set Header */
 			
-			$objPHPExcel->getActiveSheet()->setCellValue('B1', $unit.' Unit');
+			$sheet->setCellValue('B1', $unit.' Unit');
 
-			$objPHPExcel->getActiveSheet()->setCellValue('B3', 'No.');
+			$sheet->setCellValue('B3', 'No.');
 			// $objPHPExcel->getActiveSheet()->getStyle('B1')->getFont()->setSize(16);
 			// $objPHPExcel->getActiveSheet()->getStyle('B1')->getFont()->setBold(true);
 			// $objPHPExcel->getActiveSheet()->mergeCells('B1:C1');
@@ -339,17 +354,20 @@ class Kandidat extends CI_Controller {
 			// $objPHPExcel->getActiveSheet()->getStyle('B2');
 			/* Set Data */
 		}
+		$max_column = $objPHPExcel->setActiveSheetIndex(0)->getHighestColumn();
+		for($column = 'B'; $column !=$max_column; $column++){
+			$sheet->getColumnDimension($column)->setAutoSize(true);
+		}
 
-		
-		// $filename='Export_kandidat.xls'; //save our workbook as this file name
-		// header('Content-Type: application/vnd.ms-excel'); //mime type
-		// header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
-		// header('Cache-Control: max-age=0'); //no cache
+		$filename='Export_kandidat.xls'; //save our workbook as this file name
+		header('Content-Type: application/vnd.ms-excel'); //mime type
+		header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+		header('Cache-Control: max-age=0'); //no cache
             
 
-		// $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
 
-		// $objWriter->save('php://output');
+		$objWriter->save('php://output');
 	
 	}
 }
