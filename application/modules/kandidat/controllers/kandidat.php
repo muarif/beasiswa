@@ -260,7 +260,7 @@ class Kandidat extends CI_Controller {
 		$objPHPExcel->setActiveSheetIndex(0);
 		$sheet = $objPHPExcel->getActiveSheet();
 		$sheet->setPrintGridlines(FALSE);
-
+		PHPExcel_Shared_Font::setAutoSizeMethod(PHPExcel_Shared_Font::AUTOSIZE_METHOD_EXACT);
 		if($id==NULL){
 			
 			
@@ -330,7 +330,55 @@ class Kandidat extends CI_Controller {
 	        	)
     		);
 
-    		$sheet->getStyle($colFirst.'3:'.$colEnd.'4')->applyFromArray($style);
+    		$sheet->getStyle($colFirst.$headerPos.':'.$colEnd.($headerPos+1))->applyFromArray($style);
+
+    		$row = 5;
+    		$search = $this->input->get('q');
+    		$sort = array(
+				'id_beasiswa' => ($this->input->get('by')=='id_beasiswa') ? $this->input->get('sort') : 'asc',
+				'nama_lengkap' => ($this->input->get('by')=='nama_lengkap') ? $this->input->get('sort') : 'asc',
+				'jenis_rek' => ($this->input->get('by')=='jenis_rek') ? $this->input->get('sort') : 'asc',
+				'nama_preferensi' => ($this->input->get('by')=='nama_preferensi') ? $this->input->get('sort') : 'asc',
+				'nama_kanwil' => ($this->input->get('by')=='nama_kanwil') ? $this->input->get('sort') : 'asc',
+			);
+    		$dataKandidat = $this->kandidat_model->get_export_data($search);
+    		
+    		/*Ambil List Kelas*/
+    		$kelasId = $this->kandidat_model->get_short_kelas();
+    		$kelasList = array();
+    		foreach($kelasId as $value){
+    			$kelasList[] = $value['id_kelas'];
+    		}
+    		/*--------------------*/
+    		// print_r($dataKandidat);
+    		$numRow = 1;
+    		foreach($dataKandidat as $key => $val){
+    			$col = 'B';
+    			$sheet->setCellValue($col.$row, $numRow);
+    			$col++;
+    			foreach($val as $iden => $value){
+
+    				if($iden!='id_kelas'){
+    					
+	    				$sheet->setCellValue($col.$row, $value);
+	    				$col++;
+	    				$sheet->getStyle($col.$row)->getNumberFormat()->setFormatCode(
+					        PHPExcel_Style_NumberFormat::FORMAT_GENERAL
+					    );
+	    			}
+	    			else{
+	    				foreach($kelasList as $kelasVal){
+	    					if($value==$kelasVal){
+	    						$sheet->setCellValue($col.$row, 'x');
+	    					}
+	    					$col++;
+	    				}
+	    			}	
+    			}
+    			$row++;
+    			$numRow++;
+    		}
+
 		}
 		else{
 
@@ -354,11 +402,7 @@ class Kandidat extends CI_Controller {
 			// $objPHPExcel->getActiveSheet()->getStyle('B2');
 			/* Set Data */
 		}
-		$max_column = $objPHPExcel->setActiveSheetIndex(0)->getHighestColumn();
-		for($column = 'B'; $column !=$max_column; $column++){
-			$sheet->getColumnDimension($column)->setAutoSize(true);
-		}
-
+		
 		$filename='Export_kandidat.xls'; //save our workbook as this file name
 		header('Content-Type: application/vnd.ms-excel'); //mime type
 		header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name

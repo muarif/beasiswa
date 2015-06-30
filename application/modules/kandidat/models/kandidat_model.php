@@ -26,6 +26,24 @@ class Kandidat_model extends CI_Model {
 		return $query->result_array();
 		
     }
+	function get_export_data($search) 
+    {
+
+		$this->db->select('id_beasiswa, nama_lengkap, CONCAT(`tempat_lahir`,"/",`tanggal_lahir`) as ttl, nama_ayah, pekerjaan_ayah,'.
+		'nama_ibu, pekerjaan_ibu ,CONCAT(`alamat_rumah`,",Kel. ", `kelurahan`,",Kec. ",`kecamatan`,",Kota/Kab. ",`kota`,", ",`kode_pos`,", ",`nama_provinsi`)as full_alamat,telepon,nama_sekolah,'.
+		'id_kelas, jenis_rek, no_rek, rek_nama, nama_preferensi,alamat_preferensi, telepon_preferensi,email_preferensi,jabatan,nama_kanwil',FALSE);
+		$this->db->join('kanwil kw', 'kw.id_kanwil = kandidat.id_kanwil');
+		$this->db->join('provinsi pv', 'pv.id_provinsi = kandidat.id_provinsi');
+		$this->db->join('preferensi pf', 'pf.id_preferensi = kandidat.id_preferensi');
+		$this->db->join('status st', 'st.id_status = kandidat.desc_status','left');
+		$this->db->like('nama_lengkap', $search,'both');
+		$this->db->or_like('nama_preferensi', $search,'both');
+		
+		$query = $this->db->get('kandidat');
+		// echo $this->db->last_query();	
+		return $query->result_array();
+		
+    }
 	
 	function add($post){
 		if($post['id_preferensi']== ''){
@@ -91,7 +109,7 @@ class Kandidat_model extends CI_Model {
 	}
 
 	function get_short_kelas(){
-		$kelas = $this->db->query('SELECT short_label FROM kelas');
+		$kelas = $this->db->query('SELECT short_label,id_kelas FROM kelas');
 		return $kelas->result_array();
 	}
 
