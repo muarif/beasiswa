@@ -260,7 +260,17 @@ class Kandidat extends CI_Controller {
 		$objPHPExcel->setActiveSheetIndex(0);
 		$sheet = $objPHPExcel->getActiveSheet();
 		$sheet->setPrintGridlines(FALSE);
-		PHPExcel_Shared_Font::setAutoSizeMethod(PHPExcel_Shared_Font::AUTOSIZE_METHOD_EXACT);
+		$styleArray = array(
+			  	'borders' => array(
+			    	'allborders' => array(
+			      		'style' => PHPExcel_Style_Border::BORDER_THIN
+			    	),
+			    	'outline' => array(
+				      	'style' => PHPExcel_Style_Border::BORDER_MEDIUM
+				    )
+			  	)
+			);
+		// PHPExcel_Shared_Font::setAutoSizeMethod(PHPExcel_Shared_Font::AUTOSIZE_METHOD_EXACT);
 		if($id==NULL){
 			
 			
@@ -294,6 +304,9 @@ class Kandidat extends CI_Controller {
 			}
 			$col = 'B';
 			$colFirst = $col;
+			$row = 5;
+			$rowFirstRange = $headerPos;
+    		$colFirstRange = $col;
 			foreach ($field as $value) {
 				if(!is_array($value)){
 					$sheet->mergeCells($col.$headerPos.':'.$col.($headerPos+1));
@@ -317,12 +330,15 @@ class Kandidat extends CI_Controller {
 					}
 					$colB = $col;
 					$sheet->mergeCells($colA.$headerPos.':'.$colB.$headerPos);
+
 					$col++;
+					$colEnd = $col;
 				}
 				
 			}
-			$colEnd = $col;
 
+			
+			
 			$style = array(
 	       	 	'alignment' => array(
 	            	'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
@@ -332,7 +348,8 @@ class Kandidat extends CI_Controller {
 
     		$sheet->getStyle($colFirst.$headerPos.':'.$colEnd.($headerPos+1))->applyFromArray($style);
 
-    		$row = 5;
+    		
+    		
     		$search = $this->input->get('q');
     		$sort = array(
 				'id_beasiswa' => ($this->input->get('by')=='id_beasiswa') ? $this->input->get('sort') : 'asc',
@@ -351,19 +368,22 @@ class Kandidat extends CI_Controller {
     		}
     		/*--------------------*/
     		// print_r($dataKandidat);
+    		
     		$numRow = 1;
     		foreach($dataKandidat as $key => $val){
     			$col = 'B';
     			$sheet->setCellValue($col.$row, $numRow);
     			$col++;
+    			$sheet->getColumnDimension($col)->setAutoSize(true);
     			foreach($val as $iden => $value){
 
     				if($iden!='id_kelas'){
     					
 	    				$sheet->setCellValue($col.$row, $value);
 	    				$col++;
+	    				$sheet->getColumnDimension($col)->setAutoSize(true);
 	    				$sheet->getStyle($col.$row)->getNumberFormat()->setFormatCode(
-					        PHPExcel_Style_NumberFormat::FORMAT_GENERAL
+					        PHPExcel_Style_NumberFormat::FORMAT_TEXT
 					    );
 	    			}
 	    			else{
@@ -372,35 +392,136 @@ class Kandidat extends CI_Controller {
 	    						$sheet->setCellValue($col.$row, 'x');
 	    					}
 	    					$col++;
+	    					$sheet->getColumnDimension($col)->setAutoSize(true);
 	    				}
 	    			}	
     			}
+
     			$row++;
     			$numRow++;
     		}
+    		$columnIndex = PHPExcel_Cell::columnIndexFromString($col);
+    		$columnString = PHPExcel_Cell::stringFromColumnIndex(($columnIndex-2));
+    		$sheet->getStyle($colFirstRange.$rowFirstRange.':'.$columnString.($row-1))->applyFromArray($styleArray);
+    		$sheet->getStyle($colFirst.$headerPos.':'.$colEnd.($headerPos+1))->applyFromArray($styleArray);
 
 		}
 		else{
 
-			$data = $this->kandidat_model->get_data($search, $sort, $page, $per_page,TRUE);
+			$data = $this->kandidat_model->get_kandidat_data($id);
 
 			/* Set Header */
-			
-			$sheet->setCellValue('B1', $unit.' Unit');
+			$row = 'B';
+			$col = 2;
 
-			$sheet->setCellValue('B3', 'No.');
-			// $objPHPExcel->getActiveSheet()->getStyle('B1')->getFont()->setSize(16);
-			// $objPHPExcel->getActiveSheet()->getStyle('B1')->getFont()->setBold(true);
-			// $objPHPExcel->getActiveSheet()->mergeCells('B1:C1');
+			$sheet->setCellValue($row.$col, 'Data Kandidat');
+			$title = array(
+			    'font'  => array(
+			        'bold'  => true,
+			        'size'  => 15
+			    )
+			);
+			$sheet->getStyle($row.$col)->applyFromArray($title);
 
-			// $objPHPExcel->getActiveSheet()->setCellValue('F1', $this->get_week());
-			// $objPHPExcel->getActiveSheet()->getStyle('F1')->getFont()->setSize(16);
-			// $objPHPExcel->getActiveSheet()->getStyle('F1')->getFont()->setBold(true);
-			// $objPHPExcel->getActiveSheet()->getStyle('F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
-			// $objPHPExcel->getActiveSheet()->mergeCells('F1:H1');
-			// /* End Header */
-			// $objPHPExcel->getActiveSheet()->getStyle('B2');
-			/* Set Data */
+			$colField = $col + 2;
+
+			$selData = $data[0];
+			$heading = array(
+				'Data Pribadi'=>array(
+					'No. Beasiswa' => 'id_beasiswa',
+					'Nama Lengkap' => 'nama_lengkap',
+					'Jenis Kelamin' => 'jenis_kelamin',
+					'Tempat / tanggal_lahir' => 'ttl',
+					'Alamat Rumah' => 'alamat_rumah',
+					'Kanwil' => 'nama_kanwil',
+					'No Telp / HP' => 'telepon',
+					'Email' => 'email',
+					'Jenis Rekening' => 'jenis_rek',
+					'Nomor Rekening' => 'no_rek',
+					'Atas Nama' => 'rek_nama',
+				),
+				'Data Pendidikan'=>array(
+					'Nama Sekolah'=>'nama_sekolah',
+					'Kelas / Tingkatan'=>'label_kelas',
+					'Alamat Sekolah'=>'alamat_sekolah',
+					'No Telp / HP'=>'telepon_sekolah',
+					'Nama Kepala Sekolah'=>'nama_kepsek'
+				),
+				'Data Orang Tua Siswa'=>array(
+					'Nama Ayah' => 'nama_ayah',
+					'Pekerjaan ayah' => 'pekerjaan_ayah',
+					'Nama Ibu' => 'nama_ibu',
+					'Pekerjaan Ibu' => 'pekerjaan_ibu',
+					'Status Pekerjaan' => 'status_pekerjaan',
+					'Lama Pekerjaan' => 'lama_pekerjaan',
+					'Alamat Orang Tua' => 'alamat_ortu',
+					'HP / Telepon Rumah' => 'telepon_ortu',
+					'Rata-rata Penghasilan/Bulan' => 'pendapatan',
+					'Rata-rata Pengeluaran/Bulan' => 'pengeluaran'
+				),
+				'Data Perekomendasi'=>array(
+					'Nama Lengkap'	=> 	'nama_preferensi',
+					'Nama Lembaga'	=>	'nama_lembaga',
+					'Jabatan'		=>	'jabatan',
+					'Alamat Perekomendasi'=>'alamat_preferensi',
+					'HP / Telepon Pereferensi'=>'telepon_preferensi',
+					'Email'			=>	'email_preferensi'
+				),
+				'Kelengkapan'=>array(
+					'Fotocopy Raport Semester'	=>	'fc_raport',
+					'Fotocopy KTP Orang Tua'	=>	'fc_ktp',
+					'Fotocopy KK'				=>	'fc_kk',
+					'Pas Foto Siswa'			=>	'pas_foto',
+					'Surat Keterangan Masih Aktif'=>'ska',
+					'Surat Keterangan Tidak Mampu'=>'sktm'
+				)
+			);
+			$selData['id_beasiswa'] = ($selData['id_beasiswa'])?$selData['id_beasiswa'] : '-';
+			$selData['jenis_kelamin'] = ($selData['jenis_kelamin']=='L')?'Laki-laki' : 'Perempuan';
+
+			/*Tempat Tanggal Lahir*/
+			$month = array(1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April', 5 => 'Mei', 6 => 'Juni', 7 => 'Juli', 8 => 'Agustus', 9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember');
+			$selData['ttl'] = $data[0]['tempat_lahir'].' / '.date('j',strtotime($data[0]['tanggal_lahir'])) . ' ' .$month[date('n',strtotime($data[0]['tanggal_lahir']))]. ' ' .date('Y',strtotime($data[0]['tanggal_lahir']));
+			/*--------------------*/
+
+			/*Alamat Rumah*/
+			$selData['alamat_rumah'] = $selData['alamat_rumah'].', Kel. '.$selData['kelurahan'].', Kec. '.$selData['kecamatan'].','.$selData['kota'].', '.$selData['nama_provinsi'].', '.$selData['kode_pos'];
+			/*--------------------*/
+
+			/*Label Kelas*/
+			$selData['label_kelas'] = $selData['labelk'].' '.$selData['labelt'];
+			/*--------------------*/
+
+			$titlePanel = array(
+			    'font'  => array(
+			        'bold'  => true,
+			        'size'  => 11
+			    )
+			);
+			$colFirst = $colField;
+			foreach ($heading as $key => $value) {
+				$sheet->setCellValue($row.$colField, $key);
+
+				$sheet->getStyle($row.$colField)->applyFromArray($titlePanel);
+				$colField++;
+				$ri = PHPExcel_Cell::columnIndexFromString($row);
+    			$r = PHPExcel_Cell::stringFromColumnIndex(($ri));
+				foreach($value as $nKey => $nValue){
+					$sheet->setCellValue($row.$colField, $nKey);
+					$sheet->setCellValue($r.$colField, $selData[$nValue]);
+					$colField++;
+				}
+				$sheet->getColumnDimension($row)->setAutoSize(true);
+				$sheet->getColumnDimension($r)->setAutoSize(true);
+
+			}
+			$style = array(
+		       	 	'alignment' => array(
+		            	'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+		            	'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+		        	)
+	    		);
+			$sheet->getStyle($row.$colFirst.':'.$r.$colField)->applyFromArray($style);
 		}
 		
 		$filename='Export_kandidat.xls'; //save our workbook as this file name

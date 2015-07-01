@@ -72,11 +72,14 @@
                                 <div class="panel-body">
                                     <dl class="dl-horizontal">
 
+                                        <dt>ID Beasiswa :</dt>
+                                        <dd><?php echo ($data[0]['id_beasiswa']) ? $data[0]['id_beasiswa'] : '-' ?></dd>
+
                                         <dt>Nama Lengkap :</dt>
                                         <dd><?php echo $data[0]['nama_lengkap'] ?></dd>
 
                                         <dt>Jenis Kelamin :</dt>
-                                        <dd><?php echo ($data[0]['nama_lengkap']=='L'?'Laki-laki' : 'Perempuan') ?></dd>
+                                        <dd><?php echo ($data[0]['jenis_kelamin']=='L'?'Laki-laki' : 'Perempuan') ?></dd>
                                         
                                         <dt>Tempat / Tanggal Lahir :</dt>
                                         <dd><?php echo $data[0]['tempat_lahir'] ?> / <?php 
@@ -135,8 +138,8 @@
                                         <dt>No Telp / HP :</dt>
                                         <dd><i class="icon icon-phone"></i><?php echo $data[0]['telepon_sekolah']?></dd>
 
-                                        <dt>Nama Sekolah:</dt>
-                                        <dd><?php echo $data[0]['nama_sekolah']?></dd>
+                                        <dt>Nama Kepala Sekolah:</dt>
+                                        <dd><?php echo $data[0]['nama_kepsek']?></dd>
                                     </dl>
                                 </div>
                             </div>
@@ -171,7 +174,7 @@
                                         <dt>Lama Pekerjaan :</dt>
                                         <dd><?php echo $data[0]['lama_pekerjaan'] ?></dd>
 
-                                        <dt>Alamat Sekolah :</dt>
+                                        <dt>Alamat Orang Tua :</dt>
                                         <dd> <address>  <?php echo $data[0]['alamat_ortu']?>
                                               </address>
                                         </dd>
@@ -198,8 +201,11 @@
                                         <dt>Nama Lengkap :</dt>
                                         <dd><?php echo $data[0]['nama_preferensi'] ?></dd>
 
-                                        <dt>Jabatan :</dt>
+                                        <dt>Nama Lembaga :</dt>
                                         <dd><?php echo $data[0]['nama_lembaga'] ?></dd>
+
+                                        <dt>Jabatan :</dt>
+                                        <dd><?php echo $data[0]['jabatan'] ?></dd>
 
                                         <dt>Alamat Perekomendasi :</dt>
                                         <dd> <address>  <?php echo $data[0]['alamat_preferensi']?>
