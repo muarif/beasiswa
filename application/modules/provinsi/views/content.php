@@ -4,19 +4,10 @@
             <div class="row">
                 <div class="widget widget-table action-table">
                     <div class="widget-header"> <i class="icon-th-list"></i>
-                        <h3>User List</h3>
+                        <h3>Kanwil List</h3>
                         <div class="widget-button">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="btn-icon glyphicon glyphicon-briefcase"></i> Action <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="<?php echo site_url('beasiswa/cetaksc');?>">Cetak Salary Crediting</a></li>
-                                    <li><a href="<?php echo site_url('kandidat/naikKelas');?>">Naikkan Tingkatan</a></li>
-                                </ul>
-                            </div>
                             <div class="searchArea">
-                            <form style="margin:0" action="user?<?php echo getLink('q');?>">
+                            <form style="margin:0" action="provinsi?<?php echo getLink('q');?>">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Cari" name="q" value="<?php echo $this->input->get('q')?>">
                                     <span class="input-group-btn">
@@ -25,38 +16,38 @@
                                 </div><!-- /input-group -->
                             </form>
                             </div>
-                            <a href="<?php echo site_url('user/insert')?>"><button class="btn btn-primary"><i class="btn-icon icon-plus"></i>Tambah</button></a>
+                            <a href="<?php echo site_url('provinsi/insert')?>"><button class="btn btn-primary"><i class="btn-icon icon-plus"></i>Tambah</button></a>
                         </div>
                     </div>
                     
                     <div class="widget-content">
                         <?php echo $this->session->flashdata('success') ?>                         
                         <?php echo $this->session->flashdata('fail') ?>                 
-                        <table class="table" id="userTable">
+                        <table class="table" id="kanwilTable">
                             <thead>
                                 <tr>
-                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['id_user'] == 'asc') ? 'desc' : 'asc'; ?>&by=id_user">ID</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['id_user'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
-                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['username'] == 'asc') ? 'desc' : 'asc'; ?>&by=username">Username</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['username'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
-                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['level'] == 'asc') ? 'desc' : 'asc'; ?>&by=level">Level</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['level'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['id_provinsi'] == 'asc') ? 'desc' : 'asc'; ?>&by=id_provinsi">ID Provinsi</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['id_provinsi'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['nama_provinsi'] == 'asc') ? 'desc' : 'asc'; ?>&by=nama_provinsi">Nama Provinsi</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['nama_provinsi'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['ibu_kota'] == 'asc') ? 'desc' : 'asc'; ?>&by=ibu_kota">Ibu Kota</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['ibu_kota'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($user as $row){?>
+                                <?php foreach($provinsi as $row){?>
                                 <tr>
-                                    <td><?php echo $row['id_user']?>
+                                    <td><?php echo $row['id_provinsi']?>
                                     </td>
-                                    <td><?php echo $row['username']?>
+                                    <td><?php echo $row['nama_provinsi']?>
                                     </td>
-                                    <td><?php echo $row['level']?>
+                                    <td><?php echo $row['ibu_kota']?>
                                     </td>
                                     <td><?php echo ($row['status']=='1') ? '<span class="label label-success">Active</span>' : '<span class="label label-danger">Inactive</span>' ?>
                                     </td>
                                     <td>
                                         <div class="btn-group btn-group-xs" role="group" aria-label="Button Group">
-                                            <a class="btn btn-default" href="<?php echo site_url('user/edit/'.$row['id_user']) ?>" role="button"><span class="glyphicon glyphicon-cog"></span>Edit</a>
-                                            <a class="btn btn-danger deleteButton" data-target='#my_modal' data-id="<?php echo $row['id_user'];?>" data-toggle="modal" role="button"><span class="glyphicon glyphicon-trash"></span>Hapus</a>
+                                            <a class="btn btn-default" href="<?php echo site_url('provinsi/edit/'.$row['id_provinsi']) ?>" role="button"><span class="glyphicon glyphicon-cog"></span>Edit</a>
+                                            <a class="btn btn-danger deleteButton" data-target='#my_modal' data-id="<?php echo $row['id_provinsi'];?>" data-toggle="modal" role="button"><span class="glyphicon glyphicon-trash"></span>Hapus</a>
                                         </div>
                                     </td>
                                 </tr>

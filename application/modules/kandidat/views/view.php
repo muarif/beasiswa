@@ -35,17 +35,18 @@
                                         <label class="control-label col-md-2 " for="status">Status </label>
                                         <div class="col-md-10">
                                             <div class="radio  radio-inline">
-                                                <input type="radio" id="kel1" value="1" name="status" <?php echo (set_radio('status', '1')?set_radio('status', '1'):(($data[0]['status']=='1') ? 'checked': '')); ?>>
+                                                <input type="radio" id="kel1" value="1" name="status" <?php echo (set_radio('status', '1')?set_radio('status', '1'):(($data[0]['kts']=='1') ? 'checked': '')); ?>>
                                                 <label for="kel1"> Aktif </label>
                                             </div>
                                             <div class="radio radio-inline">
-                                                <input type="radio" id="kel2" value="0" name="status" <?php echo (set_radio('status', '0')?set_radio('status', '0'):(($data[0]['status']=='0') ? 'checked': '')); ?>>
+                                                <input type="radio" id="kel2" value="0" name="status" <?php echo (set_radio('status', '0')?set_radio('status', '0'):(($data[0]['kts']=='0') ? 'checked': '')); ?>>
                                                 <label for="kel2"> Non-aktif
                                             </div>
                                         </div> <!-- /controls -->
                                         <?php echo form_error('status'); ?>               
                                     </div> <!-- /control-group -->
                                     <div class="form-group ">                                         
+                                        <input type="hidden" name="desc_status" value="">
                                         <label class="control-label col-md-2 " for="desc_status">Alasan Non-aktif</label>
                                         <div class="col-md-10">
                                             <div class="form-group <?php echo (form_error('desc_status')) ? 'has-error' : ''?>">                                        

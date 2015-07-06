@@ -253,6 +253,18 @@ class Kandidat extends CI_Controller {
 			redirect(site_url('kandidat/view/'.$id));
 		}
 	}
+
+	function naikKelas(){
+		$setStatus = $this->kandidat_model->naikKelas();
+		if($setStatus){
+			$this->session->set_flashdata('success', $setStatus);
+			redirect(site_url('kandidat'));
+		}else{
+			$this->session->set_flashdata('fail', '<div class="alert alert-danger" role="alert">Gagal mengubah tingkatan</div>');
+			redirect(site_url('kandidat'));
+		}	
+	}
+
 	function export($id=NULL){
 		global $objPHPExcel;
 		$this->load->library('excel');

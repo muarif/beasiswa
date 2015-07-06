@@ -8,10 +8,11 @@
                         <div class="widget-button">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="btn-icon glyphicon glyphicon-export"></i> Export <span class="caret"></span>
+                                    <i class="btn-icon glyphicon glyphicon-briefcase"></i> Action <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a href="<?php echo site_url('kandidat/export');?>">Export to excel</a></li>
+                                    <li><a href="<?php echo site_url('kandidat/naikKelas');?>">Naikkan Tingkatan</a></li>
                                 </ul>
                             </div>
                             <div class="searchArea">

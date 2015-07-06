@@ -5,7 +5,7 @@ class Kandidat_model extends CI_Model {
 	function get_data($search, $sort, $page, $per_page,$is_page=FALSE) 
     {
 
-		$this->db->select('id_siswa, id_beasiswa, nama_lengkap, jenis_rek, nama_preferensi, nama_kanwil, id_lulus, status, desc');
+		$this->db->select('id_siswa, id_beasiswa, nama_lengkap, jenis_rek, nama_preferensi, nama_kanwil, id_lulus, kandidat.status, desc');
 		$this->db->join('kanwil kw', 'kw.id_kanwil = kandidat.id_kanwil');
 		$this->db->join('provinsi pv', 'pv.id_provinsi = kandidat.id_provinsi');
 		$this->db->join('preferensi pf', 'pf.id_preferensi = kandidat.id_preferensi');
@@ -114,7 +114,7 @@ class Kandidat_model extends CI_Model {
 	}
 
 	function get_kandidat_data($id){
-		$query = $this->db->query('SELECT *,kelas.label as labelk,tingkatan.label as labelt FROM kandidat JOIN preferensi ON kandidat.id_preferensi = preferensi.id_preferensi JOIN provinsi ON kandidat.id_provinsi = provinsi.id_provinsi JOIN kanwil ON kandidat.id_kanwil = kanwil.id_kanwil JOIN kelas ON kelas.id_kelas = kandidat.id_kelas JOIN tingkatan ON tingkatan.id_tingkatan = kelas.id_tingkat WHERE id_siswa = '.$id);
+		$query = $this->db->query('SELECT *,kandidat.status as kts, kelas.label as labelk,tingkatan.label as labelt FROM kandidat JOIN preferensi ON kandidat.id_preferensi = preferensi.id_preferensi JOIN provinsi ON kandidat.id_provinsi = provinsi.id_provinsi JOIN kanwil ON kandidat.id_kanwil = kanwil.id_kanwil JOIN kelas ON kelas.id_kelas = kandidat.id_kelas JOIN tingkatan ON tingkatan.id_tingkatan = kelas.id_tingkat WHERE id_siswa = '.$id);
 			
 		return $query->result_array();
 	}
@@ -208,4 +208,20 @@ class Kandidat_model extends CI_Model {
 		return $result;
 	}
 
+	function naikKelas(){
+		$query = $this->db->query('UPDATE kandidat SET 
+			id_kelas = CASE WHEN NOT (id_kelas = 12 OR id_kelas = 20) THEN id_kelas + 1 ELSE id_kelas END,
+			status = CASE WHEN (id_kelas = 12 OR id_kelas = 20) THEN 0 ELSE 1 END,
+			desc_status = CASE WHEN (id_kelas = 12 OR id_kelas = 20) THEN 4 ELSE desc_status END 
+			WHERE status = 1 AND id_lulus = 1
+		');
+
+		if($query){
+			return '<div class="alert alert-success" role="alert">Berhasil mengubah tingkatan</div>';
+			
+		}else{
+			return false;
+		}
+		
+	}
 }

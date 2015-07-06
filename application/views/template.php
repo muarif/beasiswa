@@ -71,30 +71,9 @@
         <li <?php echo ($this->uri->segment(1) == 'dashboard') ? 'class="active"' : '';?>><a href="<?php echo site_url();?>"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
         <li <?php echo ($this->uri->segment(1) == 'user') ? 'class="active"' : '';?>><a href="<?php echo site_url('user');?>"><i class="icon-user"></i><span>Users</span> </a> </li>
         <li <?php echo ($this->uri->segment(1) == 'kandidat') ? 'class="active"' : '';?>><a href="<?php echo site_url('kandidat');?>"><i class="icon-group"></i><span>Kandidat</span> </a> </li>
-        <li <?php echo ($this->uri->segment(1) == 'beasiswa') ? 'class="active"' : '';?>><a href="<?php echo site_url('beasiswa');?>"><i class="glyphicon glyphicon-list-alt"></i><span>Beasiswa</span> </a> 
-          <ul class="dropdown-menu">
-            <li><a href="icons.html">Generate</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="pricing.html">Pricing Plans</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html">Signup</a></li>
-            <li><a href="error.html">404</a></li>
-          </ul>
-        </li>
+        <li <?php echo ($this->uri->segment(1) == 'beasiswa') ? 'class="active"' : '';?>><a href="<?php echo site_url('beasiswa');?>"><i class="glyphicon glyphicon-usd"></i><span>Beasiswa</span> </a></li>
         <li <?php echo ($this->uri->segment(1) == 'kanwil') ? 'class="active"' : '';?>><a href="<?php echo site_url('kanwil');?>"><i class="glyphicon glyphicon-map-marker"></i><span>Kanwil</span> </a> </li>
-        <li><a href="guidely.html"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
-        <li><a href="charts.html"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
-        <li><a href="shortcodes.html"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
-        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Drops</span> <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="icons.html">Icons</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="pricing.html">Pricing Plans</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html">Signup</a></li>
-            <li><a href="error.html">404</a></li>
-          </ul>
-        </li>
+        <li <?php echo ($this->uri->segment(1) == 'provinsi') ? 'class="active"' : '';?>><a href="<?php echo site_url('provinsi');?>"><i class="glyphicon glyphicon-globe"></i><span>Provinsi</span> </a> </li>
       </ul>
     </div>
     <!-- /container --> 
