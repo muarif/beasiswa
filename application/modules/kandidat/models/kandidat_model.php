@@ -209,10 +209,12 @@ class Kandidat_model extends CI_Model {
 	}
 
 	function naikKelas(){
-		$query = $this->db->query('UPDATE kandidat SET 
-			id_kelas = CASE WHEN NOT (id_kelas = 12 OR id_kelas = 20) THEN id_kelas + 1 ELSE id_kelas END,
-			status = CASE WHEN (id_kelas = 12 OR id_kelas = 20) THEN 0 ELSE 1 END,
-			desc_status = CASE WHEN (id_kelas = 12 OR id_kelas = 20) THEN 4 ELSE desc_status END 
+		$query = $this->db->query('UPDATE kandidat JOIN kelas ON kandidat.id_kelas = kelas.id_kelas SET 
+			kandidat.id_kelas = CASE WHEN NOT (kandidat.id_kelas = 12 OR kandidat.id_kelas = 20) 
+			AND ((id_tingkat <> 4 AND semester = 2 ) OR (id_tingkat = 4)) THEN kandidat.id_kelas + 1 ELSE kandidat.id_kelas END,
+			status = CASE WHEN ((kandidat.id_kelas = 12 AND semester = 2) OR kandidat.id_kelas = 20) THEN 0 ELSE 1 END,
+			desc_status = CASE WHEN ((kandidat.id_kelas = 12 AND semester = 2) OR kandidat.id_kelas = 20) THEN 4 ELSE desc_status END,
+			semester = CASE WHEN (semester = 2) THEN 1 ELSE 2 END
 			WHERE status = 1 AND id_lulus = 1
 		');
 
@@ -223,5 +225,14 @@ class Kandidat_model extends CI_Model {
 			return false;
 		}
 		
+	}
+
+	function getActiveCandidate(){
+		$query = $this->db->select('*')
+		->where('id_lulus','1')
+		->where('status','1')
+		->get('kandidat');
+		
+		return $query->result_array();
 	}
 }

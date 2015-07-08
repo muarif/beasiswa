@@ -32,7 +32,7 @@ fieldset{
 	-moz-border-radius: 6px;
 	border-radius: 6px;
 }
-
+.datepicker{z-index:1151 !important;}
 .btn-icon-only {
 	padding-right: 3px;
 	padding-left: 3px;

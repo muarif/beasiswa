@@ -11,8 +11,8 @@
                                     <i class="btn-icon glyphicon glyphicon-briefcase"></i> Action <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="<?php echo site_url('beasiswa/cetaksc');?>">Cetak Salary Crediting</a></li>
-                                    <li><a href="<?php echo site_url('kandidat/naikKelas');?>">Naikkan Tingkatan</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#cetaksc">Cetak Salary Crediting</a></li>
+                                    <li><a href="<?php echo site_url('kandidat/naikKelas');?>">Kirim E-mail</a></li>
                                 </ul>
                             </div>
                             <div class="searchArea">
@@ -93,4 +93,29 @@
       </div>
     </div>
   </div>
+</div>
+<div class="modal fade" id="cetaksc" tabindex="-1" role="dialog" aria-labelledby="Cetak Salary Crediting">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form action="<?php echo site_url('beasiswa/cetaksc');?>" method="GET">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Cetak Salary Crediting</h4>
+                </div>
+                <div class="modal-body clearfix">
+                    <div class="form-group <?php echo (form_error('month')) ? 'has-error' : ''?>">                                         
+                        <label class="control-label col-sm-2 " for="month">Bulan</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="month" name="month" value="<?php echo set_value('month'); ?>">
+                        </div> <!-- /controls -->
+                        <?php echo form_error('month'); ?>               
+                    </div> <!-- /control-group -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn " data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Cetak</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

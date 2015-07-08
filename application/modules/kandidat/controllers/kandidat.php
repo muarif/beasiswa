@@ -102,6 +102,7 @@ class Kandidat extends CI_Controller {
 		$this->form_validation->set_rules('rek_nama', 'Nama Rekening', 'required');
 		$this->form_validation->set_rules('nama_sekolah', 'Nama Sekolah', 'required');
 		$this->form_validation->set_rules('id_kelas', 'Tingkatan Kelas', 'required');
+		$this->form_validation->set_rules('semester', 'Semester', 'required');
 		$this->form_validation->set_rules('alamat_sekolah', 'Alamat Sekolah', 'required');
 		$this->form_validation->set_rules('telepon_sekolah', 'Telepon Sekolah', 'required');
 		$this->form_validation->set_rules('nama_kepsek', 'Nama Kepala Sekolah', 'required');
@@ -175,6 +176,7 @@ class Kandidat extends CI_Controller {
 		$this->form_validation->set_rules('rek_nama', 'Nama Rekening', 'required');
 		$this->form_validation->set_rules('nama_sekolah', 'Nama Sekolah', 'required');
 		$this->form_validation->set_rules('id_kelas', 'Tingkatan Kelas', 'required');
+		$this->form_validation->set_rules('semester', 'Semester', 'required');
 		$this->form_validation->set_rules('alamat_sekolah', 'Alamat Sekolah', 'required');
 		$this->form_validation->set_rules('telepon_sekolah', 'Telepon Sekolah', 'required');
 		$this->form_validation->set_rules('nama_kepsek', 'Nama Kepala Sekolah', 'required');

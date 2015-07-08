@@ -187,6 +187,18 @@
                                                         <?php echo form_error('nama_sekolah'); ?>               
                                                     </div> <!-- /control-group -->
 
+                                                    <div class="form-group <?php echo (form_error('semester')) ? 'has-error' : ''?>">                                         
+                                                        <label class="control-label col-md-2 " for="semester">Semester</label>
+                                                        <div class="col-md-10">
+                                                            <?php 
+                                                                $sm = array('1' => 'Ganjil','2' => 'Genap');
+                                                                echo form_dropdown('semester',$sm, set_value('semester'),'class="form-control" id="semester" ');
+                                                            ?>
+                                                            
+                                                        </div> <!-- /controls -->
+                                                        <?php echo form_error('semester'); ?>               
+                                                    </div> <!-- /control-group -->
+
                                                     <div class="form-group <?php echo (form_error('id_kelas')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="id_kelas">Tingkat</label>
                                                         <div class="col-md-10">
