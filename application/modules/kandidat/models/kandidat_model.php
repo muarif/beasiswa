@@ -180,7 +180,10 @@ class Kandidat_model extends CI_Model {
 		$this->db->where('id_siswa',$id);
 		$a = $this->db->update('kandidat',$post);
 		if($a){
-			if($post['id_lulus'] == 1) return '<div class="alert alert-success" role="alert">Berhasil meluluskan siswa</div>';
+			if($post['id_lulus'] == 1){
+				$this->db->query('UPDATE kandidat SET id_beasiswa = CONCAT('.date('Y').',id_kanwil,id_siswa) WHERE id_siswa = '.$id);
+				return '<div class="alert alert-success" role="alert">Berhasil meluluskan siswa</div>';	
+			} 
 			elseif($post['id_lulus'] == 0) return '<div class="alert alert-warning" role="alert">Tidak meluluskan siswa</div>';
 		}else{
 			return false;

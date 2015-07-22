@@ -74,17 +74,115 @@ class Beasiswa extends CI_Controller {
 	}
 	function cetaksc(){
 		$data = array();
+		global $objPHPExcel;
+		$this->load->library('excel');
+		$objPHPExcel = $this->excel;
+		$objPHPExcel->setActiveSheetIndex(0);
+		$sheet = $objPHPExcel->getActiveSheet();
+		$sheet->setPrintGridlines(FALSE);
 		$getSC = $this->beasiswa_model->getSC();
-		if(count($getSC)>0){
-			
-		}
-		else{
-
+		
+		if(count($getSC)<=0){
 			$kandidatData = $this->kandidat_model->getActiveCandidate();
 			$result = $this->beasiswa_model->generateSC($kandidatData);
-			
 		}
-		$data = $this->beasiswa_model->getSC();
+		
+		$data = $this->beasiswa_model->getDataSC();
+
+			
+		$headerPos = 3;
+
+		$field = array(
+			'No',
+			'Nomor Rekening',
+			'Nominal Bayar',
+			'Rekening Atas Nama',
+		);
+
+
+		$col = 'B';
+		$colFirst = $col;
+		$row = 4;
+		$rowFirstRange = $headerPos;
+		$colFirstRange = $col;
+		$lastRow = $row;
+		foreach ($field as $value) {
+			if(!is_array($value)){
+				$sheet->setCellValue($col.$headerPos, $value);
+				$colEnd = $col;
+				$col++;
+				
+			}
+		}
+
+		
+		
+		$style = array(
+       	 	'alignment' => array(
+            	'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+            	'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+        	),
+        	'borders' => array(
+			    'allborders' => array(
+			      	'style' => PHPExcel_Style_Border::BORDER_MEDIUM
+			    )
+			)
+		);
+
+		$sheet->getStyle($colFirst.$headerPos.':'.$colEnd.($headerPos))->applyFromArray($style);
+		
+		
+		$numRow = 1;
+		foreach($data as $key => $val){
+			$col = 'B';
+			$colSt = $col;
+			$sheet->setCellValue($col.$row, $numRow);
+			$col++;
+			$sheet->getColumnDimension($col)->setAutoSize(true);
+			foreach($val as $iden => $value){
+
+				$sheet->setCellValueExplicit($col.$row, $value,PHPExcel_Cell_DataType::TYPE_STRING);
+				$sheet->getColumnDimension($col)->setAutoSize(true);
+				
+				$colEnd = $col;
+				$col++;
+				
+				
+			}
+			$style = array(
+		        	'borders' => array(
+					    'allborders' => array(
+					      	'style' => PHPExcel_Style_Border::BORDER_THIN
+					    )
+					)
+				);
+				$sheet->getStyle($colSt.$row.':'.$colEnd.$row)->applyFromArray($style);	
+				$lastRow = $row;
+			$row++;
+
+			$numRow++;
+		}
+		$style = array(
+        	'borders' => array(
+			    'outline' => array(
+			      	'style' => PHPExcel_Style_Border::BORDER_MEDIUM
+			    )
+			)
+		);
+		$sheet->getStyle($colFirstRange.$rowFirstRange.':'.$colEnd.$lastRow)->applyFromArray($style);	
+		
+				
+		$filename='Salary Crediting '.$this->input->get('month').'.xls'; //save our workbook as this file name
+		header('Content-Type: application/vnd.ms-excel'); //mime type
+		header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+		header('Cache-Control: max-age=0'); //no cache
+            
+
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
+
+		$objWriter->save('php://output');
+	
+	
 		
 	}
 	

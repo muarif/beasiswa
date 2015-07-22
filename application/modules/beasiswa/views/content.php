@@ -45,7 +45,7 @@
                             <tbody>
                                 <?php foreach($user as $row){?>
                                 <tr>
-                                    <td><?php echo $row['id_user']?>
+                                    <td><?php echo $row['id_beasiswa']?>
                                     </td>
                                     <td><?php echo $row['username']?>
                                     </td>

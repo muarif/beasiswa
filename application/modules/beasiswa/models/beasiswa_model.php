@@ -26,16 +26,16 @@ class Beasiswa_model extends CI_Model {
 	function getSC(){
 		$date = explode('-',$this->input->get('month'));
 		$query = $this->db->query('SELECT * FROM beasiswa WHERE YEAR(waktu_cetak) = '.$date[1].' AND MONTH(waktu_cetak) = '.$date[0]);
-		return $query->result_array();
+		return $query->num_rows();
 	}
 	function generateSC($kandidatData){
 		date_default_timezone_set("Asia/Jakarta");
-
+		$date = date('Y-m-d',strtotime('01-'.$this->input->get('month')));
 		$this->db->trans_begin();
 		foreach ($kandidatData as $key => $value) {
 			$data = array(
 				'id_kandidat' => $value['id_siswa'],
-				'waktu_cetak' => date('Y-m-d H:i:s')
+				'waktu_cetak' => $date
 			);
 
 			$this->db->insert('beasiswa',$data);
@@ -53,5 +53,13 @@ class Beasiswa_model extends CI_Model {
 		    return true;
 		}
 		
+	}
+	function getDataSC(){
+		$date = explode('-',$this->input->get('month'));
+		$query = $this->db->select('no_rek, besaran, rek_nama')->where('YEAR(waktu_cetak)',$date[1],FALSE)
+		->WHERE('MONTH(waktu_cetak)',$date[0],FALSE)
+		->get('sc_view');
+
+		return $query->result_array();
 	}
 }

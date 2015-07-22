@@ -326,6 +326,7 @@ class Kandidat extends CI_Controller {
 					$sheet->mergeCells($col.$headerPos.':'.$col.($headerPos+1));
 					$sheet->setCellValue($col.$headerPos, $value);
 					$col++;
+					
 				}
 				else{
 					$sheet->setCellValue($col.$headerPos, $value['label']);
@@ -346,9 +347,9 @@ class Kandidat extends CI_Controller {
 					$sheet->mergeCells($colA.$headerPos.':'.$colB.$headerPos);
 
 					$col++;
-					$colEnd = $col;
+					
 				}
-				
+				$colEnd = $col;
 			}
 
 			
