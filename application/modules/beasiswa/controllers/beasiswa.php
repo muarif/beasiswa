@@ -27,9 +27,11 @@ class Beasiswa extends CI_Controller {
 		$per_page=10;
 
 		$sort = array(
-			'id_user' => ($this->input->get('by')=='id_user') ? $this->input->get('sort') : 'asc',
-			'username' => ($this->input->get('by')=='username') ? $this->input->get('sort') : 'asc',
-			'level' => ($this->input->get('by')=='level') ? $this->input->get('sort') : 'asc'
+			'id_beasiswa' => ($this->input->get('by')=='id_beasiswa') ? $this->input->get('sort') : 'asc',
+			'nama_lengkap' => ($this->input->get('by')=='nama_lengkap') ? $this->input->get('sort') : 'asc',
+			'jenis_rek' => ($this->input->get('by')=='jenis_rek') ? $this->input->get('sort') : 'asc',
+			'nama_preferensi' => ($this->input->get('by')=='nama_preferensi') ? $this->input->get('sort') : 'asc',
+			'nama_kanwil' => ($this->input->get('by')=='nama_kanwil') ? $this->input->get('sort') : 'asc'
 		);
 		/*Config Pagination*/
 		$this->load->library('pagination');
@@ -63,7 +65,7 @@ class Beasiswa extends CI_Controller {
 		/*/Config Pagination*/
 		
 		$item['sort'] = $sort;
-		$item['user'] = $this->kandidat_model->get_data($search, $sort, $page, $per_page,TRUE);
+		$item['beasiswa'] = $this->beasiswa_model->get_data($search, $sort, $page, $per_page,TRUE);
 
 
 		$data = array(
@@ -82,14 +84,14 @@ class Beasiswa extends CI_Controller {
 		$sheet->setPrintGridlines(FALSE);
 		$getSC = $this->beasiswa_model->getSC();
 		
-		if(count($getSC)<=0){
+		if($getSC<=0){
 			$kandidatData = $this->kandidat_model->getActiveCandidate();
 			$result = $this->beasiswa_model->generateSC($kandidatData);
 		}
 		
 		$data = $this->beasiswa_model->getDataSC();
 
-			
+		
 		$headerPos = 3;
 
 		$field = array(
@@ -185,5 +187,14 @@ class Beasiswa extends CI_Controller {
 	
 		
 	}
-	
+	function hapus($id){
+		$delete = $this->beasiswa_model->delete($id);
+		if($delete){
+			$this->session->set_flashdata('success', '<div class="alert alert-success" role="alert">Sukses Hapus Data</div>');
+			redirect(site_url('beasiswa'));
+		}else{
+			$this->session->set_flashdata('fail', '<div class="alert alert-danger" role="alert">Gagal Hapus Data</div>');
+			redirect(site_url('beasiswa'));
+		}
+	}	
 }

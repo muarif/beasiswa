@@ -3,9 +3,20 @@
         <div class="container">
             <div class="row">
                 <div class="widget widget-table action-table">
-                    <div class="widget-header"> <i class="icon-th-list"></i>
+                    <div class="widget-header clearfix"> <i class="icon-th-list"></i>
                         <h3>User List</h3>
                         <div class="widget-button">
+                            <div class="searchArea">
+                                <form style="margin:0" action="beasiswa?<?php echo getLink('q');?>">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control month" name="month" value="<?php echo ($this->input->get('month')) ? $this->input->get('month'):''; ?>">
+                                        
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-calendar"></i>Filter by month</button>
+                                        </span>
+                                    </div><!-- /input-group -->
+                                </form>
+                            </div>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="btn-icon glyphicon glyphicon-briefcase"></i> Action <span class="caret"></span>
@@ -16,8 +27,9 @@
                                 </ul>
                             </div>
                             <div class="searchArea">
-                            <form style="margin:0" action="user?<?php echo getLink('q');?>">
+                            <form style="margin:0" action="beasiswa?<?php echo getLink('q');?>">
                                 <div class="input-group">
+                                    
                                     <input type="text" class="form-control" placeholder="Cari" name="q" value="<?php echo $this->input->get('q')?>">
                                     <span class="input-group-btn">
                                         <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
@@ -25,7 +37,7 @@
                                 </div><!-- /input-group -->
                             </form>
                             </div>
-                            <a href="<?php echo site_url('user/insert')?>"><button class="btn btn-primary"><i class="btn-icon icon-plus"></i>Tambah</button></a>
+                            
                         </div>
                     </div>
                     
@@ -35,28 +47,31 @@
                         <table class="table" id="userTable">
                             <thead>
                                 <tr>
-                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['id_user'] == 'asc') ? 'desc' : 'asc'; ?>&by=id_user">ID</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['id_user'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
-                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['username'] == 'asc') ? 'desc' : 'asc'; ?>&by=username">Username</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['username'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
-                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['level'] == 'asc') ? 'desc' : 'asc'; ?>&by=level">Level</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['level'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
-                                    <th>Status</th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['id_beasiswa'] == 'asc') ? 'desc' : 'asc'; ?>&by=id_beasiswa">ID</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['id_beasiswa'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['nama_lengkap'] == 'asc') ? 'desc' : 'asc'; ?>&by=nama_lengkap">Nama Lengkap</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['nama_lengkap'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['jenis_rek'] == 'asc') ? 'desc' : 'asc'; ?>&by=jenis_rek">Jenis Rekening</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['jenis_rek'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['nama_preferensi'] == 'asc') ? 'desc' : 'asc'; ?>&by=nama_preferensi">Nama Preferensi</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['nama_preferensi'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['nama_kanwil'] == 'asc') ? 'desc' : 'asc'; ?>&by=nama_kanwil">Kanwil</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['nama_kanwil'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                   
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($user as $row){?>
+                                <?php foreach($beasiswa as $row){?>
                                 <tr>
                                     <td><?php echo $row['id_beasiswa']?>
                                     </td>
-                                    <td><?php echo $row['username']?>
+                                    <td><?php echo $row['nama_lengkap']?>
                                     </td>
-                                    <td><?php echo $row['level']?>
+                                    <td><?php echo $row['jenis_rek']?>
                                     </td>
-                                    <td><?php echo ($row['status']=='1') ? '<span class="label label-success">Active</span>' : '<span class="label label-danger">Inactive</span>' ?>
+                                    <td><?php echo $row['nama_preferensi']?>
+                                    </td>
+                                    <td><?php echo $row['nama_kanwil']?>
                                     </td>
                                     <td>
                                         <div class="btn-group btn-group-xs" role="group" aria-label="Button Group">
-                                            <a class="btn btn-default" href="<?php echo site_url('user/edit/'.$row['id_user']) ?>" role="button"><span class="glyphicon glyphicon-cog"></span>Edit</a>
-                                            <a class="btn btn-danger deleteButton" data-target='#my_modal' data-id="<?php echo $row['id_user'];?>" data-toggle="modal" role="button"><span class="glyphicon glyphicon-trash"></span>Hapus</a>
+                                            <a class="btn btn-danger deleteButton" data-target='#my_modal' data-id="<?php echo $row['id_sc'];?>" data-toggle="modal" role="button"><span class="glyphicon glyphicon-trash"></span>Hapus</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -106,7 +121,7 @@
                     <div class="form-group <?php echo (form_error('month')) ? 'has-error' : ''?>">                                         
                         <label class="control-label col-sm-2 " for="month">Bulan</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="month" name="month" value="<?php echo set_value('month'); ?>">
+                            <input type="text" class="form-control month"  name="month" value="<?php echo set_value('month'); ?>">
                         </div> <!-- /controls -->
                         <?php echo form_error('month'); ?>               
                     </div> <!-- /control-group -->

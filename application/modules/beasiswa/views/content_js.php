@@ -6,9 +6,9 @@
 		});
 		$('#my_modal').on('show.bs.modal', function(e) {
 		    var id = $(e.relatedTarget).data('id');
-		    $(e.currentTarget).find('.delB').attr('href','<?php echo site_url('user/hapus')?>/'+id);
+		    $(e.currentTarget).find('.delB').attr('href','<?php echo site_url('beasiswa/hapus')?>/'+id);
 		});
-		$('#month').datepicker({
+		$('.month').datepicker({
 			format: "mm-yyyy",
 		    viewMode: "months", 
 		    minViewMode: "months"
