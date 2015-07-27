@@ -10,7 +10,7 @@ class Beasiswa extends CI_Controller {
         // $this->load->model('beasiswa_model');
         $this->load->model('kandidat/kandidat_model');
         $this->load->model('beasiswa_model');
-        if(!$this->session->userdata('logged_in'))
+        if(!$this->session->userdata('logged_in')||$this->session->userdata('id_level')==3)
         {
            redirect('auth');
         }
@@ -184,7 +184,7 @@ class Beasiswa extends CI_Controller {
 
 		$objWriter->save('php://output');
 	
-	
+		
 		
 	}
 	function hapus($id){

@@ -8,36 +8,14 @@ class User extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
         $this->load->model('user_model');
-        if(!$this->session->userdata('logged_in'))
+        if(!$this->session->userdata('logged_in')||$this->session->userdata('id_level')!=1)
         {
            redirect('auth');
         }
         no_cache();
     }
 		
-	// function sort_index($name_session){
-	// 	$get_sort = $this->input->get('sort');
-	// 	$get_by = $this->input->get('by');
-	// 	if($get_sort){
 
-	// 		if($this->session->userdata($name_session)){
-	// 			$sort = $this->session->userdata($name_session);
-
-				
-	// 			if(isset($sort[$get_sort])){
-	// 				$sort[$get_sort] = ($sort[$get_sort] == 'asc') ? 'desc': 'asc';
-	// 			}else{
-	// 				$sort[$get_sort] = 'asc';
-	// 			}
-				
-	// 			$this->session->set_userdata(array($name_session=>$sort));
-			// }else{
-	// 			$sort = array();
-	// 			$sort[$get_sort] = 'asc';
-	// 			$this->session->set_userdata(array($name_session=>$sort));
-	// 		}
-	// 	}
-	// }
 	function index()
 	{
 		

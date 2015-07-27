@@ -8,7 +8,7 @@ class Provinsi extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
         $this->load->model('provinsi_model');
-        if(!$this->session->userdata('logged_in'))
+        if(!$this->session->userdata('logged_in')||$this->session->userdata('id_level')!=1)
         {
            redirect('auth');
         }
