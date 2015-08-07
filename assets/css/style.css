@@ -1660,4 +1660,7 @@ span.login-checkbox > input[type='checkbox']:checked + label {
 
 .list-group-item{
 	overflow: hidden;
-};
+}
+.nothing{
+	text-align: center;
+}

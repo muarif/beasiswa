@@ -49,12 +49,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($kandidat as $row){?>
+                                    <?php if(count($kandidat)>0){
+                                        foreach($kandidat as $row){?>
                                     <tr class="<?php 
                                     if($row['id_lulus']=='2'){
                                         echo 'tlulus';
                                     }elseif($row['id_lulus']==FALSE||$row['status']=='FALSE'){
-                                        echo 'active';
+                                        echo '  active';
                                     }elseif($row['id_lulus']=='2'){
                                         echo 'tlulus';
                                     }
@@ -105,7 +106,16 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <?php }?>
+                                    <?php }
+                               }else{
+                                      ?>
+                                      <tr>
+                                          <td colspan="8" class="nothing">
+                                              Tidak ada data kandidat
+                                          </td>
+                                      </tr>
+                                      <?php
+                                    } ?>
                                 </tbody>
                             </table>
                         </div>
