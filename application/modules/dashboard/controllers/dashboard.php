@@ -18,6 +18,10 @@ class Dashboard extends CI_Controller {
 	function index()
 	{
 		$item['kandidat_baru'] = $this->dashboard_model->kandidat_baru();
+		$item['kandidat_all'] = $this->dashboard_model->kandidat_all();
+		$item['kandidat_aktif'] = $this->dashboard_model->kandidat_aktif();
+		$item['kandidat_ta'] = $this->dashboard_model->kandidat_ta();
+
 		$data = array(
 			'content'=>$this->load->view('content', $item, TRUE),
 			'script'=>$this->load->view('content_js', NULL, TRUE),

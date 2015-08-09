@@ -26,7 +26,7 @@
                             <?php echo $this->session->flashdata('fail') ?> 
                             <?php echo $this->session->flashdata('warning') ?> 
 
-                            <?php if($data[0]['id_lulus']=='1'){ ?>
+                            <?php if($data[0]['id_lulus']=='1'&& $this->session->userdata('id_level')!=3){ ?>
                             <form action="<?php echo site_url('kandidat/setStatus/'.$id)?>" method="POST" class="form-horizontal">
                             <div class="panel panel-default">
                                 
@@ -251,7 +251,7 @@
                                     </dl>
                                 </div>
                             </div>
-                            <?php if($data[0]['id_lulus']!='1'){ ?>
+                            <?php if($data[0]['id_lulus']!='1'&&$this->session->userdata('id_level')!=3){ ?>
                             <form action="<?php echo site_url('kandidat/setKelulusan/'.$id)?>" method="POST" class="form-horizontal">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
