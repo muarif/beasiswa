@@ -229,18 +229,29 @@
               <!-- /widget-header -->
               <div class="widget-content">
                 <div class="shortcuts"> 
+                  <?php if($this->session->userdata('id_level')==1){ ?>
                   <a href="<?php echo site_url('user');?>" class="shortcut">
                     <i class="shortcut-icon icon-user"></i>
                     <span class="shortcut-label">Users</span> 
                   </a>
+                  <?php } ?>
                   <a href="<?php echo site_url('kandidat');?>" class="shortcut">
                     <i class="shortcut-icon icon-group"></i>
                     <span class="shortcut-label">Kandidat</span> 
                   </a>
-                  <a href="<?php echo site_url('beasiswa');?>" class="shortcut">
+                  <?php if($this->session->userdata('id_level')!=3){ ?><a href="<?php echo site_url('beasiswa');?>" class="shortcut">
                     <i class="shortcut-icon glyphicon glyphicon-usd"></i>
                     <span class="shortcut-label">Beasiswa</span> 
-                  </a>
+                  </a><?php } ?>
+                  <?php if($this->session->userdata('id_level')==1){ ?><a href="<?php echo site_url('kanwil');?>" class="shortcut">
+                    <i class="shortcut-icon glyphicon glyphicon-map-marker"></i>
+                    <span class="shortcut-label">Kanwil</span> 
+                  </a><?php } ?>
+                  <?php if($this->session->userdata('id_level')==1){ ?>
+                  <a href="<?php echo site_url('provinsi');?>" class="shortcut">
+                    <i class="shortcut-icon glyphicon glyphicon-globe"></i>
+                    <span class="shortcut-label">Provinsi</span> 
+                  </a><?php } ?>
                 </div>
                 <!-- /shortcuts --> 
               </div>

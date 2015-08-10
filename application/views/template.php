@@ -74,6 +74,7 @@
         <?php if($this->session->userdata('id_level')!=3){ ?><li <?php echo ($this->uri->segment(1) == 'beasiswa') ? 'class="active"' : '';?>><a href="<?php echo site_url('beasiswa');?>"><i class="glyphicon glyphicon-usd"></i><span>Beasiswa</span> </a></li><?php } ?>
         <?php if($this->session->userdata('id_level')==1){ ?><li <?php echo ($this->uri->segment(1) == 'kanwil') ? 'class="active"' : '';?>><a href="<?php echo site_url('kanwil');?>"><i class="glyphicon glyphicon-map-marker"></i><span>Kanwil</span> </a> </li><?php } ?>
         <?php if($this->session->userdata('id_level')==1){ ?><li <?php echo ($this->uri->segment(1) == 'provinsi') ? 'class="active"' : '';?>><a href="<?php echo site_url('provinsi');?>"><i class="glyphicon glyphicon-globe"></i><span>Provinsi</span> </a> </li><?php } ?>
+        <?php if($this->session->userdata('id_level')==1){ ?><li <?php echo ($this->uri->segment(1) == 'tingkatan') ? 'class="active"' : '';?>><a href="<?php echo site_url('tingkatan');?>"><i class="glyphicon glyphicon-education"></i><span>Tingkatan</span> </a> </li><?php } ?>
       </ul>
     </div>
     <!-- /container --> 

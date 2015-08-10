@@ -27,12 +27,9 @@ Bootstrap Admin Template by EGrappler.com
 }
 
 .shortcuts .shortcut .shortcut-icon {
-	    margin-top: .25em;
-    margin-bottom: .25em;
-    font-size: 32px;
+	font-size: 32px;
     color: #545454;
-    display: inline;
-    line-height: 1;
+    line-height: 1.7;
 }
 
 .shortcuts .shortcut:hover {
