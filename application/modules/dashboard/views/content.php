@@ -49,7 +49,7 @@
                             </table>
                         </div>
                         <a href="<?php echo site_url('kandidat');?>" class="btn btn-primary" >
-                          Lihat Semua
+                          Lihat Semua Kandidat
                         </a>
             </div>
 
@@ -103,7 +103,7 @@
                             </table>
                         </div>
                          <a href="<?php echo site_url('kandidat');?>" class="btn btn-primary" >
-                          Lihat Semua
+                          Lihat Semua Kandidat
                         </a>
             </div>
             <!-- /widget-content --> 
@@ -157,7 +157,7 @@
                 </table>
             </div>
            <a href="<?php echo site_url('kandidat');?>" class="btn btn-primary" >
-                          Lihat Semua
+                          Lihat Semua Kandidat
                         </a>
           </div>
 
@@ -212,7 +212,7 @@
                             </table>
                         </div>
                         <a href="<?php echo site_url('kandidat');?>" class="btn btn-primary" >
-                          Lihat Semua
+                          Lihat Semua Kandidat
                         </a>
             </div>
 
@@ -229,9 +229,17 @@
               <!-- /widget-header -->
               <div class="widget-content">
                 <div class="shortcuts"> 
-                  <a href="javascript:;" class="shortcut">
+                  <a href="<?php echo site_url('user');?>" class="shortcut">
+                    <i class="shortcut-icon icon-user"></i>
+                    <span class="shortcut-label">Users</span> 
+                  </a>
+                  <a href="<?php echo site_url('kandidat');?>" class="shortcut">
                     <i class="shortcut-icon icon-group"></i>
                     <span class="shortcut-label">Kandidat</span> 
+                  </a>
+                  <a href="<?php echo site_url('beasiswa');?>" class="shortcut">
+                    <i class="shortcut-icon glyphicon glyphicon-usd"></i>
+                    <span class="shortcut-label">Beasiswa</span> 
                   </a>
                 </div>
                 <!-- /shortcuts --> 
