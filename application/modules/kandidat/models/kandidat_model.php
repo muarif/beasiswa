@@ -20,7 +20,9 @@ class Kandidat_model extends CI_Model {
 			$cur_page = ($this->input->get('per_page')) ? $this->input->get('per_page') : 1;
 			$this->db->limit($per_page, $per_page*($cur_page - 1));
 		}
-
+		if($this->session->userdata('id_level')==3){
+			$this->db->where('id_user',$this->session->userdata('id_user'));
+		}
 		$query = $this->db->get('kandidat');
 		// echo $this->db->last_query();	
 		return $query->result_array();

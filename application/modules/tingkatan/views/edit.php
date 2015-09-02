@@ -8,24 +8,23 @@
                     </div>
                     <div class="widget-content">
                         <div class="col-sm-12">
-                            <form id="insertUser" action="<?php echo site_url('provinsi/update/'.$id)?>" method="POST" class="form-horizontal">
+                            <form id="insertUser" action="<?php echo site_url('tingkatan/update/'.$id)?>" method="POST" class="form-horizontal">
                                 <fieldset>
                                     <?php echo $this->session->flashdata('success') ?>                         
                                     <?php echo $this->session->flashdata('fail') ?>                         
-                                    <div class="form-group <?php echo (form_error('nama_provinsi')) ? 'has-error' : ''?>">                                         
-                                        <label class="control-label col-sm-2 " for="nama_provinsi">Nama Provinsi</label>
+                                    <div class="form-group ">                                         
+                                        <label class="control-label col-sm-2 ">Tingkatan</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="nama_provinsi" name="nama_provinsi" value="<?php echo (set_value('nama_provinsi'))?set_value('nama_provinsi'):$data[0]['nama_provinsi'] ?>">
-                                        </div> <!-- /controls -->
-                                        <?php echo form_error('nama_provinsi'); ?>               
+                                            <p><?php echo $data['label']?></p>
+                                        </div> <!-- /controls -->            
                                     </div> <!-- /control-group -->
 
-                                    <div class="form-group <?php echo (form_error('ibu_kota')) ? 'has-error' : ''?>">                                         
-                                        <label class="control-label col-sm-2 " for="ibu_kota">Wilayah Kerja</label>
+                                    <div class="form-group <?php echo (form_error('besaran')) ? 'has-error' : ''?>">                                         
+                                        <label class="control-label col-sm-2 " for="ibu_kota">Besaran Beasiswa</label>
                                         <div class="col-sm-10">
-                                            <textarea name="ibu_kota" class="form-control" id="ibu_kota"><?php echo (set_value('ibu_kota'))?set_value('ibu_kota'):$data[0]['ibu_kota'] ?></textarea>
+                                            <input type="text" name="besaran" value="<?php echo $data['besaran']?>"> rupiah
                                         </div> <!-- /controls -->
-                                        <?php echo form_error('ibu_kota'); ?>               
+                                        <?php echo form_error('besaran'); ?>               
                                     </div> <!-- /control-group -->
                                     
                                         
@@ -34,9 +33,8 @@
                                         
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-primary">
-                                            Save</button> 
-                                            <a class="btn" href="<?php echo site_url('provinsi');?>" role="button">Cancel</a>
+                                            <button type="submit" class="btn btn-primary">Save</button> 
+                                            <a class="btn" href="<?php echo site_url('tingkatan');?>" role="button">Cancel</a>
 
                                         </div>
                                     </div> 

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="widget widget-table action-table">
                     <div class="widget-header"> <i class="icon-th-list"></i>
-                        <h3>Kanwil List</h3>
+                        <h3>Tingkatan Pendidikan</h3>
                         <div class="widget-button">
                             <div class="searchArea">
                             <form style="margin:0" action="provinsi?<?php echo getLink('q');?>">
@@ -26,28 +26,30 @@
                         <table class="table" id="kanwilTable">
                             <thead>
                                 <tr>
-                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['id_provinsi'] == 'asc') ? 'desc' : 'asc'; ?>&by=id_provinsi">ID Provinsi</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['id_provinsi'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
-                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['nama_provinsi'] == 'asc') ? 'desc' : 'asc'; ?>&by=nama_provinsi">Nama Provinsi</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['nama_provinsi'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
-                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['ibu_kota'] == 'asc') ? 'desc' : 'asc'; ?>&by=ibu_kota">Ibu Kota</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['ibu_kota'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
-                                    <th>Status</th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['tingkatan'] == 'asc') ? 'desc' : 'asc'; ?>&by=tingkatan">Tingkatan</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['tingkatan'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['label'] == 'asc') ? 'desc' : 'asc'; ?>&by=label">Nama Tingkatan</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['label'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['besaran'] == 'asc') ? 'desc' : 'asc'; ?>&by=besaran">Besaran Nominal Beasiswa</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['besaran'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($provinsi as $row){?>
+                                <?php foreach($tingkatan as $row){?>
                                 <tr>
-                                    <td><?php echo $row['id_provinsi']?>
+                                    <td><?php echo $row['tingkatan']?>
                                     </td>
-                                    <td><?php echo $row['nama_provinsi']?>
+                                    <td><?php echo $row['label']?>
+                                        <ul>
+                                            <?php foreach($row['kelas'] as $val){
+                                                echo '<li>'.$val['label'].'</li>';
+                                            }
+                                            ?>
+                                        </ul>
                                     </td>
-                                    <td><?php echo $row['ibu_kota']?>
-                                    </td>
-                                    <td><?php echo ($row['status']=='1') ? '<span class="label label-success">Active</span>' : '<span class="label label-danger">Inactive</span>' ?>
+                                    <td><?php echo $row['besaran']?>
                                     </td>
                                     <td>
                                         <div class="btn-group btn-group-xs" role="group" aria-label="Button Group">
-                                            <a class="btn btn-default" href="<?php echo site_url('provinsi/edit/'.$row['id_provinsi']) ?>" role="button"><span class="glyphicon glyphicon-cog"></span>Edit</a>
-                                            <a class="btn btn-danger deleteButton" data-target='#my_modal' data-id="<?php echo $row['id_provinsi'];?>" data-toggle="modal" role="button"><span class="glyphicon glyphicon-trash"></span>Hapus</a>
+                                            <a class="btn btn-default" href="<?php echo site_url('tingkatan/edit/'.$row['id_tingkatan']) ?>" role="button"><span class="glyphicon glyphicon-cog"></span>Ubah Besaran Nominal</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -68,20 +70,3 @@
     <!-- /main-inner --> 
 </div>
 <!-- /main -->
-<div class="modal" id="my_modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title">Hapus Data</h4>
-      </div>
-      <div class="modal-body">
-        <p>Apakah Anda yakin ingin menghapus data?</p>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-danger delB" href="" role="button">Ya</a>
-        <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
-      </div>
-    </div>
-  </div>
-</div>
