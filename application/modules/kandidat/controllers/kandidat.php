@@ -610,20 +610,19 @@ class Kandidat extends CI_Controller {
 		$pdf->SetAutoPageBreak(true);
 		$pdf->SetAuthor('YBMBRI');
 		$pdf->AddPage();
-		$str = "<h1>Data Siswa</h1><table>";
+		$str = "<h1>Data Siswa</h1>";
 		$fill = 0;
+		$res = $data[0];
 		foreach($heading as $tt => $row){
-			$str .="<tr><td colspan='2'>$tt</td></tr>";
+			$str .="<table><tr><td><h3>$tt</h3></td><td></td></tr>";
 			foreach($row as $label => $alias){
-				$str.="<tr><td>$label</td><td>".$data[0][$alias]."</td></tr>";	
+				$str .= '<tr><td>'.$label.'</td><td>'.(($res[$alias]) ? $res[$alias] : '-').'</td></tr>';
 			}
-			
+			$str .="</table><br>";
 		}
-		$str .="</table>";
+		
 		$pdf->writeHTML($str,true, false, false, false, ''); 
-		// 	$pdf->Cell($w[0],6,$row,'LR',0,'L',$fill);
-		// 	$fill =!$fill;
-		// }
+		
 		$pdf->Output('Export_'.$data[0]['nama_lengkap'].'.pdf', 'I');
 	}
 }
