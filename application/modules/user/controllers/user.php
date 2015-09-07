@@ -27,7 +27,8 @@ class User extends CI_Controller {
 		$sort = array(
 			'id_user' => ($this->input->get('by')=='id_user') ? $this->input->get('sort') : 'asc',
 			'username' => ($this->input->get('by')=='username') ? $this->input->get('sort') : 'asc',
-			'level' => ($this->input->get('by')=='level') ? $this->input->get('sort') : 'asc'
+			'level' => ($this->input->get('by')=='level') ? $this->input->get('sort') : 'asc',
+			'nama_kanwil' => ($this->input->get('by')=='nama_kanwil') ? $this->input->get('sort') : 'asc'
 		);
 		/*Config Pagination*/
 		$this->load->library('pagination');
@@ -71,7 +72,9 @@ class User extends CI_Controller {
 		$this->load->view('template', $data);
 	}
 	function insert(){
+		$this->load->model('kanwil/kanwil_model');
 		$item['level'] = $this->user_model->get_level();
+		$item['id_kanwil'] = $this->kanwil_model->get_kanwil_list();
 		$data = array(
 			'content'=>$this->load->view('tambah', $item, TRUE),
 			'script'=>$this->load->view('tambah_js', '', TRUE)
@@ -83,6 +86,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		$this->form_validation->set_rules('level', 'Level', 'required');
+		$this->form_validation->set_rules('id_kanwil', 'Kanwil', 'required');
 		$this->form_validation->set_rules('password2', 'Password Confirmation', 'required|matches[password]');
 		if($this->form_validation->run()==TRUE){
 			$result = $this->user_model->add($this->input->post());

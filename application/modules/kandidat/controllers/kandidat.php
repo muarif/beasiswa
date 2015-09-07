@@ -292,7 +292,6 @@ class Kandidat extends CI_Controller {
 
 			$field = array(
 				'No.',
-				'No. ID Beasiswa',
 				'Nama Lengkap',
 				'Tempat/Tanggal Lahir',
 				array('label'=>'Orang Tua','data'=>array(
@@ -314,7 +313,7 @@ class Kandidat extends CI_Controller {
 
 			$kelas = $this->kandidat_model->get_short_kelas();
 			foreach($kelas as $key => $val){
-				$field[8]['data'][] = $val['short_label'];
+				$field[7]['data'][] = $val['short_label'];
 			}
 			$col = 'B';
 			$colFirst = $col;
@@ -367,7 +366,6 @@ class Kandidat extends CI_Controller {
     		
     		$search = $this->input->get('q');
     		$sort = array(
-				'id_beasiswa' => ($this->input->get('by')=='id_beasiswa') ? $this->input->get('sort') : 'asc',
 				'nama_lengkap' => ($this->input->get('by')=='nama_lengkap') ? $this->input->get('sort') : 'asc',
 				'jenis_rek' => ($this->input->get('by')=='jenis_rek') ? $this->input->get('sort') : 'asc',
 				'nama_preferensi' => ($this->input->get('by')=='nama_preferensi') ? $this->input->get('sort') : 'asc',
@@ -549,5 +547,83 @@ class Kandidat extends CI_Controller {
 
 		$objWriter->save('php://output');
 	
+	}
+	public function print_pdf($id){
+		$heading = array(
+				'Data Pribadi'=>array(
+					'No. Beasiswa' => 'id_beasiswa',
+					'Nama Lengkap' => 'nama_lengkap',
+					'Jenis Kelamin' => 'jenis_kelamin',
+					'Tempat / tanggal_lahir' => 'ttl',
+					'Alamat Rumah' => 'alamat_rumah',
+					'Kanwil' => 'nama_kanwil',
+					'No Telp / HP' => 'telepon',
+					'Email' => 'email',
+					'Jenis Rekening' => 'jenis_rek',
+					'Nomor Rekening' => 'no_rek',
+					'Atas Nama' => 'rek_nama',
+				),
+				'Data Pendidikan'=>array(
+					'Nama Sekolah'=>'nama_sekolah',
+					'Kelas / Tingkatan'=>'labelk',
+					'Alamat Sekolah'=>'alamat_sekolah',
+					'No Telp / HP'=>'telepon_sekolah',
+					'Nama Kepala Sekolah'=>'nama_kepsek'
+				),
+				'Data Orang Tua Siswa'=>array(
+					'Nama Ayah' => 'nama_ayah',
+					'Pekerjaan ayah' => 'pekerjaan_ayah',
+					'Nama Ibu' => 'nama_ibu',
+					'Pekerjaan Ibu' => 'pekerjaan_ibu',
+					'Status Pekerjaan' => 'status_pekerjaan',
+					'Lama Pekerjaan' => 'lama_pekerjaan',
+					'Alamat Orang Tua' => 'alamat_ortu',
+					'HP / Telepon Rumah' => 'telepon_ortu',
+					'Rata-rata Penghasilan/Bulan' => 'pendapatan',
+					'Rata-rata Pengeluaran/Bulan' => 'pengeluaran'
+				),
+				'Data Perekomendasi'=>array(
+					'Nama Lengkap'	=> 	'nama_preferensi',
+					'Nama Lembaga'	=>	'nama_lembaga',
+					'Jabatan'		=>	'jabatan',
+					'Alamat Perekomendasi'=>'alamat_preferensi',
+					'HP / Telepon Pereferensi'=>'telepon_preferensi',
+					'Email'			=>	'email_preferensi'
+				),
+				'Kelengkapan'=>array(
+					'Fotocopy Raport Semester'	=>	'fc_raport',
+					'Fotocopy KTP Orang Tua'	=>	'fc_ktp',
+					'Fotocopy KK'				=>	'fc_kk',
+					'Pas Foto Siswa'			=>	'pas_foto',
+					'Surat Keterangan Masih Aktif'=>'ska',
+					'Surat Keterangan Tidak Mampu'=>'sktm'
+				)
+			);
+		$data = $this->kandidat_model->get_kandidat_data($id);
+
+		$this->load->library('Pdf');
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetTitle('Export Data '.$data[0]['nama_lengkap']);
+		$pdf->SetHeaderMargin(30);
+		$pdf->SetTopMargin(20);
+		$pdf->setFooterMargin(20);
+		$pdf->SetAutoPageBreak(true);
+		$pdf->SetAuthor('YBMBRI');
+		$pdf->AddPage();
+		$str = "<h1>Data Siswa</h1><table>";
+		$fill = 0;
+		foreach($heading as $tt => $row){
+			$str .="<tr><td colspan='2'>$tt</td></tr>";
+			foreach($row as $label => $alias){
+				$str.="<tr><td>$label</td><td>".$data[0][$alias]."</td></tr>";	
+			}
+			
+		}
+		$str .="</table>";
+		$pdf->writeHTML($str,true, false, false, false, ''); 
+		// 	$pdf->Cell($w[0],6,$row,'LR',0,'L',$fill);
+		// 	$fill =!$fill;
+		// }
+		$pdf->Output('Export_'.$data[0]['nama_lengkap'].'.pdf', 'I');
 	}
 }

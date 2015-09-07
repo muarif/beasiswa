@@ -36,6 +36,14 @@
                                     <?php echo form_error('password2'); ?>          
                                 </div> <!-- /control-group -->
                                 
+                                 <div class="form-group <?php echo (form_error('id_kanwil')) ? 'has-error' : ''?>">                                         
+                                    <label class="control-label col-sm-2 " for="id_kanwil">Kanwil</label>
+                                    <div class="col-sm-10">
+                                        <?php echo form_dropdown('id_kanwil', $id_kanwil, set_value('id_kanwil'), 'class="form-control" id="id_kanwil"');?>
+                                    </div> <!-- /controls -->      
+                                    <?php echo form_error('id_kanwil'); ?>         
+                                </div> <!-- /control-group -->
+                                
                                  <div class="form-group <?php echo (form_error('level')) ? 'has-error' : ''?>">                                         
                                     <label class="control-label col-sm-2 " for="level">User Level</label>
                                     <div class="col-sm-10">

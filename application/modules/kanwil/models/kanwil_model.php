@@ -38,6 +38,15 @@ class Kanwil_model extends CI_Model {
 			
 		return $query->result_array();
 	}
+	function get_kanwil_list(){
+		$query = $this->db->query('SELECT id_kanwil, nama_kanwil FROM kanwil');
+		$rs = $query->result_array();
+		$result = array();
+		foreach($rs as $value){
+			$result[$value['id_kanwil']] = $value['nama_kanwil'];
+		}
+		return $result;
+	}
 	function update($post,$id){
 		$data = array(
 				'nama_kanwil'	=>	$post['nama_kanwil'],

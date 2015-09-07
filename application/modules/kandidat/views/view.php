@@ -13,10 +13,10 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a href="<?php echo site_url('kandidat/export/'.$id);?>">Export to excel</a></li>
-                                    <li><a href="#">Export to PDF</a></li>
+                                    <li><a href="<?php echo site_url('kandidat/print_pdf/'.$id);?>">Export to PDF</a></li>
                                 </ul>
                             </div>
-                            <a href="#" onClick="window.print()"><button class="btn btn-primary"><i class="btn-icon icon-print"></i>Direct Print</button></a>
+                            <a href="#" onClick="window.print()"><button class="btn btn-primary"><i class="btn-icon fa fa-print"></i>Direct Print</button></a>
                         </div>
                     </div>
                     <div class="widget-content">

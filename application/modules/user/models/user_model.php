@@ -5,8 +5,9 @@ class User_model extends CI_Model {
 	function get_data($search, $sort, $page, $per_page,$is_page=FALSE) 
     {
 
-		$this->db->select('id_user, username, level, status');
+		$this->db->select('id_user, username, level, user.id_kanwil, nama_kanwil, status');
 		$this->db->join('level l', 'l.id_level = user.id_level');
+		$this->db->join('kanwil k', 'k.id_kanwil = user.id_kanwil');
 		$this->db->like('username', $search,'both');
 		
 		if($this->input->get('sort')&&$this->input->get('by')){

@@ -17,14 +17,14 @@ class Dashboard_model extends CI_Model {
 		return $query->result_array();
 		
     }
-	function kandidat_all() 
+	function kandidat_tidak_lulus() 
     {
 
 		$this->db->select('id_siswa, nama_lengkap, jenis_rek, nama_kanwil');
 		$this->db->join('kanwil kw', 'kw.id_kanwil = kandidat.id_kanwil');
 		$this->db->order_by('id_siswa', 'desc');
 		$this->db->limit(10);
-		$this->db->where('id_lulus',1);
+		$this->db->where('id_lulus',2);
 		if($this->session->userdata('id_level')==3){
 			$this->db->where('id_user',$this->session->userdata('id_user'));
 		}
@@ -33,7 +33,7 @@ class Dashboard_model extends CI_Model {
 		return $query->result_array();
 		
     }
-	function kandidat_aktif() 
+	function peserta_aktif() 
     {
 
 		$this->db->select('id_siswa, nama_lengkap, jenis_rek, nama_kanwil');
@@ -49,7 +49,7 @@ class Dashboard_model extends CI_Model {
 		return $query->result_array();
 		
     }
-    function kandidat_ta() 
+    function peserta_ta() 
     {
 
 		$this->db->select('id_siswa, nama_lengkap, jenis_rek, nama_kanwil');

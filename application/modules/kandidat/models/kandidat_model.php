@@ -5,13 +5,13 @@ class Kandidat_model extends CI_Model {
 	function get_data($search, $sort, $page, $per_page,$is_page=FALSE) 
     {
 
-		$this->db->select('id_siswa, id_beasiswa, nama_lengkap, jenis_rek, nama_preferensi, nama_kanwil, id_lulus, kandidat.status, desc');
+		$this->db->select('id_siswa, nama_lengkap, jenis_rek, nama_preferensi, nama_kanwil, id_lulus, alasan_lulus');
 		$this->db->join('kanwil kw', 'kw.id_kanwil = kandidat.id_kanwil');
 		$this->db->join('provinsi pv', 'pv.id_provinsi = kandidat.id_provinsi');
 		$this->db->join('preferensi pf', 'pf.id_preferensi = kandidat.id_preferensi');
-		$this->db->join('status st', 'st.id_status = kandidat.desc_status','left');
-		$this->db->like('nama_lengkap', $search,'both');
-		$this->db->or_like('nama_preferensi', $search,'both');
+		// $this->db->join('status st', 'st.id_status = kandidat.desc_status','left');
+		$this->db->like('(nama_lengkap LIKE \'%'.$search.'%\' OR nama_preferensi LIKE \'%'.$search.'%\')',FALSE);
+		$this->db->where('kandidat.id_lulus !=',1);
 		
 		if($this->input->get('sort')&&$this->input->get('by')){
 			$this->db->order_by($this->input->get('by'), $this->input->get('sort')); 
@@ -31,7 +31,7 @@ class Kandidat_model extends CI_Model {
 	function get_export_data($search) 
     {
 
-		$this->db->select('id_beasiswa, nama_lengkap, CONCAT(`tempat_lahir`,"/",`tanggal_lahir`) as ttl, nama_ayah, pekerjaan_ayah,'.
+		$this->db->select('nama_lengkap, CONCAT(`tempat_lahir`,"/",`tanggal_lahir`) as ttl, nama_ayah, pekerjaan_ayah,'.
 		'nama_ibu, pekerjaan_ibu ,CONCAT(`alamat_rumah`,",Kel. ", `kelurahan`,",Kec. ",`kecamatan`,",Kota/Kab. ",`kota`,", ",`kode_pos`,", ",`nama_provinsi`)as full_alamat,telepon,nama_sekolah,'.
 		'id_kelas, jenis_rek, no_rek, rek_nama, nama_preferensi,alamat_preferensi, telepon_preferensi,email_preferensi,jabatan,nama_kanwil',FALSE);
 		$this->db->join('kanwil kw', 'kw.id_kanwil = kandidat.id_kanwil');
@@ -116,7 +116,7 @@ class Kandidat_model extends CI_Model {
 	}
 
 	function get_kandidat_data($id){
-		$query = $this->db->query('SELECT *,kandidat.status as kts, kelas.label as labelk,tingkatan.label as labelt FROM kandidat JOIN preferensi ON kandidat.id_preferensi = preferensi.id_preferensi JOIN provinsi ON kandidat.id_provinsi = provinsi.id_provinsi JOIN kanwil ON kandidat.id_kanwil = kanwil.id_kanwil JOIN kelas ON kelas.id_kelas = kandidat.id_kelas JOIN tingkatan ON tingkatan.id_tingkatan = kelas.id_tingkat WHERE id_siswa = '.$id);
+		$query = $this->db->query('SELECT *,CONCAT(`tempat_lahir`,"/",`tanggal_lahir`) as ttl,kandidat.status as kts, kelas.label as labelk,tingkatan.label as labelt FROM kandidat JOIN preferensi ON kandidat.id_preferensi = preferensi.id_preferensi JOIN provinsi ON kandidat.id_provinsi = provinsi.id_provinsi JOIN kanwil ON kandidat.id_kanwil = kanwil.id_kanwil JOIN kelas ON kelas.id_kelas = kandidat.id_kelas JOIN tingkatan ON tingkatan.id_tingkatan = kelas.id_tingkat WHERE id_siswa = '.$id);
 			
 		return $query->result_array();
 	}

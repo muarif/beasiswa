@@ -16,7 +16,7 @@
                                 </div><!-- /input-group -->
                             </form>
                             </div>
-                            <a href="<?php echo site_url('user/insert')?>"><button class="btn btn-primary"><i class="btn-icon icon-plus"></i>Tambah</button></a>
+                            <a href="<?php echo site_url('user/insert')?>"><button class="btn btn-primary"><i class="btn-icon fa fa-plus"></i>Tambah</button></a>
                         </div>
                     </div>
                     
@@ -28,6 +28,7 @@
                                 <tr>
                                     <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['id_user'] == 'asc') ? 'desc' : 'asc'; ?>&by=id_user">ID</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['id_user'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
                                     <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['username'] == 'asc') ? 'desc' : 'asc'; ?>&by=username">Username</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['username'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
+                                    <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['nama_kanwil'] == 'asc') ? 'desc' : 'asc'; ?>&by=nama_kanwil">Kanwil</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['nama_kanwil'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
                                     <th><a href="?<?php echo getLink('sort','desc')?>&sort=<?php echo ($sort['level'] == 'asc') ? 'desc' : 'asc'; ?>&by=level">Level</a><i class="glyphicon glyphicon-triangle-<?php echo ($sort['level'] == 'asc') ? 'bottom' : 'top'; ?>"></i></th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -39,6 +40,8 @@
                                     <td><?php echo $row['id_user']?>
                                     </td>
                                     <td><?php echo $row['username']?>
+                                    </td>
+                                    <td><?php echo $row['nama_kanwil']?>
                                     </td>
                                     <td><?php echo $row['level']?>
                                     </td>
