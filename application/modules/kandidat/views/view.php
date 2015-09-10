@@ -230,22 +230,22 @@
                                     <dl class="dl-horizontal">
 
                                         <dt>Fotocopy Raport Semester :</dt>
-                                        <dd><?php echo ($data[0]['fc_raport']=='1'?'Terlampir' : 'Tidak Ada') ?></dd>
+                                        <dd><a href="<?php echo base_url('lampiran/fc_raport/'.$data[0]['fc_raport'])?>"><?php echo $data[0]['fc_raport'] ?></a></dd>
 
                                         <dt>Fotocopy KTP Orang Tua :</dt>
-                                        <dd><?php echo ($data[0]['fc_ktp']=='1'?'Terlampir' : 'Tidak Ada') ?></dd>
+                                        <dd><a href="<?php echo base_url('lampiran/fc_ktp/'.$data[0]['fc_ktp'])?>"><?php echo $data[0]['fc_ktp']?></a></dd>
 
                                         <dt>Fotocopy KK :</dt>
-                                        <dd><?php echo ($data[0]['fc_kk']=='1'?'Terlampir' : 'Tidak Ada') ?></dd>
+                                        <dd><a href="<?php echo base_url('lampiran/fc_kk/'.$data[0]['fc_kk'])?>"><?php echo $data[0]['fc_kk']; ?></a></dd>
 
                                         <dt>Pas Foto Siswa :</dt>
-                                        <dd><?php echo ($data[0]['pas_foto']=='1'?'Terlampir' : 'Tidak Ada') ?></dd>
+                                        <dd><a href="<?php echo base_url('lampiran/pas_foto/'.$data[0]['pas_foto'])?>"><?php echo $data[0]['pas_foto'] ?></a></dd>
 
                                         <dt>Surat Keterangan Masih Aktif :</dt>
-                                        <dd><?php echo ($data[0]['ska']=='1'?'Terlampir' : 'Tidak Ada') ?></dd>
+                                        <dd><a href="<?php echo base_url('lampiran/ska/'.$data[0]['ska'])?>"><?php echo $data[0]['ska']?></a></dd>
 
                                         <dt>Surat Keterangan Tidak Mampu :</dt>
-                                        <dd><?php echo ($data[0]['sktm']=='1'?'Terlampir' : 'Tidak Ada') ?></dd>
+                                        <dd><a href="<?php echo base_url('lampiran/sktm/'.$data[0]['sktm'])?>"><?php echo $data[0]['sktm']?></a></dd>
 
                                         
                                     </dl>
