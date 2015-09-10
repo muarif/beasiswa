@@ -8,7 +8,7 @@
                     </div>
                     <div class="widget-content">
                     <div class="col-sm-12">
-                        <form id="insertUser" action="<?php echo site_url('kandidat/add')?>" method="POST" class="form-horizontal">
+                        <form id="insertUser" action="<?php echo site_url('kandidat/add')?>" method="POST" class="form-horizontal" enctype="multipart/form-data">
                             <fieldset>
                                 <div id="rootwizard">
                                     <ul>
@@ -398,84 +398,90 @@
                                                     <div class="form-group <?php echo (form_error('fc_raport')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="fc_raport">Fotocopy Raport Semester</label>
                                                         <div class="col-md-10">
-                                                            <div class="radio radio radio-inline">
+                                                            <input type="file" name="fc_raport">
+                                                            <!--<div class="radio radio radio-inline">
                                                                 <input type="radio" id="fcr1" value="1" name="fc_raport" <?php echo set_radio('fc_raport', '1'); ?>>
                                                                 <label for="fcr1"> Terlampir </label>
                                                             </div>
                                                             <div class="radio radio-inline">
                                                                 <input type="radio" id="fcr2" value="0" name="fc_raport" <?php echo set_radio('fc_raport', '0'); ?>>
                                                                 <label for="fcr2"> Tidak Ada </label>
-                                                            </div>
+                                                            </div>-->
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('fc_raport'); ?>               
                                                     </div> <!-- /control-group -->
                                                     <div class="form-group <?php echo (form_error('fc_ktp')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="fc_ktp">Fotocopy KTP Orang Tua</label>
                                                         <div class="col-md-10">
-                                                            <div class="radio radio radio-inline">
+                                                            <input type="file" name="fc_ktp">
+                                                            <!--<div class="radio radio radio-inline">
                                                                 <input type="radio" id="fcktp1" value="1" name="fc_ktp" <?php echo set_radio('fc_ktp', '1'); ?>>
                                                                 <label for="fcktp1"> Terlampir </label>
                                                             </div>
                                                             <div class="radio radio-inline">
                                                                 <input type="radio" id="fcktp2" value="0" name="fc_ktp" <?php echo set_radio('fc_ktp', '0'); ?>>
                                                                 <label for="fcktp2"> Tidak Ada </label>
-                                                            </div>
+                                                            </div>-->
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('fc_ktp'); ?>               
                                                     </div> <!-- /control-group -->
                                                     <div class="form-group <?php echo (form_error('fc_kk')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="fc_kk">Fotocopy KK</label>
                                                         <div class="col-md-10">
-                                                            <div class="radio radio radio-inline">
+                                                            <input type="file" name="fc_kk">
+                                                            <!--<div class="radio radio radio-inline">
                                                                 <input type="radio" id="fckk1" value="1" name="fc_kk" <?php echo set_radio('fc_kk', '1'); ?>>
                                                                 <label for="fckk1"> Terlampir </label>
                                                             </div>
                                                             <div class="radio radio-inline">
                                                                 <input type="radio" id="fckk2" value="0" name="fc_kk" <?php echo set_radio('fc_kk', '0'); ?>>
                                                                 <label for="fckk2"> Tidak Ada </label>
-                                                            </div>
+                                                            </div>-->
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('fc_kk'); ?>               
                                                     </div> <!-- /control-group -->
                                                     <div class="form-group <?php echo (form_error('pas_foto')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="pas_foto">Pas Foto Siswa</label>
                                                         <div class="col-md-10">
-                                                            <div class="radio radio radio-inline">
+                                                            <input type="file" name="pas_foto">
+                                                            <!--<div class="radio radio radio-inline">
                                                                 <input type="radio" id="pf1" value="1" name="pas_foto" <?php echo set_radio('pas_foto', '1'); ?>>
                                                                 <label for="pf1"> Terlampir </label>
                                                             </div>
                                                             <div class="radio radio-inline">
                                                                 <input type="radio" id="pf2" value="0" name="pas_foto" <?php echo set_radio('pas_foto', '0'); ?>>
                                                                 <label for="pf2"> Tidak Ada </label>
-                                                            </div>
+                                                            </div>-->
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('pas_foto'); ?>               
                                                     </div> <!-- /control-group -->
                                                     <div class="form-group <?php echo (form_error('ska')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="ska">Surat Keterangan Masih Aktif</label>
                                                         <div class="col-md-10">
-                                                            <div class="radio radio radio-inline">
+                                                            <input type="file" name="ska">
+                                                            <!--<div class="radio radio radio-inline">
                                                                 <input type="radio" id="skma1" value="1" name="ska" <?php echo set_radio('ska', '1'); ?>>
                                                                 <label for="skma1"> Terlampir </label>
                                                             </div>
                                                             <div class="radio radio-inline">
                                                                 <input type="radio" id="skma2" value="0" name="ska" <?php echo set_radio('ska', '0'); ?>>
                                                                 <label for="skma2"> Tidak Ada </label>
-                                                            </div>
+                                                            </div>-->
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('ska'); ?>               
                                                     </div> <!-- /control-group -->
                                                     <div class="form-group <?php echo (form_error('sktm')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="sktm">Surat Keterangan Tidak Mampu</label>
                                                         <div class="col-md-10">
-                                                            <div class="radio radio radio-inline">
+                                                            <input type="file" name="sktm">
+                                                            <!--<div class="radio radio radio-inline">
                                                                 <input type="radio" id="sktm1" value="1" name="sktm" <?php echo set_radio('sktm', '1'); ?>>
                                                                 <label for="sktm1"> Terlampir </label>
                                                             </div>
                                                             <div class="radio radio-inline">
                                                                 <input type="radio" id="sktm2" value="0" name="sktm" <?php echo set_radio('sktm', '0'); ?>>
                                                                 <label for="sktm2"> Tidak Ada </label>
-                                                            </div>
+                                                            </div>-->
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('sktm'); ?>               
                                                     </div> <!-- /control-group -->

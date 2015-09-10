@@ -122,12 +122,12 @@ class Kandidat extends CI_Controller {
 		$this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
 		$this->form_validation->set_rules('telepon_preferensi', 'Telepon Preferensi', 'required');
 		$this->form_validation->set_rules('email_preferensi', 'Email Preferensi', 'required');
-		$this->form_validation->set_rules('fc_raport', 'Fotokopi Raport', 'required');
-		$this->form_validation->set_rules('fc_ktp', 'Fotokopi KTP', 'required');
-		$this->form_validation->set_rules('fc_kk', 'Fotokopi KK', 'required');
-		$this->form_validation->set_rules('pas_foto', 'Pas Foto', 'required');
-		$this->form_validation->set_rules('ska', 'Surat Keterangan Masih Aktif', 'required');
-		$this->form_validation->set_rules('sktm', 'Surat Keterangan Tidak Mampu', 'required');
+		$this->form_validation->set_rules('fc_raport', 'Fotokopi Raport', 'callback_do_upload[fc_raport]');
+		$this->form_validation->set_rules('fc_ktp', 'Fotokopi KTP', 'callback_do_upload[fc_ktp]');
+		$this->form_validation->set_rules('fc_kk', 'Fotokopi KK', 'callback_do_upload[fcc_kk]');
+		$this->form_validation->set_rules('pas_foto', 'Pas Foto', 'callback_do_upload[fc_pas_foto]');
+		$this->form_validation->set_rules('ska', 'Surat Keterangan Masih Aktif', 'callback_do_upload[ska]');
+		$this->form_validation->set_rules('sktm', 'Surat Keterangan Tidak Mampu', 'callback_do_upload[sktm]');
 
 		if($this->form_validation->run()==TRUE){
 			$result = $this->kandidat_model->add($this->input->post());
@@ -142,7 +142,48 @@ class Kandidat extends CI_Controller {
 			$this->insert();
 		}
 	}
+	function do_upload($param,$field){
+		$file_name = $field.'_'.$this->get_random_string(5);
+		$config['file_name'] = $file_name;
+		$config['upload_path'] = './lampiran/'.$field;
+		$config['allowed_types'] = 'gif|jpg|png|pdf|doc|docx';
 
+		$this->load->library('upload', $config);
+
+		if(! $this->upload->do_upload($field)){
+			$this->form_validation->set_message('do_upload',$this->upload->display_errors());
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	function get_random_string($length)
+	{
+		$valid_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	    // start with an empty random string
+	    $random_string = "";
+
+	    // count the number of chars in the valid chars string so we know how many choices we have
+	    $num_valid_chars = strlen($valid_chars);
+
+	    // repeat the steps until we've created a string of the right length
+	    for ($i = 0; $i < $length; $i++)
+	    {
+	        // pick a random number from 1 up to the number of valid chars
+	        $random_pick = mt_rand(1, $num_valid_chars);
+
+	        // take the random character out of the string of valid chars
+	        // subtract 1 from $random_pick because strings are indexed starting at 0, and we started picking at 1
+	        $random_char = $valid_chars[$random_pick-1];
+
+	        // add the randomly-chosen char onto the end of our string so far
+	        $random_string .= $random_char;
+	    }
+
+	    // return our finished random string
+	    return $random_string;
+	}
 	function edit($id){
 		$item['provinsi'] = $this->kandidat_model->get_provinsi();
 		$item['kelas'] = $this->kandidat_model->get_kelas();
