@@ -113,7 +113,7 @@ class Kandidat extends CI_Controller {
 		$this->form_validation->set_rules('status_pekerjaan', 'Status Pekerjaan', 'required');
 		$this->form_validation->set_rules('lama_pekerjaan', 'Lama Pekerjaan', 'required');
 		$this->form_validation->set_rules('alamat_ortu', 'Alamat Orang Tua', 'required');
-		$this->form_validation->set_rules('telepon_ortu', 'Telepon Orang Tua', '');
+		$this->form_validation->set_rules('telepon_ortu', 'Telepon Orang Tua', 'required');
 		$this->form_validation->set_rules('pendapatan', 'Pendapatan', 'required');
 		$this->form_validation->set_rules('pengeluaran', 'Pengeluaran', 'required');
 		$this->form_validation->set_rules('nama_preferensi', 'Nama Preferensi', 'required');
@@ -122,38 +122,51 @@ class Kandidat extends CI_Controller {
 		$this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
 		$this->form_validation->set_rules('telepon_preferensi', 'Telepon Preferensi', 'required');
 		$this->form_validation->set_rules('email_preferensi', 'Email Preferensi', 'required');
-		$this->form_validation->set_rules('fc_raport', 'Fotokopi Raport', 'callback_do_upload[fc_raport]');
-		$this->form_validation->set_rules('fc_ktp', 'Fotokopi KTP', 'callback_do_upload[fc_ktp]');
-		$this->form_validation->set_rules('fc_kk', 'Fotokopi KK', 'callback_do_upload[fcc_kk]');
-		$this->form_validation->set_rules('pas_foto', 'Pas Foto', 'callback_do_upload[fc_pas_foto]');
-		$this->form_validation->set_rules('ska', 'Surat Keterangan Masih Aktif', 'callback_do_upload[ska]');
-		$this->form_validation->set_rules('sktm', 'Surat Keterangan Tidak Mampu', 'callback_do_upload[sktm]');
+		
 
 		if($this->form_validation->run()==TRUE){
-			$result = $this->kandidat_model->add($this->input->post());
-			if($result){
-				$this->session->set_flashdata('success', '<div class="alert alert-success" role="alert">Sukses Tambah Data</div>');
-				redirect(site_url('kandidat'));
+			$this->form_validation->set_rules('fc_raport', 'Fotokopi Raport', 'callback_do_upload[fc_raport]');
+			$this->form_validation->set_rules('fc_ktp', 'Fotokopi KTP', 'callback_do_upload[fc_ktp]');
+			$this->form_validation->set_rules('fc_kk', 'Fotokopi KK', 'callback_do_upload[fc_kk]');
+			$this->form_validation->set_rules('pas_foto', 'Pas Foto', 'callback_do_upload[pas_foto]');
+			$this->form_validation->set_rules('ska', 'Surat Keterangan Masih Aktif', 'callback_do_upload[ska]');
+			$this->form_validation->set_rules('sktm', 'Surat Keterangan Tidak Mampu', 'callback_do_upload[sktm]');
+
+			if($this->form_validation->run()==TRUE){
+				$result = $this->kandidat_model->add($this->input->post());
+				echo print_r($this->input->post());
+				/*if($result){
+					$this->session->set_flashdata('success', '<div class="alert alert-success" role="alert">Sukses Tambah Data</div>');
+					redirect(site_url('kandidat'));
+				}else{
+					$this->session->set_flashdata('fail', '<div class="alert alert-danger" role="alert">Gagal Tambah Data</div>');
+					$this->insert();
+				}*/
 			}else{
-				$this->session->set_flashdata('fail', '<div class="alert alert-danger" role="alert">Gagal Tambah Data</div>');
 				$this->insert();
 			}
+			
 		}else{
 			$this->insert();
 		}
 	}
-	function do_upload($param,$field){
-		$file_name = $field.'_'.$this->get_random_string(5);
-		$config['file_name'] = $file_name;
-		$config['upload_path'] = './lampiran/'.$field;
-		$config['allowed_types'] = 'gif|jpg|png|pdf|doc|docx';
-
-		$this->load->library('upload', $config);
-
-		if(! $this->upload->do_upload($field)){
-			$this->form_validation->set_message('do_upload',$this->upload->display_errors());
+	public function do_upload($field, $db_name = ''){	
+		
+		$config['upload_path'] = './lampiran/'.$db_name.'/';
+		$config['allowed_types'] = 'pdf|jpeg|jpg|png|gif';
+		$config['max_size'] = '2096';
+		
+		$this->load->library('upload');
+		$this->upload->initialize($config);
+		
+		if ( ! $this->upload->do_upload($db_name)){
+			
+			$this->form_validation->set_message('do_upload', $this->upload->display_errors('',''));
 			return false;
 		}else{
+			$data = $this->upload->data();
+			$file_name = $data['file_name'];
+			$_POST[$db_name] = $file_name;
 			return true;
 		}
 	}
