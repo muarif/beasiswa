@@ -134,14 +134,14 @@ class Kandidat extends CI_Controller {
 
 			if($this->form_validation->run()==TRUE){
 				$result = $this->kandidat_model->add($this->input->post());
-				echo print_r($this->input->post());
-				/*if($result){
+				// echo print_r($this->input->post());
+				if($result){
 					$this->session->set_flashdata('success', '<div class="alert alert-success" role="alert">Sukses Tambah Data</div>');
 					redirect(site_url('kandidat'));
 				}else{
 					$this->session->set_flashdata('fail', '<div class="alert alert-danger" role="alert">Gagal Tambah Data</div>');
 					$this->insert();
-				}*/
+				}
 			}else{
 				$this->insert();
 			}
