@@ -12,6 +12,7 @@ class Kandidat extends CI_Controller {
         {
            redirect('auth');
         }
+        // echo print_r();
         no_cache();
     }
 	
@@ -250,20 +251,41 @@ class Kandidat extends CI_Controller {
 		$this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
 		$this->form_validation->set_rules('telepon_preferensi', 'Telepon Preferensi', 'required');
 		$this->form_validation->set_rules('email_preferensi', 'Email Preferensi', 'required');
-		$this->form_validation->set_rules('fc_raport', 'Fotokopi Raport', 'required');
-		$this->form_validation->set_rules('fc_ktp', 'Fotokopi KTP', 'required');
-		$this->form_validation->set_rules('fc_kk', 'Fotokopi KK', 'required');
-		$this->form_validation->set_rules('pas_foto', 'Pas Foto', 'required');
-		$this->form_validation->set_rules('ska', 'Surat Keterangan Masih Aktif', 'required');
-		$this->form_validation->set_rules('sktm', 'Surat Keterangan Tidak Mampu', 'required');
+		if(isset($form['fc_raport'])){
+			$this->form_validation->set_rules('fc_raport', 'Fotokopi Raport', 'callback_do_upload[fc_raport]');
+		}
+		if(isset($form['fc_ktp'])){
+			$this->form_validation->set_rules('fc_ktp', 'Fotokopi KTP', 'callback_do_upload[fc_ktp]');
+		}
+		if(isset($form['fc_kk'])){
+			$this->form_validation->set_rules('fc_kk', 'Fotokopi KK', 'callback_do_upload[fc_kk]');	
+		}
+		if(isset($form['pas_foto'])){
+			$this->form_validation->set_rules('pas_foto', 'Pas Foto', 'callback_do_upload[pas_foto]');
+		}
+		if(isset($form['ska'])){
+			$this->form_validation->set_rules('ska', 'Surat Keterangan Masih Aktif', 'callback_do_upload[ska]');
+		}
+		if(isset($form['sktm'])){
+			$this->form_validation->set_rules('sktm', 'Surat Keterangan Tidak Mampu', 'callback_do_upload[sktm]');
+		}
+		
+		
+		
+		
+
 		if($this->form_validation->run()==TRUE){
-			$result = $this->kandidat_model->update($this->input->post(),$id);
-			if($result){
-				$this->session->set_flashdata('success', '<div class="alert alert-success" role="alert">Sukses Edit Data</div>');
-				redirect(site_url('kandidat'));
-			}else{
-				$this->session->set_flashdata('fail', '<div class="alert alert-danger" role="alert">Gagal Edit Data</div>');
-				$this->edit($id);
+			
+			
+			if($this->form_validation->run()==TRUE){
+				$result = $this->kandidat_model->update($this->input->post(),$id);
+				if($result){
+					$this->session->set_flashdata('success', '<div class="alert alert-success" role="alert">Sukses Edit Data</div>');
+					redirect(site_url('kandidat'));
+				}else{
+					$this->session->set_flashdata('fail', '<div class="alert alert-danger" role="alert">Gagal Edit Data</div>');
+					$this->edit($id);
+				}
 			}
 		}else{
 			$this->edit($id);

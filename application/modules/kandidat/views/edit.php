@@ -399,84 +399,57 @@
                                                     <div class="form-group <?php echo (form_error('fc_raport')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="fc_raport">Fotocopy Raport Semester</label>
                                                         <div class="col-md-10">
-                                                            <div class="radio radio radio-inline">
-                                                                <input type="radio" id="fcr1" value="1" name="fc_raport" <?php echo (set_radio('fc_raport', '1')?set_radio('fc_raport', '1'):(($data[0]['fc_raport']=='1') ? 'checked': '')); ?>>
-                                                                <label for="fcr1"> Terlampir </label>
-                                                            </div>
-                                                            <div class="radio radio-inline">
-                                                                <input type="radio" id="fcr2" value="0" name="fc_raport" <?php echo (set_radio('fc_raport', '0')?set_radio('fc_raport', '0'):(($data[0]['fc_raport']=='0') ? 'checked': '')); ?>>
-                                                                <label for="fcr2"> Tidak Ada </label>
-                                                            </div>
+                                                            <p><a href="<?php echo base_url('lampiran/fc_raport/'.$data[0]['fc_raport'])?>" target="_blank">Lampiran</a></p>
+                                                            <p><b><i style="color: #D62E2E;">Tinggalkan kosong jika tidak diganti</i></b></p>
+                                                            <input type="file" name="fc_raport" value="<?php echo $this->form->get_temp_data('fc_raport');?>">
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('fc_raport'); ?>               
                                                     </div> <!-- /control-group -->
                                                     <div class="form-group <?php echo (form_error('fc_ktp')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="fc_ktp">Fotocopy KTP Orang Tua</label>
                                                         <div class="col-md-10">
-                                                            <div class="radio radio radio-inline">
-                                                                <input type="radio" id="fcktp1" value="1" name="fc_ktp" <?php echo (set_radio('fc_ktp', '1')?set_radio('fc_ktp', '1'):(($data[0]['fc_ktp']=='1') ? 'checked': '')); ?>>
-                                                                <label for="fcktp1"> Terlampir </label>
-                                                            </div>
-                                                            <div class="radio radio-inline">
-                                                                <input type="radio" id="fcktp2" value="0" name="fc_ktp" <?php echo (set_radio('fc_ktp', '0')?set_radio('fc_ktp', '0'):(($data[0]['fc_ktp']=='0') ? 'checked': '')); ?>>
-                                                                <label for="fcktp2"> Tidak Ada </label>
-                                                            </div>
+                                                            <p><a href="<?php echo base_url('lampiran/fc_ktp/'.$data[0]['fc_ktp'])?>" target="_blank">Lampiran</a></p>
+                                                            <p><b><i style="color: #D62E2E;">Tinggalkan kosong jika tidak diganti</i></b></p>
+                                                            <input type="file" name="fc_ktp" value="<?php echo $this->form->get_temp_data('fc_ktp');?>">
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('fc_ktp'); ?>               
                                                     </div> <!-- /control-group -->
                                                     <div class="form-group <?php echo (form_error('fc_kk')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="fc_kk">Fotocopy KK</label>
                                                         <div class="col-md-10">
-                                                            <div class="radio radio radio-inline">
-                                                                <input type="radio" id="fckk1" value="1" name="fc_kk" <?php echo (set_radio('fc_kk', '1')?set_radio('fc_kk', '1'):(($data[0]['fc_kk']=='1') ? 'checked': '')); ?>>
-                                                                <label for="fckk1"> Terlampir </label>
-                                                            </div>
-                                                            <div class="radio radio-inline">
-                                                                <input type="radio" id="fckk2" value="0" name="fc_kk" <?php echo (set_radio('fc_kk', '0')?set_radio('fc_kk', '0'):(($data[0]['fc_kk']=='0') ? 'checked': '')); ?>>
-                                                                <label for="fckk2"> Tidak Ada </label>
-                                                            </div>
+                                                            <p><a href="<?php echo base_url('lampiran/fc_kk/'.$data[0]['fc_kk'])?>" target="_blank">Lampiran</a></p>
+                                                            <p><b><i style="color: #D62E2E;">Tinggalkan kosong jika tidak diganti</i></b></p>
+                                                            <input type="file" name="fc_kk" value="<?php echo $this->form->get_temp_data('fc_kk');?>">
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('fc_kk'); ?>               
                                                     </div> <!-- /control-group -->
                                                     <div class="form-group <?php echo (form_error('pas_foto')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="pas_foto">Pas Foto Siswa</label>
                                                         <div class="col-md-10">
-                                                            <div class="radio radio radio-inline">
-                                                                <input type="radio" id="pf1" value="1" name="pas_foto" <?php echo (set_radio('pas_foto', '1')?set_radio('pas_foto', '1'):(($data[0]['pas_foto']=='1') ? 'checked': '')); ?>>
-                                                                <label for="pf1"> Terlampir </label>
-                                                            </div>
-                                                            <div class="radio radio-inline">
-                                                                <input type="radio" id="pf2" value="0" name="pas_foto" <?php echo (set_radio('pas_foto', '0')?set_radio('pas_foto', '0'):(($data[0]['pas_foto']=='0') ? 'checked': '')); ?>>
-                                                                <label for="pf2"> Tidak Ada </label>
-                                                            </div>
+                                                            <p><a href="<?php echo base_url('lampiran/pas_foto/'.$data[0]['pas_foto'])?>" target="_blank">Lampiran</a></p>
+                                                            <p><b><i style="color: #D62E2E;">Tinggalkan kosong jika tidak diganti</i></b></p>
+                                                            <input type="file" name="pas_foto" value="<?php echo $this->form->get_temp_data('pas_foto');?>">
+                                                           
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('pas_foto'); ?>               
                                                     </div> <!-- /control-group -->
                                                     <div class="form-group <?php echo (form_error('ska')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="ska">Surat Keterangan Masih Aktif</label>
                                                         <div class="col-md-10">
-                                                            <div class="radio radio radio-inline">
-                                                                <input type="radio" id="skma1" value="1" name="ska" <?php echo (set_radio('ska', '1')?set_radio('ska', '1'):(($data[0]['ska']=='1') ? 'checked': '')); ?>>
-                                                                <label for="skma1"> Terlampir </label>
-                                                            </div>
-                                                            <div class="radio radio-inline">
-                                                                <input type="radio" id="skma2" value="0" name="ska" <?php echo (set_radio('ska', '0')?set_radio('ska', '0'):(($data[0]['ska']=='0') ? 'checked': '')); ?>>
-                                                                <label for="skma2"> Tidak Ada </label>
-                                                            </div>
+                                                            <p><a href="<?php echo base_url('lampiran/ska/'.$data[0]['ska'])?>" target="_blank">Lampiran</a></p>
+                                                            <p><b><i style="color: #D62E2E;">Tinggalkan kosong jika tidak diganti</i></b></p>
+                                                            <input type="file" name="ska" value="<?php echo $this->form->get_temp_data('ska');?>">
+                                                            
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('ska'); ?>               
                                                     </div> <!-- /control-group -->
                                                     <div class="form-group <?php echo (form_error('sktm')) ? 'has-error' : ''?>">                                         
                                                         <label class="control-label col-md-2 " for="sktm">Surat Keterangan Tidak Mampu</label>
                                                         <div class="col-md-10">
-                                                            <div class="radio radio radio-inline">
-                                                                <input type="radio" id="sktm1" value="1" name="sktm" <?php echo (set_radio('sktm', '1')?set_radio('sktm', '1'):(($data[0]['sktm']=='1') ? 'checked': '')); ?>>
-                                                                <label for="sktm1"> Terlampir </label>
-                                                            </div>
-                                                            <div class="radio radio-inline">
-                                                                <input type="radio" id="sktm2" value="0" name="sktm" <?php echo (set_radio('sktm', '0')?set_radio('sktm', '0'):(($data[0]['sktm']=='0') ? 'checked': '')); ?>>
-                                                                <label for="sktm2"> Tidak Ada </label>
-                                                            </div>
+                                                             <p><a href="<?php echo base_url('lampiran/sktm/'.$data[0]['sktm'])?>" target="_blank">Lampiran</a></p>
+                                                            <p><b><i style="color: #D62E2E;">Tinggalkan kosong jika tidak diganti</i></b></p>
+                                                            <input type="file" name="sktm" value="<?php echo $this->form->get_temp_data('sktm');?>">
+                                                           
                                                         </div> <!-- /controls -->
                                                         <?php echo form_error('sktm'); ?>               
                                                     </div> <!-- /control-group -->

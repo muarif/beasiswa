@@ -14,4 +14,11 @@
 		float: left;
 		display: inline-block;
 	}
+	.btn{
+		display: none;
+		text-indent: -9999999;
+	}
+	.form-horizontal{
+		display: none;
+	}
 }

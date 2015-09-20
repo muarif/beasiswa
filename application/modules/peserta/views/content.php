@@ -1,4 +1,4 @@
-<div class="main">
+  <div class="main">
     <div class="main-inner">
         <div class="container">
             <div class="row">
@@ -25,8 +25,7 @@
                                     </div><!-- /input-group -->
                                 </form>
                             </div>
-                            <a href="<?php echo site_url('kandidat/insert')?>"><button class="btn btn-primary"><i class="btn-icon icon-plus"></i>Tambah</button></a>
-
+                            
                         </div>
                     </div>
                     

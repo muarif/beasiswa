@@ -59,7 +59,7 @@ class Kandidat_model extends CI_Model {
 				);
 			$post['id_preferensi'] = $this->insert_preferensi($pref);
 		}
-
+		$post['id_user'] = $this->session->userdata('id_user');
 		unset($post['nama_preferensi']);
 		unset($post['nama_lembaga']);
 		unset($post['alamat_preferensi']);
